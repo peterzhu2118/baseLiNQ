@@ -15,7 +15,7 @@ public class TXBoardBean {
 	}
 	
 	/**
-	 * @return the iD
+	 * @return the ID of the TX Board
 	 */
 	public int getID() {
 		return ID;
@@ -23,14 +23,14 @@ public class TXBoardBean {
 
 	/**
 	 * @param iD
-	 *            the iD to set
+	 *            the ID of the TX Board
 	 */
 	public void setID(int iD) {
 		ID = iD;
 	}
 
 	/**
-	 * @return the transmitPower
+	 * @return the transmit power of the TX Board
 	 */
 	public int getTransmitPower() {
 		return transmitPower;
@@ -38,14 +38,14 @@ public class TXBoardBean {
 
 	/**
 	 * @param transmitPower
-	 *            the transmitPower to set
+	 *            the transmit power of the TX Board
 	 */
 	public void setTransmitPower(int transmitPower) {
 		this.transmitPower = transmitPower;
 	}
 
 	/**
-	 * @return the frequency
+	 * @return the frequency of the TX Board
 	 */
 	public int getFrequency() {
 		return frequency;
@@ -53,7 +53,7 @@ public class TXBoardBean {
 
 	/**
 	 * @param frequency
-	 *            the frequency to set
+	 *            the frequency of the TX Boad
 	 */
 	public void setFrequency(int frequency) {
 		this.frequency = frequency;
