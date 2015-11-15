@@ -12,7 +12,14 @@ public class AntennaBean {
 	private int downtilt;
 
 	public AntennaBean() {
+		this(0, 0, 0, 0);
+	}
 
+	public AntennaBean(int id, int h, int a, int d) {
+		this.ID = id;
+		this.height = h;
+		this.azimuth = a;
+		this.downtilt = d;
 	}
 
 	/**
@@ -21,7 +28,7 @@ public class AntennaBean {
 	public int getID() {
 		return ID;
 	}
-	
+
 	/**
 	 * @param iD
 	 *            the iD to set
