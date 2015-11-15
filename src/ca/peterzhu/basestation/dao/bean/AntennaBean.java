@@ -6,16 +6,18 @@ package ca.peterzhu.basestation.dao.bean;
  * @version 3.0
  */
 public class AntennaBean {
+	private String baseStationUID;
 	private int ID;
 	private int height;
 	private int azimuth;
 	private int downtilt;
 
 	public AntennaBean() {
-		this(0, 0, 0, 0);
+		this("", 0, 0, 0, 0);
 	}
 
-	public AntennaBean(int id, int h, int a, int d) {
+	public AntennaBean(String uid, int id, int h, int a, int d) {
+		this.baseStationUID = uid;
 		this.ID = id;
 		this.height = h;
 		this.azimuth = a;

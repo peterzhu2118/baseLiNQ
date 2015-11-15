@@ -2,6 +2,7 @@ package ca.peterzhu.basestation.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.concurrent.locks.Lock;
@@ -35,6 +36,24 @@ class SQLConnector {
 			sqle.printStackTrace();
 		}
 	}
-	
 
+	public static ResultSet executeQuery(String sqlCommand) throws SQLException {
+		threadLock.lock();
+
+		ResultSet results = sqlStatement.executeQuery(sqlCommand);
+
+		threadLock.unlock();
+
+		return results;
+	}
+
+	public static boolean exists(String sqlCommand) throws SQLException {
+		threadLock.lock();
+		
+		boolean exists = sqlStatement.execute(sqlCommand);
+		
+		threadLock.unlock();
+		
+		return exists;
+	}
 }
