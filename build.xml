@@ -1,0 +1,121 @@
+<project name="base-station" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+	<property name="src" value="src" />
+	<property name="lib" value="lib" />	
+	<property name="target" value="target" />
+	<property name="target.dist" value="${target}/dist" />
+	<property name="target.war" value="${target}/war" />
+	<property name="target.classes" value="${target}/classes" />
+	<property name="war" value="war" />
+	<property name="war.classes" value="${war}/WEB-INF/classes" />
+	<property name="war.web-inf" value="${war}/WEB-INF" />
+	<property name="war.meta-inf" value="${war}/META-INF" />
+	<property name="dist.war" value="basestation.war" />
+
+	<property environment="env"/>
+	<property name="jboss.dir" value="${env.JBOSS_HOME}" />
+	<property name="tomcat.home" value="${env.CATALINA_HOME}" />
+	
+	<path id="ant.lib.path">
+			<!-- fileset dir="${user.home}/.ant/lib" includes="*.jar" / -->
+			<fileset dir="${basedir}/ant/lib" includes="*.jar" />
+	</path>
+	
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="ant.lib.path" />
+	
+	
+	<target name="clean-build-war" depends="clean.war, clean.dist, compile, build.war" description="clean all and build fresh" />
+	<target name="clean-deploy" depends="clean-build-war, deploy" />
+
+	<target name="clean.war" description="clear files under war folder in target">
+		<if>
+		<available file="${target.war}" type="dir"/>
+		<then>
+			<delete includeemptydirs="true">
+				<fileset dir="${target.war}" includes="**/*" />
+			</delete>
+		</then>
+		</if>
+	</target>
+
+	<target name="clean.classes" description="clear files under classes dir in target">
+		<if>
+		<available file="${target.classes}" type="dir"/>
+		<then>
+			<delete includeemptydirs="true">
+				<fileset dir="${target.classes}" includes="**/*" />
+			</delete>
+		</then>
+		</if>
+	</target>
+
+	<target name="compile" description="source files compilation">
+		<mkdir dir="${target.classes}" />
+		<javac encoding="utf-8" debug="true" srcdir="${src}" failonerror="true" destdir="${target.classes}" includeDestClasses="true" includeantruntime="false" fork="false">
+			<classpath>
+				<fileset dir="${lib}" includes="**/*.jar"/>
+			</classpath>
+		</javac>
+		<copy todir="${target.classes}" verbose="true">
+			<fileset dir="${src}">
+				<include name="**/*.properties" />
+				<include name="**/*.xml" />
+				<include name="**/*.xsl" />
+				<include name="**/*.vm" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="clean.dist" description="clear files in target">
+		<if>
+			<available file="${target.dist}/${dist.war}" />
+		<then>
+			<delete file="${target.dist}/${dist.war}" verbose="true" />
+		</then>
+		</if>
+	</target>
+
+	<target name="deploy" depends="build.war" description="Deploy to JBoss AS">
+		<copy todir="${jboss.dir}/standalone/deployments" verbose="true">
+			<fileset file="${target.dist}/${dist.war}" />
+		</copy>
+	</target>
+	
+
+	<target name="build.war" depends="clean.webinf.lib">
+		<mkdir dir="${target.war}" />
+		
+		<!-- copy libraries -->
+		<copy todir="WebContent/WEB-INF/lib" flatten="true">
+			<fileset dir="${lib}" includes="**/*.jar">
+				<exclude name="**/javaee-api-7.0.jar" />
+			</fileset>
+		</copy>
+		
+		<!-- copy webcontent -->
+		<copy todir="${target.war}">
+			<fileset dir="WebContent" includes="**/*" />
+		</copy>
+		
+		<!-- copy classes -->
+		<copy todir="${target}/${war.classes}">
+			<fileset dir="${target.classes}" includes="**/*" />
+		</copy>
+		
+		<!-- pack as war -->
+		<delete file="${target.dist}/${dist.war}" />
+		<war basedir="${target.war}" destfile="${target.dist}/${dist.war}" webxml="${target}/${war.web-inf}/web.xml" manifest="${target}/${war.meta-inf}/MANIFEST.MF" />
+	</target>
+
+	<target name="clean.webinf.lib" description="clean WebContent/WEB-INF/lib dir">
+		<if>
+		<available file="WebContent/WEB-INF/lib" type="dir"/>
+		<then>
+			<delete includeemptydirs="true">
+				<fileset dir="WebContent/WEB-INF/lib" includes="**/*" />
+			</delete>
+		</then>
+		</if>
+	</target>
+
+</project>
