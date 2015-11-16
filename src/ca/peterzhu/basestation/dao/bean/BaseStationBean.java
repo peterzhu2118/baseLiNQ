@@ -38,7 +38,7 @@ public class BaseStationBean {
 
 	@Override
 	public String toString() {
-
+		return name;
 	}
 
 	/**
@@ -121,7 +121,19 @@ public class BaseStationBean {
 	}
 
 	public void addCabinet(CabinetBean c) {
-		
+		c.setSlotNumber(cabinets.size());
+
+		cabinets.add(c);
+
+		ensureCabinetOrder();
+	}
+
+	public void addAntenna(AntennaBean a) {
+		a.setSlotNumber(antennas.size());
+
+		antennas.add(a);
+
+		ensureAntennaOrder();
 	}
 
 	private void ensureCabinetOrder() {

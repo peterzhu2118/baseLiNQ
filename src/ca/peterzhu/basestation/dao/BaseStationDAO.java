@@ -12,7 +12,7 @@ import ca.peterzhu.basestation.dao.bean.BaseStationBean;
  * @version 3.0
  */
 public class BaseStationDAO {
-	private static String TABLE_NAME = "basestation";
+	private static final String TABLE_NAME = "basestation";
 	private Connection connection;
 
 	public BaseStationDAO(Connection connection) {
@@ -26,7 +26,7 @@ public class BaseStationDAO {
 
 	public static void updateBaseStation(BaseStationBean b) throws SQLException {
 		SQLConnector.executeStatement("update " + TABLE_NAME + " set name='" + b.getName() + "', longitude="
-				+ b.getLongitude() + ", latitude=" + b.getLatitude() + ", altitude=" + b.getAltitude() + " where uid="
+				+ b.getLongitude() + ", latitude=" + b.getLatitude() + ", altitude=" + b.getAltitude() + " where uniqueid="
 				+ b.getUniqueId() + ";");
 	}
 
@@ -35,7 +35,7 @@ public class BaseStationDAO {
 	}
 
 	public static void deleteBaseStation(String uid) throws SQLException {
-		SQLConnector.executeStatement("delete from " + TABLE_NAME + "where uid=" + uid + ";");
+		SQLConnector.executeStatement("delete from " + TABLE_NAME + "where uniqueid=" + uid + ";");
 	}
 
 	private static String generateUID() throws SQLException {
@@ -54,7 +54,7 @@ public class BaseStationDAO {
 			}
 		}
 
-		if (SQLConnector.executeStatement("select * from " + TABLE_NAME + " where uid=" + UID + ";"))
+		if (SQLConnector.executeStatement("select * from " + TABLE_NAME + " where uniqueid=" + UID + ";"))
 			return generateUID();
 		else
 			return UID;

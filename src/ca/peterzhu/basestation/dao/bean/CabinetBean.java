@@ -9,7 +9,6 @@ import java.util.List;
  */
 public class CabinetBean {
 	private int slotNumber;
-	private int cabinetNumber;
 	private List<TXBoardBean> txBoards;
 
 	public CabinetBean() {
@@ -22,21 +21,6 @@ public class CabinetBean {
 
 	public void setSlotNumber(int slotNumber) {
 		this.slotNumber = slotNumber;
-	}
-
-	/**
-	 * @return the ID of this Cabinet
-	 */
-	public int getCabinetNumber() {
-		return cabinetNumber;
-	}
-
-	/**
-	 * @param cabinetNumber
-	 *            the ID of this Cabinet
-	 */
-	public void setCabinetNumber(int cabinetNumber) {
-		this.cabinetNumber = cabinetNumber;
 	}
 
 	public void addTXBoard(TXBoardBean t) {
