@@ -6,7 +6,6 @@ package ca.peterzhu.basestation.dao.bean;
  * @version 3.0
  */
 public class TXBoardBean {
-	private int id;
 	private int slotNumber;
 	private int transmitPower;
 	private int frequency;
@@ -15,6 +14,16 @@ public class TXBoardBean {
 		
 	}
 	
+
+	public int getSlotNumber() {
+		return slotNumber;
+	}
+
+
+	public void setSlotNumber(int slotNumber) {
+		this.slotNumber = slotNumber;
+	}
+
 
 	/**
 	 * @return the transmit power of the TX Board

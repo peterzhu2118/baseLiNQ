@@ -21,14 +21,22 @@ public class BaseStationDAO {
 
 	public static void createBaseStation(BaseStationBean b) throws SQLException {
 		SQLConnector.executeStatement("insert into " + TABLE_NAME + " values ('" + b.getName() + "', '" + generateUID()
-				+ "', " + b.getID() + ", " + b.getLongitude() + ", " + b.getLatitude() + b.getAltitude() + ")");
+				+ "', " + b.getLongitude() + ", " + b.getLatitude() + ", " + b.getAltitude() + ");");
 	}
 
 	public static void updateBaseStation(BaseStationBean b) throws SQLException {
-		SQLConnector.executeStatement("update " + TABLE_NAME + " set " + " where uid=" + b.getUID());
+		SQLConnector.executeStatement("update " + TABLE_NAME + " set name='" + b.getName() + "', longitude="
+				+ b.getLongitude() + ", latitude=" + b.getLatitude() + ", altitude=" + b.getAltitude() + " where uid="
+				+ b.getUniqueId() + ";");
 	}
-	
-	public static void deleteBaseStation()
+
+	public static void deleteBaseStation(BaseStationBean b) throws SQLException {
+		deleteBaseStation(b.getUniqueId());
+	}
+
+	public static void deleteBaseStation(String uid) throws SQLException {
+		SQLConnector.executeStatement("delete from " + TABLE_NAME + "where uid=" + uid + ";");
+	}
 
 	private static String generateUID() throws SQLException {
 		String UID = "";

@@ -1,5 +1,7 @@
 package ca.peterzhu.basestation.dao.bean;
 
+import java.util.List;
+
 /**
  * 
  * @author Peter Zhu
@@ -9,9 +11,9 @@ public class CabinetBean {
 	private String baseStationUID;
 	private int cabinetNumber;
 	private List<TXBoardBean> txBoards;
-	
-	public CabinetBean(){
-		
+
+	public CabinetBean() {
+
 	}
 
 	/**
@@ -25,8 +27,8 @@ public class CabinetBean {
 	}
 
 	/**
-	 * Sets the 10 digit alphanumeric UID (Unique ID) of the Base Station
-	 * that this Cabinet is bound to.
+	 * Sets the 10 digit alphanumeric UID (Unique ID) of the Base Station that
+	 * this Cabinet is bound to.
 	 * 
 	 * @param baseStationUID
 	 *            the UID of the Base Station
@@ -48,6 +50,18 @@ public class CabinetBean {
 	 */
 	public void setCabinetNumber(int cabinetNumber) {
 		this.cabinetNumber = cabinetNumber;
+	}
+
+	public void addTXBoard(TXBoardBean t) {
+
+	}
+
+	private void ensureTXBoardOrder() {
+		for (int i = 0; i < txBoards.size(); i++) {
+			if (txBoards.get(i).getSlotNumber() != (i + 1)) {
+				
+			}
+		}
 	}
 
 }
