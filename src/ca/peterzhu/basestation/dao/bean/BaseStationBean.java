@@ -1,5 +1,7 @@
 package ca.peterzhu.basestation.dao.bean;
 
+import java.util.List;
+
 /**
  * 
  * @author Peter Zhu
@@ -7,23 +9,55 @@ package ca.peterzhu.basestation.dao.bean;
  */
 public class BaseStationBean {
 	private String name;
-	private long ID;
+	private String uniqueId;
 	private double longitude;
 	private double latitude;
-	private String UID;
 	private short altitude;
+	private List<CabinetBean> cabinets;
+	private List<AntennaBean> antennas;
 
 	public BaseStationBean() {
-		this("", 0l, "", 0.0, 0.0, (short) 0);
+		this("", "", 0.0, 0.0, (short) 0);
 	}
 
-	public BaseStationBean(String n, long id, String uid, double lat, double lng, short alt) {
+	public BaseStationBean(String n, String uid, double lat, double lng, short alt) {
 		this.name = n;
-		this.ID = id;
-		this.UID = uid;
+		this.uniqueId = uid;
 		this.latitude = lat;
 		this.longitude = lng;
 		this.altitude = alt;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		if (o instanceof BaseStationBean){
+			return ((BaseStationBean) o).getUniqueId().equals(uniqueId);
+		} else
+			return false;
+	}
+	
+	@Override
+	public String toString(){
+		
+	}
+
+	/**
+	 * Returns the 10 digit alphanumeric UID (Unique ID) of the Base Station.
+	 * 
+	 * @return the UID of the Base Station
+	 */
+	public String getUniqueId() {
+		return uniqueId;
+	}
+
+	/**
+	 * Sets the 10 digit alphanumeric UID (Unique ID) of the Base Station.
+	 * 
+	 * @param uniqueId
+	 *            the UID of the Base Station
+	 */
+	public void setUniqueId(String uniqueId) {
+		this.uniqueId = uniqueId;
 	}
 
 	/**
@@ -39,21 +73,6 @@ public class BaseStationBean {
 	 */
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	/**
-	 * @return the ID of the Base Station
-	 */
-	public long getID() {
-		return ID;
-	}
-
-	/**
-	 * @param ID
-	 *            the ID of the Base Station
-	 */
-	public void setID(long ID) {
-		this.ID = ID;
 	}
 
 	/**
@@ -87,25 +106,6 @@ public class BaseStationBean {
 	}
 
 	/**
-	 * Returns the 10 digit alphanumeric UID (Unique ID) of the Base Station.
-	 * 
-	 * @return the UID of the Base Station
-	 */
-	public String getUID() {
-		return UID;
-	}
-
-	/**
-	 * Sets the 10 digit alphanumeric UID (Unique ID) of the Base Station.
-	 * 
-	 * @param UID
-	 *            the uID to set
-	 */
-	public void setUID(String UID) {
-		this.UID = UID;
-	}
-
-	/**
 	 * @return the altitude of the Base Station
 	 */
 	public short getAltitude() {
@@ -119,5 +119,7 @@ public class BaseStationBean {
 	public void setAltitude(short altitude) {
 		this.altitude = altitude;
 	}
+	
+	public void add
 
 }

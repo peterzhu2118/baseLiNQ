@@ -28,6 +28,7 @@ public class DaoFactory {
 			sqle.printStackTrace();
 		}
 	}
+	
 	public static BaseStationDAO getBaseStationDAO() {
 		return new BaseStationDAO(sqlConnection);
 	}
