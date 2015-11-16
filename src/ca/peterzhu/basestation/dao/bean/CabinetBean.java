@@ -8,6 +8,7 @@ package ca.peterzhu.basestation.dao.bean;
 public class CabinetBean {
 	private String baseStationUID;
 	private int cabinetNumber;
+	private List<TXBoardBean> txBoards;
 	
 	public CabinetBean(){
 		

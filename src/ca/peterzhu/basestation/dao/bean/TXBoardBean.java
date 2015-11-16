@@ -6,7 +6,8 @@ package ca.peterzhu.basestation.dao.bean;
  * @version 3.0
  */
 public class TXBoardBean {
-	private int ID;
+	private int id;
+	private int slotNumber;
 	private int transmitPower;
 	private int frequency;
 
@@ -14,20 +15,6 @@ public class TXBoardBean {
 		
 	}
 	
-	/**
-	 * @return the ID of the TX Board
-	 */
-	public int getID() {
-		return ID;
-	}
-
-	/**
-	 * @param iD
-	 *            the ID of the TX Board
-	 */
-	public void setID(int iD) {
-		ID = iD;
-	}
 
 	/**
 	 * @return the transmit power of the TX Board

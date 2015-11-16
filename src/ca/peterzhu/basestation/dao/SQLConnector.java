@@ -36,6 +36,10 @@ class SQLConnector {
 			sqle.printStackTrace();
 		}
 	}
+	
+	public static Connection getConnection() {
+		return sqlConnection;
+	}
 
 	public static ResultSet executeQuery(String sqlCommand) throws SQLException {
 		threadLock.lock();
@@ -47,7 +51,7 @@ class SQLConnector {
 		return results;
 	}
 
-	public static boolean exists(String sqlCommand) throws SQLException {
+	public static boolean executeStatement(String sqlCommand) throws SQLException {
 		threadLock.lock();
 		
 		boolean exists = sqlStatement.execute(sqlCommand);
