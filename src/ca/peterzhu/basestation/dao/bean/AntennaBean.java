@@ -6,37 +6,27 @@ package ca.peterzhu.basestation.dao.bean;
  * @version 3.0
  */
 public class AntennaBean {
-	private String baseStationUID;
-	private int ID;
+	private int slotNumber;
 	private int height;
 	private int azimuth;
 	private int downtilt;
 
 	public AntennaBean() {
-		this("", 0, 0, 0, 0);
+		this(0, 0, 0);
 	}
 
-	public AntennaBean(String uid, int id, int h, int a, int d) {
-		this.baseStationUID = uid;
-		this.ID = id;
+	public AntennaBean(int h, int a, int d) {
 		this.height = h;
 		this.azimuth = a;
 		this.downtilt = d;
 	}
 
-	/**
-	 * @return the iD
-	 */
-	public int getID() {
-		return ID;
+	public int getSlotNumber() {
+		return slotNumber;
 	}
 
-	/**
-	 * @param iD
-	 *            the iD to set
-	 */
-	public void setID(int iD) {
-		ID = iD;
+	public void setSlotNumber(int slotNumber) {
+		this.slotNumber = slotNumber;
 	}
 
 	/**

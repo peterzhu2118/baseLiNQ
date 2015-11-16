@@ -8,7 +8,7 @@ import java.util.List;
  * @version 3.0
  */
 public class CabinetBean {
-	private String baseStationUID;
+	private int slotNumber;
 	private int cabinetNumber;
 	private List<TXBoardBean> txBoards;
 
@@ -16,25 +16,12 @@ public class CabinetBean {
 
 	}
 
-	/**
-	 * Returns the 10 digit alphanumeric UID (Unique ID) of the Base Station
-	 * that this Cabinet is bound to.
-	 * 
-	 * @return the UID of the Base Station
-	 */
-	public String getBaseStationUID() {
-		return baseStationUID;
+	public int getSlotNumber() {
+		return slotNumber;
 	}
 
-	/**
-	 * Sets the 10 digit alphanumeric UID (Unique ID) of the Base Station that
-	 * this Cabinet is bound to.
-	 * 
-	 * @param baseStationUID
-	 *            the UID of the Base Station
-	 */
-	public void setBaseStationUID(String baseStationUID) {
-		this.baseStationUID = baseStationUID;
+	public void setSlotNumber(int slotNumber) {
+		this.slotNumber = slotNumber;
 	}
 
 	/**
@@ -53,13 +40,16 @@ public class CabinetBean {
 	}
 
 	public void addTXBoard(TXBoardBean t) {
+		t.setSlotNumber(txBoards.size());
+		txBoards.add(t);
 
+		ensureTXBoardOrder();
 	}
 
 	private void ensureTXBoardOrder() {
 		for (int i = 0; i < txBoards.size(); i++) {
 			if (txBoards.get(i).getSlotNumber() != (i + 1)) {
-				
+				txBoards.get(i).setSlotNumber(i + 1);
 			}
 		}
 	}

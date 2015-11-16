@@ -27,18 +27,18 @@ public class BaseStationBean {
 		this.longitude = lng;
 		this.altitude = alt;
 	}
-	
+
 	@Override
-	public boolean equals(Object o){
-		if (o instanceof BaseStationBean){
+	public boolean equals(Object o) {
+		if (o instanceof BaseStationBean) {
 			return ((BaseStationBean) o).getUniqueId().equals(uniqueId);
 		} else
 			return false;
 	}
-	
+
 	@Override
-	public String toString(){
-		
+	public String toString() {
+
 	}
 
 	/**
@@ -119,7 +119,25 @@ public class BaseStationBean {
 	public void setAltitude(short altitude) {
 		this.altitude = altitude;
 	}
-	
-	public void add
+
+	public void addCabinet(CabinetBean c) {
+		
+	}
+
+	private void ensureCabinetOrder() {
+		for (int i = 0; i < cabinets.size(); i++) {
+			if (cabinets.get(i).getSlotNumber() != (i + 1)) {
+				cabinets.get(i).setSlotNumber(i + 1);
+			}
+		}
+	}
+
+	private void ensureAntennaOrder() {
+		for (int i = 0; i < antennas.size(); i++) {
+			if (antennas.get(i).getSlotNumber() != (i + 1)) {
+				antennas.get(i).setSlotNumber(i + 1);
+			}
+		}
+	}
 
 }
