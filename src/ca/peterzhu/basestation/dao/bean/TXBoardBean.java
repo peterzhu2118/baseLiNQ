@@ -10,20 +10,23 @@ public class TXBoardBean {
 	private int transmitPower;
 	private int frequency;
 
-	public TXBoardBean(){
-		
+	public TXBoardBean() {
+		this (0, 0, 0);
 	}
-	
+
+	public TXBoardBean(int slot, int power, int freq) {
+		this.slotNumber = slot;
+		this.transmitPower = power;
+		this.frequency = freq;
+	}
 
 	public int getSlotNumber() {
 		return slotNumber;
 	}
 
-
 	public void setSlotNumber(int slotNumber) {
 		this.slotNumber = slotNumber;
 	}
-
 
 	/**
 	 * @return the transmit power of the TX Board
@@ -53,6 +56,12 @@ public class TXBoardBean {
 	 */
 	public void setFrequency(int frequency) {
 		this.frequency = frequency;
+	}
+
+	private void clearFields() {
+		slotNumber = 0;
+		frequency = 0;
+		transmitPower = 0;
 	}
 
 }

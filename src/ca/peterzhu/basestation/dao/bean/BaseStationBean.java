@@ -1,5 +1,6 @@
 package ca.peterzhu.basestation.dao.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,15 +18,18 @@ public class BaseStationBean {
 	private List<AntennaBean> antennas;
 
 	public BaseStationBean() {
-		this("", "", 0.0, 0.0, (short) 0);
+		this("", "", 0.0, 0.0, (short) 0, new ArrayList<CabinetBean>(), new ArrayList<AntennaBean>());
 	}
 
-	public BaseStationBean(String n, String uid, double lat, double lng, short alt) {
+	public BaseStationBean(String n, String uid, double lat, double lng, short alt, List<CabinetBean> cab,
+			List<AntennaBean> ant) {
 		this.name = n;
 		this.uniqueId = uid;
 		this.latitude = lat;
 		this.longitude = lng;
 		this.altitude = alt;
+		this.cabinets = cab;
+		this.antennas = ant;
 	}
 
 	@Override
@@ -150,6 +154,16 @@ public class BaseStationBean {
 				antennas.get(i).setSlotNumber(i + 1);
 			}
 		}
+	}
+
+	private void clearFields() {
+		uniqueId = "";
+		name = "";
+		longitude = 0;
+		latitude = 0;
+		altitude = 0;
+		cabinets = new ArrayList<>();
+		antennas = new ArrayList<>();
 	}
 
 }
