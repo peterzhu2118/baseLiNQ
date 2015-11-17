@@ -1,6 +1,7 @@
 package ca.peterzhu.basestation.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Random;
 
@@ -13,32 +14,82 @@ import ca.peterzhu.basestation.dao.bean.BaseStationBean;
  */
 public class BaseStationDAO {
 	private static final String TABLE_NAME = "basestation";
-	private Connection connection;
 
 	public BaseStationDAO(Connection connection) {
-		this.connection = connection;
 	}
 
-	public static void createBaseStation(BaseStationBean b) throws SQLException {
-		SQLConnector.executeStatement("insert into " + TABLE_NAME + " values ('" + b.getName() + "', '" + generateUID()
-				+ "', " + b.getLongitude() + ", " + b.getLatitude() + ", " + b.getAltitude() + ");");
+	public void create(BaseStationBean baseStation) throws SQLException {
+		String sqlStatement = "insert into ? values (?, ?, ?, ?, ?)";
+		Connection connection = null;
+		try {
+			connection = SQLConnector.getConnection();
+			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
+			prepStmt.setString(1, TABLE_NAME);
+			prepStmt.setString(2, baseStation.getName());
+			prepStmt.setString(3, generateUID());
+			prepStmt.setDouble(4, baseStation.getLongitude());
+			prepStmt.setDouble(5, baseStation.getLatitude());
+			prepStmt.setInt(6, baseStation.getAltitude());
+
+			prepStmt.execute();
+			connection.commit();
+		} finally {
+			if (connection != null) {
+				connection.close();
+				connection = null;
+			}
+		}
 	}
 
-	public static void updateBaseStation(BaseStationBean b) throws SQLException {
-		SQLConnector.executeStatement("update " + TABLE_NAME + " set name='" + b.getName() + "', longitude="
-				+ b.getLongitude() + ", latitude=" + b.getLatitude() + ", altitude=" + b.getAltitude() + " where uniqueid="
-				+ b.getUniqueId() + ";");
+	public void update(BaseStationBean b) throws SQLException {
+		String sqlStatement = "update ? set name=?, longitude=?, latitude=?, altitude=? where uniqueid=?";
+		Connection connection = null;
+		try {
+			connection = SQLConnector.getConnection();
+			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
+
+			prepStmt.setString(1, TABLE_NAME);
+			prepStmt.setString(2, b.getName());
+			prepStmt.setDouble(3, b.getLongitude());
+			prepStmt.setDouble(4, b.getLatitude());
+			prepStmt.setInt(5, b.getAltitude());
+			prepStmt.setString(6, b.getUniqueId());
+
+			prepStmt.execute();
+			connection.commit();
+		} finally {
+			if (connection != null) {
+				connection.close();
+				connection = null;
+			}
+		}
 	}
 
-	public static void deleteBaseStation(BaseStationBean b) throws SQLException {
-		deleteBaseStation(b.getUniqueId());
+	public void delete(BaseStationBean b) throws SQLException {
+		delete(b.getUniqueId());
 	}
 
-	public static void deleteBaseStation(String uid) throws SQLException {
-		SQLConnector.executeStatement("delete from " + TABLE_NAME + "where uniqueid=" + uid + ";");
+	public void delete(String uid) throws SQLException {
+		String sqlStatement = "delete from ? where uniqueid=?";
+		Connection connection = null;
+		try {
+			connection = SQLConnector.getConnection();
+			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
+
+			prepStmt.setString(1, TABLE_NAME);
+			prepStmt.setString(2, uid);
+
+			prepStmt.execute();
+			connection.commit();
+		} finally {
+			if (connection != null) {
+				connection.close();
+				connection = null;
+			}
+		}
 	}
 
-	private static String generateUID() throws SQLException {
+	private String generateUID() throws SQLException {
 		String UID = "";
 
 		Random r = new Random();
@@ -54,7 +105,26 @@ public class BaseStationDAO {
 			}
 		}
 
-		if (SQLConnector.executeStatement("select * from " + TABLE_NAME + " where uniqueid=" + UID + ";"))
+		boolean exists;
+
+		String sqlStatement = "select * from ? where uniqueid=?";
+		Connection connection = null;
+		try {
+			connection = SQLConnector.getConnection();
+			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
+			prepStmt.setString(1, TABLE_NAME);
+			prepStmt.setString(2, UID);
+
+			exists = prepStmt.execute();
+			connection.commit();
+		} finally {
+			if (connection != null) {
+				connection.close();
+				connection = null;
+			}
+		}
+
+		if (exists)
 			return generateUID();
 		else
 			return UID;
