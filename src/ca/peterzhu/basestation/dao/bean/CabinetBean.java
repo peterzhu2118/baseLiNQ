@@ -10,13 +10,13 @@ import java.util.List;
  */
 public class CabinetBean {
 	private int slotNumber;
-	private List<TXBoardBean> txBoards;
+	private List<TxBoardBean> txBoards;
 
 	public CabinetBean() {
-		this (0, new ArrayList<TXBoardBean>());
+		this(0, new ArrayList<TxBoardBean>());
 	}
 
-	public CabinetBean(int slot, List<TXBoardBean> tx) {
+	public CabinetBean(int slot, List<TxBoardBean> tx) {
 		this.slotNumber = slot;
 		this.txBoards = tx;
 	}
@@ -29,7 +29,11 @@ public class CabinetBean {
 		this.slotNumber = slotNumber;
 	}
 
-	public void addTXBoard(TXBoardBean t) {
+	public List<TxBoardBean> getTxBoards() {
+		return txBoards;
+	}
+
+	public void addTxBoard(TxBoardBean t) {
 		t.setSlotNumber(txBoards.size());
 		txBoards.add(t);
 

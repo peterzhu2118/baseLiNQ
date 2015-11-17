@@ -4,21 +4,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import ca.peterzhu.basestation.dao.bean.TXBoardBean;
+import ca.peterzhu.basestation.dao.bean.TxBoardBean;
 
 /**
  * 
  * @author Peter Zhu
  * @version 3.0
  */
-public class TXBoardDAO {
+public class TxBoardDAO {
 	private final String TABLE_NAME;
-	
-	public TXBoardDAO(){
+
+	public TxBoardDAO() {
 		TABLE_NAME = "txboard";
 	}
 
-	public void create(TXBoardBean t, String baseStationID, int cabinetID) throws SQLException {
+	public void create(TxBoardBean t, String baseStationID, int cabinetID) throws SQLException {
 		String sqlStatement = "insert into ? values(?, ?, ?, ?, ?)";
 		Connection connection = null;
 		try {

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import ca.peterzhu.basestation.dao.bean.CabinetBean;
+import ca.peterzhu.basestation.dao.bean.TxBoardBean;
 
 /**
  * 
@@ -13,19 +14,22 @@ import ca.peterzhu.basestation.dao.bean.CabinetBean;
  */
 public class CabinetDAO {
 	private final String TABLE_NAME;
+	private TxBoardDAO txBoardDAO;
 
-	public CabinetDAO() {
+	public CabinetDAO(TxBoardDAO d) {
+		this.txBoardDAO = d;
+
 		TABLE_NAME = "cabinet";
 	}
 
-	public void create(CabinetBean c, String baseStationUID) throws SQLException {
+	public void create(CabinetBean c, String baseStationID) throws SQLException {
 		String sqlStatement = "insert into ? values(?, ?)";
 		Connection connection = null;
 		try {
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
 			prepStmt.setString(1, TABLE_NAME);
-			prepStmt.setString(2, baseStationUID);
+			prepStmt.setString(2, baseStationID);
 			prepStmt.setInt(3, c.getSlotNumber());
 
 			prepStmt.execute();
@@ -35,6 +39,10 @@ public class CabinetDAO {
 				connection.close();
 				connection = null;
 			}
+		}
+
+		for (TxBoardBean t : c.getTxBoards()) {
+			txBoardDAO.create(t, baseStationID, c.getSlotNumber());
 		}
 	}
 

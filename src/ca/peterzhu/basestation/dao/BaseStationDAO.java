@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Random;
 
+import ca.peterzhu.basestation.dao.bean.AntennaBean;
 import ca.peterzhu.basestation.dao.bean.BaseStationBean;
+import ca.peterzhu.basestation.dao.bean.CabinetBean;
 
 /**
  * 
@@ -14,9 +16,16 @@ import ca.peterzhu.basestation.dao.bean.BaseStationBean;
  */
 public class BaseStationDAO {
 	private final String TABLE_NAME;
+	private CabinetDAO cabinetDAO;
+	private TxBoardDAO txBoardDAO;
+	private AntennaDAO antennaDAO;
 
 	public BaseStationDAO() {
 		TABLE_NAME = "basestation";
+
+		antennaDAO = new AntennaDAO();
+		txBoardDAO = new TxBoardDAO();
+		cabinetDAO = new CabinetDAO(txBoardDAO);
 	}
 
 	public void create(BaseStationBean baseStation) throws SQLException {
@@ -40,8 +49,17 @@ public class BaseStationDAO {
 				connection = null;
 			}
 		}
-		
-		for ()
+
+		cabinetDAO.deleteAll(baseStation.getUniqueId());
+		antennaDAO.deleteAll(baseStation.getUniqueId());
+		for (CabinetBean c : baseStation.getCabinets()) {
+			cabinetDAO.create(c, baseStation.getUniqueId());
+		}
+
+		antennaDAO.deleteAll(baseStation.getUniqueId());
+		for (AntennaBean a : baseStation.getAntennas()) {
+			antennaDAO.create(a, baseStation.getUniqueId());
+		}
 	}
 
 	public void update(BaseStationBean b) throws SQLException {

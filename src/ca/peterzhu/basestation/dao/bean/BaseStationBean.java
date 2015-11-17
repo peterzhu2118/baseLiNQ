@@ -13,15 +13,15 @@ public class BaseStationBean {
 	private String uniqueId;
 	private double longitude;
 	private double latitude;
-	private short altitude;
+	private int altitude;
 	private List<CabinetBean> cabinets;
 	private List<AntennaBean> antennas;
 
 	public BaseStationBean() {
-		this("", "", 0.0, 0.0, (short) 0, new ArrayList<CabinetBean>(), new ArrayList<AntennaBean>());
+		this("", "", 0.0, 0.0, 0, new ArrayList<CabinetBean>(), new ArrayList<AntennaBean>());
 	}
 
-	public BaseStationBean(String n, String uid, double lat, double lng, short alt, List<CabinetBean> cab,
+	public BaseStationBean(String n, String uid, double lat, double lng, int alt, List<CabinetBean> cab,
 			List<AntennaBean> ant) {
 		this.name = n;
 		this.uniqueId = uid;
@@ -112,7 +112,7 @@ public class BaseStationBean {
 	/**
 	 * @return the altitude of the Base Station
 	 */
-	public short getAltitude() {
+	public int getAltitude() {
 		return altitude;
 	}
 
@@ -120,8 +120,12 @@ public class BaseStationBean {
 	 * @param altitude
 	 *            the altitude of the Base Station
 	 */
-	public void setAltitude(short altitude) {
+	public void setAltitude(int altitude) {
 		this.altitude = altitude;
+	}
+
+	public List<CabinetBean> getCabinets() {
+		return cabinets;
 	}
 
 	public void addCabinet(CabinetBean c) {
@@ -132,12 +136,20 @@ public class BaseStationBean {
 		ensureCabinetOrder();
 	}
 
+	public List<AntennaBean> getAntennas() {
+		return antennas;
+	}
+
 	public void addAntenna(AntennaBean a) {
 		a.setSlotNumber(antennas.size());
 
 		antennas.add(a);
 
 		ensureAntennaOrder();
+	}
+	
+	public void save(){
+		
 	}
 
 	private void ensureCabinetOrder() {

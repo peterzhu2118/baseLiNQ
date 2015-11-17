@@ -5,16 +5,16 @@ package ca.peterzhu.basestation.dao.bean;
  * @author Peter Zhu
  * @version 3.0
  */
-public class TXBoardBean {
+public class TxBoardBean {
 	private int slotNumber;
 	private int transmitPower;
 	private int frequency;
 
-	public TXBoardBean() {
+	public TxBoardBean() {
 		this (0, 0, 0);
 	}
 
-	public TXBoardBean(int slot, int power, int freq) {
+	public TxBoardBean(int slot, int power, int freq) {
 		this.slotNumber = slot;
 		this.transmitPower = power;
 		this.frequency = freq;
