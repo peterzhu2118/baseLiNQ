@@ -9,13 +9,14 @@ import ca.peterzhu.basestation.dao.bean.BaseStationBean;
 
 /**
  * 
- * @author Peter
+ * @author Peter Zhu
  * @version 3.0
  */
 public class BaseStationDAO {
-	private static final String TABLE_NAME = "basestation";
+	private final String TABLE_NAME;
 
-	public BaseStationDAO(Connection connection) {
+	public BaseStationDAO() {
+		TABLE_NAME = "basestation";
 	}
 
 	public void create(BaseStationBean baseStation) throws SQLException {
@@ -39,6 +40,8 @@ public class BaseStationDAO {
 				connection = null;
 			}
 		}
+		
+		for ()
 	}
 
 	public void update(BaseStationBean b) throws SQLException {
