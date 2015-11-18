@@ -19,20 +19,19 @@ public class AntennaDAO {
 	}
 
 	public void create(AntennaBean a, String baseStationID) throws SQLException {
-		String sqlStatement = "insert into ? values(?, ?, ?, ?, ?)";
+		String sqlStatement = "INSERT INTO " + TABLE_NAME + " VALUES(?, ?, ?, ?, ?)";
 		Connection connection = null;
 		try {
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
-			prepStmt.setString(1, TABLE_NAME);
-			prepStmt.setString(2, baseStationID);
-			prepStmt.setInt(3, a.getSlotNumber());
-			prepStmt.setInt(4, a.getHeight());
-			prepStmt.setInt(5, a.getAzimuth());
-			prepStmt.setInt(6, a.getHeight());
+			prepStmt.setString(1, baseStationID);
+			prepStmt.setInt(2, a.getSlotNumber());
+			prepStmt.setInt(3, a.getHeight());
+			prepStmt.setInt(4, a.getAzimuth());
+			prepStmt.setInt(5, a.getHeight());
 
 			prepStmt.execute();
-			connection.commit();
+			//connection.commit();
 		} finally {
 			if (connection != null) {
 				connection.close();
@@ -42,16 +41,15 @@ public class AntennaDAO {
 	}
 
 	public void deleteAll(String baseStationID) throws SQLException {
-		String sqlStatement = "delete from ? where basestationid=?";
+		String sqlStatement = "DELETE FROM " + TABLE_NAME + " WHERE basestationid=?";
 		Connection connection = null;
 		try {
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
-			prepStmt.setString(1, TABLE_NAME);
-			prepStmt.setString(2, baseStationID);
+			prepStmt.setString(1, baseStationID);
 
 			prepStmt.execute();
-			connection.commit();
+			//connection.commit();
 		} finally {
 			if (connection != null) {
 				connection.close();

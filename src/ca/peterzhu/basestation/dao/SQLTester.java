@@ -12,8 +12,10 @@ public class SQLTester {
 	public static void main(String[] args) throws SQLException {
 		BaseStationDAO bsd = new BaseStationDAO();
 		
+		bsd.delete("QELHQPSUJ2");
+		/*
 		BaseStationBean bsb = new BaseStationBean();
-		bsb.setName("Testing 123");
+		bsb.setName("Peter's test");
 		bsb.setLongitude(20.1);
 		bsb.setLatitude(18.2);
 		bsb.setAltitude(10);
@@ -25,6 +27,7 @@ public class SQLTester {
 		txb.setTransmitPower(6);
 		
 		cb.addTxBoard(txb);
+
 		
 		bsb.addCabinet(cb);
 		
@@ -33,10 +36,10 @@ public class SQLTester {
 		ab.setDowntilt(11);
 		ab.setHeight(15);
 		
-		bsb.addCabinet(cb);
 		bsb.addAntenna(ab);
 		
 		bsd.create(bsb);
+		*/
 	}
 
 }

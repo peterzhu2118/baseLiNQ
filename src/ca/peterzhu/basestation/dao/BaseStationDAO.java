@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Random;
 
+import org.primefaces.component.tabview.Tab;
+
 import ca.peterzhu.basestation.dao.bean.AntennaBean;
 import ca.peterzhu.basestation.dao.bean.BaseStationBean;
 import ca.peterzhu.basestation.dao.bean.CabinetBean;
@@ -29,20 +31,21 @@ public class BaseStationDAO {
 	}
 
 	public void create(BaseStationBean baseStation) throws SQLException {
-		String sqlStatement = "insert into ? values (?, ?, ?, ?, ?)";
+		baseStation.setUniqueId(generateUID());
+		String sqlStatement = "INSERT INTO " + TABLE_NAME + " VALUES (?, ?, ?, ?, ?)";
 		Connection connection = null;
 		try {
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
-			prepStmt.setString(1, TABLE_NAME);
-			prepStmt.setString(2, baseStation.getName());
-			prepStmt.setString(3, generateUID());
-			prepStmt.setDouble(4, baseStation.getLongitude());
-			prepStmt.setDouble(5, baseStation.getLatitude());
-			prepStmt.setInt(6, baseStation.getAltitude());
+
+			prepStmt.setString(1, baseStation.getName());
+			prepStmt.setString(2, baseStation.getUniqueId());
+			prepStmt.setDouble(3, baseStation.getLongitude());
+			prepStmt.setDouble(4, baseStation.getLatitude());
+			prepStmt.setInt(5, baseStation.getAltitude());
 
 			prepStmt.execute();
-			connection.commit();
+			//connection.commit();
 		} finally {
 			if (connection != null) {
 				connection.close();
@@ -50,6 +53,38 @@ public class BaseStationDAO {
 			}
 		}
 
+		for (CabinetBean c : baseStation.getCabinets()) {
+			cabinetDAO.create(c, baseStation.getUniqueId());
+		}
+
+		for (AntennaBean a : baseStation.getAntennas()) {
+			antennaDAO.create(a, baseStation.getUniqueId());
+		}
+	}
+
+	public void update(BaseStationBean baseStation) throws SQLException {
+		String sqlStatement = "UPDATE " + TABLE_NAME
+				+ " SET name=?, longitude=?, latitude=?, altitude=? WHERE uniqueid=?";
+		Connection connection = null;
+		try {
+			connection = SQLConnector.getConnection();
+			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
+
+			prepStmt.setString(1, baseStation.getName());
+			prepStmt.setDouble(2, baseStation.getLongitude());
+			prepStmt.setDouble(3, baseStation.getLatitude());
+			prepStmt.setInt(4, baseStation.getAltitude());
+			prepStmt.setString(5, baseStation.getUniqueId());
+
+			prepStmt.execute();
+			//connection.commit();
+		} finally {
+			if (connection != null) {
+				connection.close();
+				connection = null;
+			}
+		}
+		
 		cabinetDAO.deleteAll(baseStation.getUniqueId());
 		antennaDAO.deleteAll(baseStation.getUniqueId());
 		for (CabinetBean c : baseStation.getCabinets()) {
@@ -62,52 +97,31 @@ public class BaseStationDAO {
 		}
 	}
 
-	public void update(BaseStationBean b) throws SQLException {
-		String sqlStatement = "update ? set name=?, longitude=?, latitude=?, altitude=? where uniqueid=?";
-		Connection connection = null;
-		try {
-			connection = SQLConnector.getConnection();
-			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
-
-			prepStmt.setString(1, TABLE_NAME);
-			prepStmt.setString(2, b.getName());
-			prepStmt.setDouble(3, b.getLongitude());
-			prepStmt.setDouble(4, b.getLatitude());
-			prepStmt.setInt(5, b.getAltitude());
-			prepStmt.setString(6, b.getUniqueId());
-
-			prepStmt.execute();
-			connection.commit();
-		} finally {
-			if (connection != null) {
-				connection.close();
-				connection = null;
-			}
-		}
-	}
-
 	public void delete(BaseStationBean b) throws SQLException {
 		delete(b.getUniqueId());
 	}
 
 	public void delete(String uid) throws SQLException {
-		String sqlStatement = "delete from ? where uniqueid=?";
+		String sqlStatement = "DELETE FROM " + TABLE_NAME + " WHERE uniqueid=?";
 		Connection connection = null;
 		try {
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
 
-			prepStmt.setString(1, TABLE_NAME);
-			prepStmt.setString(2, uid);
+			prepStmt.setString(1, uid);
 
 			prepStmt.execute();
-			connection.commit();
+			//connection.commit();
 		} finally {
 			if (connection != null) {
 				connection.close();
 				connection = null;
 			}
 		}
+		
+		cabinetDAO.deleteAll(uid);
+		txBoardDAO.deleteAll(uid);
+		antennaDAO.deleteAll(uid);
 	}
 
 	private String generateUID() throws SQLException {
@@ -128,22 +142,21 @@ public class BaseStationDAO {
 
 		boolean exists = false;;
 
-		/*String sqlStatement = "select * from ? where uniqueid=?";
+		String sqlStatement = "SELECT * FROM " + TABLE_NAME + " WHERE uniqueid=?;";
 		Connection connection = null;
 		try {
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
-			prepStmt.setString(1, TABLE_NAME);
-			prepStmt.setString(2, UID);
+			prepStmt.setString(1, UID);
 
-			exists = prepStmt.execute();
-			connection.commit();
+			exists = prepStmt.executeQuery().next();
+			// connection.commit();
 		} finally {
 			if (connection != null) {
 				connection.close();
 				connection = null;
 			}
-		}*/
+		}
 
 		if (exists)
 			return generateUID();
