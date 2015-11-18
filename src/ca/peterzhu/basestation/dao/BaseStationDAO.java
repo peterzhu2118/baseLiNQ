@@ -126,9 +126,9 @@ public class BaseStationDAO {
 			}
 		}
 
-		boolean exists;
+		boolean exists = false;;
 
-		String sqlStatement = "select * from ? where uniqueid=?";
+		/*String sqlStatement = "select * from ? where uniqueid=?";
 		Connection connection = null;
 		try {
 			connection = SQLConnector.getConnection();
@@ -143,7 +143,7 @@ public class BaseStationDAO {
 				connection.close();
 				connection = null;
 			}
-		}
+		}*/
 
 		if (exists)
 			return generateUID();
