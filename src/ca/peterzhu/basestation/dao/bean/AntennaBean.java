@@ -15,10 +15,11 @@ public class AntennaBean {
 	 * This constructor initializes the bean with blank fields.
 	 */
 	public AntennaBean() {
-		this(0, 0, 0);
+		this(0, 0, 0, 0);
 	}
 
-	public AntennaBean(int h, int a, int d) {
+	public AntennaBean(int slotNumber, int h, int a, int d) {
+		this.slotNumber = slotNumber;
 		this.height = h;
 		this.azimuth = a;
 		this.downtilt = d;
@@ -76,8 +77,8 @@ public class AntennaBean {
 	public void setDowntilt(int downtilt) {
 		this.downtilt = downtilt;
 	}
-	
-	private void clearFields(){
+
+	private void clearFields() {
 		slotNumber = 0;
 		height = 0;
 		azimuth = 0;

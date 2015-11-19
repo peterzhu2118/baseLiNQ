@@ -2,16 +2,26 @@ package ca.peterzhu.basestation.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
-
-import org.primefaces.component.tabview.Tab;
 
 import ca.peterzhu.basestation.dao.bean.AntennaBean;
 import ca.peterzhu.basestation.dao.bean.BaseStationBean;
 import ca.peterzhu.basestation.dao.bean.CabinetBean;
 
 /**
+ * This class contains all the methods to create, update, delete and retrieve
+ * BaseStationBean Objects. The connection is done using JDBC's
+ * java.sql.Connection class and JDBC's java.sql.PreparedStatement class. The
+ * methods in this class assumes the SQL server will automatically commit the
+ * changes.
+ * 
+ * <p>
+ * This class utilizes the AntennaBean, BaseStationBean and CabinetBean to
+ * function.
  * 
  * @author Peter Zhu
  * @version 3.0
@@ -45,7 +55,7 @@ public class BaseStationDAO {
 			prepStmt.setInt(5, baseStation.getAltitude());
 
 			prepStmt.execute();
-			//connection.commit();
+			// connection.commit();
 		} finally {
 			if (connection != null) {
 				connection.close();
@@ -77,14 +87,14 @@ public class BaseStationDAO {
 			prepStmt.setString(5, baseStation.getUniqueId());
 
 			prepStmt.execute();
-			//connection.commit();
+			// connection.commit();
 		} finally {
 			if (connection != null) {
 				connection.close();
 				connection = null;
 			}
 		}
-		
+
 		cabinetDAO.deleteAll(baseStation.getUniqueId());
 		antennaDAO.deleteAll(baseStation.getUniqueId());
 		for (CabinetBean c : baseStation.getCabinets()) {
@@ -111,17 +121,46 @@ public class BaseStationDAO {
 			prepStmt.setString(1, uid);
 
 			prepStmt.execute();
-			//connection.commit();
+
+			cabinetDAO.deleteAll(uid);
+			antennaDAO.deleteAll(uid);
 		} finally {
 			if (connection != null) {
 				connection.close();
 				connection = null;
 			}
 		}
-		
-		cabinetDAO.deleteAll(uid);
-		txBoardDAO.deleteAll(uid);
-		antennaDAO.deleteAll(uid);
+	}
+
+	public List<BaseStationBean> retrieveAll() throws SQLException {
+		String sqlStatement = "SELECT * FROM " + TABLE_NAME;
+		Connection connection = null;
+		try {
+			connection = SQLConnector.getConnection();
+			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
+			ResultSet result = prepStmt.executeQuery();
+
+			List<BaseStationBean> baseStationList = new ArrayList<>();
+
+			while (result.next()) {
+				String name = result.getString(1);
+				String UID = result.getString(2);
+				double lng = result.getDouble(3);
+				double lat = result.getDouble(4);
+				int alt = result.getInt(5);
+				List<CabinetBean> cabBeanList = cabinetDAO.retrieve(UID);
+				List<AntennaBean> antBeanList = antennaDAO.retrieve(UID);
+
+				baseStationList.add(new BaseStationBean(name, UID, lng, lat, alt, cabBeanList, antBeanList));
+			}
+
+			return baseStationList;
+		} finally {
+			if (connection != null) {
+				connection.close();
+				connection = null;
+			}
+		}
 	}
 
 	private String generateUID() throws SQLException {
@@ -140,7 +179,8 @@ public class BaseStationDAO {
 			}
 		}
 
-		boolean exists = false;;
+		boolean exists = false;
+		;
 
 		String sqlStatement = "SELECT * FROM " + TABLE_NAME + " WHERE uniqueid=?;";
 		Connection connection = null;

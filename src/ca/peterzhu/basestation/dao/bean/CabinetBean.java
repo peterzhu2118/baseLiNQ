@@ -19,6 +19,8 @@ public class CabinetBean {
 	public CabinetBean(int slot, List<TxBoardBean> tx) {
 		this.slotNumber = slot;
 		this.txBoards = tx;
+		
+		ensureTXBoardOrder();
 	}
 
 	public int getSlotNumber() {

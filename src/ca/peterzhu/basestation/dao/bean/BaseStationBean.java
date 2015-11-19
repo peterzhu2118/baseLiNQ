@@ -21,7 +21,7 @@ public class BaseStationBean {
 		this("", "", 0.0, 0.0, 0, new ArrayList<CabinetBean>(), new ArrayList<AntennaBean>());
 	}
 
-	public BaseStationBean(String n, String uid, double lat, double lng, int alt, List<CabinetBean> cab,
+	public BaseStationBean(String n, String uid, double lng, double lat, int alt, List<CabinetBean> cab,
 			List<AntennaBean> ant) {
 		this.name = n;
 		this.uniqueId = uid;
@@ -30,6 +30,9 @@ public class BaseStationBean {
 		this.altitude = alt;
 		this.cabinets = cab;
 		this.antennas = ant;
+		
+		ensureAntennaOrder();
+		ensureCabinetOrder();
 	}
 
 	@Override
@@ -146,10 +149,6 @@ public class BaseStationBean {
 		antennas.add(a);
 
 		ensureAntennaOrder();
-	}
-	
-	public void save(){
-		
 	}
 
 	private void ensureCabinetOrder() {
