@@ -20,8 +20,7 @@ import ca.peterzhu.basestation.dao.bean.CabinetBean;
  * changes.
  * 
  * <p>
- * This class utilizes the AntennaBean, BaseStationBean and CabinetBean to
- * function.
+ * This class utilizes the AntennaDAO and CabinetDAO to function.
  * 
  * @author Peter Zhu
  * @version 3.0

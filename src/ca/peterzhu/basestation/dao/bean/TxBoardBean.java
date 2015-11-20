@@ -1,10 +1,13 @@
 package ca.peterzhu.basestation.dao.bean;
 
+import javax.inject.Named;
+
 /**
  * 
  * @author Peter Zhu
  * @version 3.0
  */
+@Named("txBoard")
 public class TxBoardBean {
 	private int slotNumber;
 	private int transmitPower;

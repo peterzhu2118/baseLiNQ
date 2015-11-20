@@ -1,10 +1,8 @@
 package ca.peterzhu.basestation.dao.bean;
 
-/**
- * 
- * @author Peter Zhu
- * @version 3.0
- */
+import javax.inject.Named;
+
+@Named("antenna")
 public class AntennaBean {
 	private int slotNumber;
 	private int height;

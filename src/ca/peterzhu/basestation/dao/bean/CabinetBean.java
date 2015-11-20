@@ -3,11 +3,14 @@ package ca.peterzhu.basestation.dao.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Named;
+
 /**
  * 
  * @author Peter Zhu
  * @version 3.0
  */
+@Named("cabinet")
 public class CabinetBean {
 	private int slotNumber;
 	private List<TxBoardBean> txBoards;
