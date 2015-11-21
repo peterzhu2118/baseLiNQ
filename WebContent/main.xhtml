@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+	<title>Base Station Database</title>
+
+	<h:outputStylesheet name="css/header.css" />
+	<h:outputStylesheet name="css/mainpage.css" />
+</h:head>
+
+<h:body>
+	<!-- This produces the header of the web page -->
+	<h1>
+		<h:button
+			image="http://solutionscenter.nethope.org/images/site_images/Blinq_Networks_Logo.png" />
+	</h1>
+
+	<!-- Form that contains the search functionality and the add new Base Station button -->
+
+	<h:form>
+		<h:inputText id="searchtextbox" />
+		<h:selectOneMenu id="searchtypeselect">
+			<f:selectItem itemValue="1" itemLabel="Name" />
+		</h:selectOneMenu>
+
+		<h:commandButton id="searchbutton" value="Search" />
+		<h:button id="addnewbutton" value="Add New" />
+	</h:form>
+</h:body>
+
+</html>
