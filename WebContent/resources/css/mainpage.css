@@ -1,41 +1,41 @@
 @CHARSET "ISO-8859-1";
 
-#searchtextbox {
+#mainform\3A searchtextbox {
 	position: relative;
 	margin-left: 20%;
 	margin-top: 1%;
 	width: 30%;
 	height: 10%;
 	font-family: "Times New Roman";
-	font-size: 20px
+	font-size: 20px;
 }
 
-#searchtypeselect {
+#mainform\3A searchtypeselect {
 	position: relative;
 	margin-left: 1%;
 	margin-top: 1%;
 	width: 10%;
 	height: 10%;
 	font-family: "Times New Roman";
-	font-size: 20px
+	font-size: 20px;
 }
 
-#searchbutton {
+#mainform\3A searchbutton {
 	position: relative;
 	margin-left: 1%;
 	margin-top: 1%;
 	width: 7%;
 	height: 10%;
 	font-family: "Times New Roman";
-	font-size: 20px
+	font-size: 20px;
 }
 
-#addnewbutton {
+#mainform\3A addnewbutton {
 	position: relative;
 	margin-left: 1%;
 	margin-top: 1%;
 	width: 7%;
 	height: 10%;
 	font-family: "Times New Roman";
-	font-size: 20px
+	font-size: 20px;
 }

@@ -1,20 +1,18 @@
 package ca.peterzhu.basestation.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
-import ca.peterzhu.basestation.dao.bean.AntennaBean;
 import ca.peterzhu.basestation.dao.bean.BaseStationBean;
-import ca.peterzhu.basestation.dao.bean.CabinetBean;
-import ca.peterzhu.basestation.dao.bean.TxBoardBean;
 
 public class SQLTester {
 
 	public static void main(String[] args) throws SQLException {
 		BaseStationDAO bsd = new BaseStationDAO();
 		
-		bsd.delete("QELHQPSUJ2");
-		/*
-		BaseStationBean bsb = new BaseStationBean();
+		//bsd.delete("QELHQPSUJ2");
+		
+		/*BaseStationBean bsb = new BaseStationBean();
 		bsb.setName("Peter's test");
 		bsb.setLongitude(20.1);
 		bsb.setLatitude(18.2);
@@ -38,8 +36,12 @@ public class SQLTester {
 		
 		bsb.addAntenna(ab);
 		
-		bsd.create(bsb);
-		*/
+		bsd.create(bsb);*/
+		
+		List<BaseStationBean> bsb = bsd.retrieveAll();
+		System.out.println(bsb == null);
+		System.out.println(bsb.size());
+		
 	}
 
 }

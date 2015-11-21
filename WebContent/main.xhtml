@@ -3,24 +3,28 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-	
+
 <h:head>
 	<title>Base Station Database</title>
 
-	<h:outputStylesheet name="css/header.css" />
 	<h:outputStylesheet name="css/mainpage.css" />
+	<h:outputStylesheet name="css/header.css" />
+	<h:outputStylesheet name="css/mainpagegmap.css" />
+
+	<script src="http://maps.google.com/maps/api/js?sensor=false&amp;v=3.4"
+		type="text/javascript"></script>
 </h:head>
 
 <h:body>
 	<!-- This produces the header of the web page -->
 	<h1>
-		<h:button
+		<h:button id="headermainimage"
 			image="http://solutionscenter.nethope.org/images/site_images/Blinq_Networks_Logo.png" />
 	</h1>
 
 	<!-- Form that contains the search functionality and the add new Base Station button -->
 
-	<h:form>
+	<h:form id="mainform">
 		<h:inputText id="searchtextbox" />
 		<h:selectOneMenu id="searchtypeselect">
 			<f:selectItem itemValue="1" itemLabel="Name" />
@@ -28,6 +32,27 @@
 
 		<h:commandButton id="searchbutton" value="Search" />
 		<h:button id="addnewbutton" value="Add New" />
+
+		<!-- This creates the Google Maps element on the man page -->
+		<p:gmap center="0,0" zoom="2" type="MAP" model="#{baseStationMap.map}"
+			id="gmap"
+			style="margin-left: 5%;margin-top: 1%;width: 90%;height: 500px;">
+			<p:ajax event="overlaySelect"
+				listener="#{baseStationMap.onMarkerSelect}" />
+			<!-- This creates the popup window for the markers -->
+			<p:gmapInfoWindow id="infoWindow">
+				<p:outputPanel id="markerpanel"
+					style="text-align: center;display: block;margin: auto;">
+
+					<h:outputText id="basestationtitle"
+						value="#{baseStationMap.selectedMarker.title}" />
+					<br />
+					<h:commandButton id="viewbasestation" value="View" />
+					<h:commandButton id="editbasestation" value="Edit" />
+					<h:commandButton id="deletebasestation" value="Delete" />
+				</p:outputPanel>
+			</p:gmapInfoWindow>
+		</p:gmap>
 	</h:form>
 </h:body>
 
