@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.map.OverlaySelectEvent;
@@ -19,30 +20,39 @@ import ca.peterzhu.basestation.dao.bean.BaseStationBean;
 
 @Named("baseStationMap")
 @ViewScoped
-public class AllBaseStationMap implements Serializable{
+public class AllBaseStationMap implements Serializable {
 	private MapModel map;
 	private Marker selectedMarker;
 
 	private BaseStationDAO baseStationDao;
+
+	@Inject
+	private BaseStationSearch baseStationSearch;
 
 	public AllBaseStationMap() {
 		System.out.println("const");
 	}
 
 	@PostConstruct
-	public void init() {
+	public void init() throws SQLException {
 		System.out.println("init");
 		map = new DefaultMapModel();
 
 		baseStationDao = new BaseStationDAO();
 
-		List<BaseStationBean> baseStations = null;
-		try {
-			baseStations = baseStationDao.retrieveAll();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		List<BaseStationBean> baseStations = baseStationDao.retrieveAll();
+
+		if (baseStationSearch.getSearchType() == 0) {
+
+		} else if (baseStationSearch.getSearchType() == 1 && baseStationSearch.getSearchTerm() == null
+				|| baseStationSearch.getSearchTerm() == "") {
+			for (int i = 0; i < baseStations.size(); i++) {
+				if (!baseStations.get(i).getName().contains(baseStationSearch.getSearchTerm())) {
+					baseStations.remove(i);
+				}
+			}
 		}
+
 		for (BaseStationBean bsb : baseStations) {
 			System.out.println("Added Marker");
 			LatLng coord = new LatLng(bsb.getLatitude(), bsb.getLongitude());
