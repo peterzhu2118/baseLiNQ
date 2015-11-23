@@ -2,11 +2,11 @@ package ca.peterzhu.basestation.googlemaps;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.ConversationScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 @Named("baseStationSearch")
-@ConversationScoped
+@ViewScoped
 public class BaseStationSearch implements Serializable{
 	private String searchTerm;
 	private int searchType;
@@ -14,6 +14,7 @@ public class BaseStationSearch implements Serializable{
 	public BaseStationSearch(){
 		searchTerm = "";
 		searchType = 0;
+		System.out.println("BASESTATION BEAN  SEARCH!!!!!!!!!!!!!!!!!!");
 	}
 
 	/**
