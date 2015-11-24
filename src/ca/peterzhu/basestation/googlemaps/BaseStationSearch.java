@@ -14,7 +14,7 @@ public class BaseStationSearch implements Serializable{
 	public BaseStationSearch(){
 		searchTerm = "";
 		searchType = 0;
-		System.out.println("BASESTATION BEAN  SEARCH!!!!!!!!!!!!!!!!!!");
+		//System.out.println("BASESTATION BEAN  SEARCH!!!!!!!!!!!!!!!!!!");
 	}
 
 	/**

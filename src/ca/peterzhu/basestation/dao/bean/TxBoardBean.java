@@ -1,5 +1,8 @@
 package ca.peterzhu.basestation.dao.bean;
 
+import java.io.Serializable;
+
+import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
 
 /**
@@ -7,14 +10,15 @@ import javax.inject.Named;
  * @author Peter Zhu
  * @version 3.0
  */
-@Named("txBoard")
-public class TxBoardBean {
+@Named("txBoardBean")
+@ConversationScoped
+public class TxBoardBean implements Serializable {
 	private int slotNumber;
 	private int transmitPower;
 	private int frequency;
 
 	public TxBoardBean() {
-		this (0, 0, 0);
+		this(0, 0, 0);
 	}
 
 	public TxBoardBean(int slot, int power, int freq) {

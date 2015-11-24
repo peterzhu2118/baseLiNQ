@@ -54,6 +54,7 @@ public class AllBaseStationMap implements Serializable {
 		} else if (baseStationSearch.getSearchType() == 1 && baseStationSearch.getSearchTerm() != null
 				&& baseStationSearch.getSearchTerm() != "") {
 			for (int i = 0; i < baseStations.size(); i++) {
+				System.out.print
 				if (!baseStations.get(i).getName().toLowerCase()
 						.contains(baseStationSearch.getSearchTerm().toLowerCase())) {
 					System.out.println("remove");

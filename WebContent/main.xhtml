@@ -32,7 +32,7 @@
 		</h:selectOneMenu>
 
 		<h:commandButton id="searchbutton" value="Search" action="#{baseStationMap.update()}"/>
-		<h:button id="addnewbutton" value="Add New" />
+		<h:button id="addnewbutton" value="Add New" outcome="newbasestation"/>
 
 		<!-- This creates the Google Maps element on the man page -->
 		<p:gmap center="0,0" zoom="2" type="MAP" model="#{baseStationMap.map}"

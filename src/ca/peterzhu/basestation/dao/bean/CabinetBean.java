@@ -1,8 +1,10 @@
 package ca.peterzhu.basestation.dao.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
 
 /**
@@ -10,8 +12,9 @@ import javax.inject.Named;
  * @author Peter Zhu
  * @version 3.0
  */
-@Named("cabinet")
-public class CabinetBean {
+@Named("cabinetBean")
+@ConversationScoped
+public class CabinetBean implements Serializable{
 	private int slotNumber;
 	private List<TxBoardBean> txBoards;
 

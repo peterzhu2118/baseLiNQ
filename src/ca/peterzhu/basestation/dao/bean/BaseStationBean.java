@@ -1,8 +1,12 @@
 package ca.peterzhu.basestation.dao.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -10,8 +14,9 @@ import javax.inject.Named;
  * @author Peter Zhu
  * @version 3.0
  */
-@Named("baseStation")
-public class BaseStationBean {
+@Named("baseStationBean")
+@ConversationScoped
+public class BaseStationBean implements Serializable {
 	private String name;
 	private String uniqueId;
 	private double longitude;
@@ -19,6 +24,9 @@ public class BaseStationBean {
 	private int altitude;
 	private List<CabinetBean> cabinets;
 	private List<AntennaBean> antennas;
+
+	@Inject
+	private Conversation conversation;
 
 	public BaseStationBean() {
 		this("", "", 0.0, 0.0, 0, new ArrayList<CabinetBean>(), new ArrayList<AntennaBean>());
@@ -33,7 +41,7 @@ public class BaseStationBean {
 		this.altitude = alt;
 		this.cabinets = cab;
 		this.antennas = ant;
-		
+
 		ensureAntennaOrder();
 		ensureCabinetOrder();
 	}

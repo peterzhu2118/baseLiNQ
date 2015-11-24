@@ -7,10 +7,11 @@
 <h:head>
 	<title>New Base Station</title>
 
-	<h:outputScript libaray="js" name="enterkeyprevent.js" />
+	<h:outputScript library="js" name="enterkeyprevent.js" />
 
 	<h:outputStylesheet name="css/editbasestation.css" />
 	<h:outputStylesheet name="css/header.css" />
+	<h:outputStylesheet name="css/formtemplate.css" />
 </h:head>
 
 <h:body>
@@ -20,8 +21,43 @@
 			name="Blinq_Networks_Logo.png" />
 	</h1>
 
-	<h:form id="mainform">
+	<!-- Header title for the form -->
+	<h2>New Base Station</h2>
 
+	<hr />
+
+
+	<h:form id="mainform">
+		<br />
+		<h:outputText id="namelabel" value="Name" />
+
+		<br />
+
+		<h:inputText id="nametextbox" value="#{baseStationBean.name}" />
+
+		<br />
+		<br />
+		<br />
+
+		<h:outputText id="longitudelabel" value="Longitude" />
+		<br />
+		<h:inputText id="longitudetextbox" value="#{baseStationBean.longitude}" />
+
+		<br />
+		<br />
+		<br />
+
+		<h:outputText id="latitudelabel" value="Latitude" />
+		<br />
+		<h:inputText id="latitudetextbox" value="#{baseStationBean.latitude}" />
+
+		<br />
+		<br />
+		<br />
+
+		<h:outputText id="altitudelabel" value="Altitude" />
+		<br />
+		<h:inputText id="altitudetextbox" value="#{baseStationBean.altitude}" />
 	</h:form>
 
 </h:body>
