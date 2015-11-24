@@ -1,6 +1,7 @@
 package ca.peterzhu.basestation.dao.bean;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,8 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import ca.peterzhu.basestation.dao.BaseStationDAO;
 
 /**
  * 
@@ -90,6 +93,7 @@ public class BaseStationBean implements Serializable {
 	 *            the name of the Base Station
 	 */
 	public void setName(String name) {
+		System.out.println("Set name");
 		this.name = name;
 	}
 
@@ -160,6 +164,43 @@ public class BaseStationBean implements Serializable {
 		antennas.add(a);
 
 		ensureAntennaOrder();
+	}
+
+	public String create(String redirect) throws SQLException {
+		BaseStationDAO dao = new BaseStationDAO();
+		System.out.println("Unique ID: " + uniqueId);
+		System.out.println("Unique ID: " + (uniqueId == ""));
+
+		if (uniqueId != null && uniqueId != "") {
+			throw new IllegalStateException("Unique ID is not blank for new Base Station");
+		}
+
+		dao.create(this);
+
+		clearFields();
+
+		return redirect;
+	}
+
+	public String save(String redirect) throws SQLException {
+		BaseStationDAO dao = new BaseStationDAO();
+
+
+		if (uniqueId == null || uniqueId == "") {
+			throw new IllegalStateException("Unique ID is black for saving Base Station");
+		}
+
+		dao.create(this);
+
+		clearFields();
+
+		return redirect;
+	}
+
+	public String discard(String redirect) {
+		clearFields();
+
+		return redirect;
 	}
 
 	private void ensureCabinetOrder() {

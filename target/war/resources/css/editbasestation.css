@@ -52,3 +52,32 @@
 	font-family: "Times New Roman";
 	font-size: 20px;
 }
+
+#mainform\3A altitudetextbox {
+	margin-left: 30%;
+	margin-top: 0%;
+	width: 8%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}
+
+#mainform\3A cabinetlabel {
+	margin-left: 30%;
+	margin-top: 20%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A basestationsave {
+	margin-left: 60%;
+	margin-top: 3%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}
+
+#mainform\3A basestationdiscard {
+	margin-left: 1%;
+	margin-top: 3%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}

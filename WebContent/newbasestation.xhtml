@@ -41,7 +41,8 @@
 
 		<h:outputText id="longitudelabel" value="Longitude" />
 		<br />
-		<h:inputText id="longitudetextbox" value="#{baseStationBean.longitude}" />
+		<h:inputText id="longitudetextbox"
+			value="#{baseStationBean.longitude}" />
 
 		<br />
 		<br />
@@ -58,6 +59,30 @@
 		<h:outputText id="altitudelabel" value="Altitude" />
 		<br />
 		<h:inputText id="altitudetextbox" value="#{baseStationBean.altitude}" />
+
+		<br />
+		<br />
+		<br />
+
+		<!--<h:outputLabel id="cabinetlabel" value="Cabinets" />
+		<br />
+		 <h:dataTable value="" var="c">
+			<h:column>
+				<h:outputText id="cabinetnamelabelone" value="Cabinet " />
+				<h:outputText id="cabinetnamelabeltwo" value="#{c.slotNumber}" />
+			</h:column>
+
+			<h:column>
+				<h:commandButton value="Remove" />
+			</h:column>
+
+			<h:column>
+				<h:commandButton value="Edit" />
+			</h:column>
+		</h:dataTable> -->
+
+		<h:commandButton id="basestationsave" value="Save" action="#{baseStationBean.create('main')}"/>
+		<h:commandButton id="basestationdiscard" value="Discard" action="#{baseStationBean.discard('main')}"/>
 	</h:form>
 
 </h:body>
