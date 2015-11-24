@@ -53,18 +53,17 @@ public class AllBaseStationMap implements Serializable {
 
 		} else if (baseStationSearch.getSearchType() == 1 && baseStationSearch.getSearchTerm() != null
 				&& baseStationSearch.getSearchTerm() != "") {
+			System.out.println("Size: " + baseStations.size());
 			for (int i = 0; i < baseStations.size(); i++) {
-				System.out.print
 				if (!baseStations.get(i).getName().toLowerCase()
 						.contains(baseStationSearch.getSearchTerm().toLowerCase())) {
-					System.out.println("remove");
 					baseStations.remove(i);
+					i--;
 				}
 			}
 		}
 
 		for (BaseStationBean bsb : baseStations) {
-			System.out.println("Added Marker: " + bsb.getName());
 			LatLng coord = new LatLng(bsb.getLatitude(), bsb.getLongitude());
 
 			map.addOverlay(new Marker(coord, bsb.getName(), bsb));
