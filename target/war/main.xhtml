@@ -31,8 +31,9 @@
 			<f:selectItem itemValue="1" itemLabel="Name" />
 		</h:selectOneMenu>
 
-		<h:commandButton id="searchbutton" value="Search" action="#{baseStationMap.update()}"/>
-		<h:button id="addnewbutton" value="Add New" outcome="newbasestation"/>
+		<h:commandButton id="searchbutton" value="Search"
+			action="#{baseStationMap.update()}" />
+		<h:button id="addnewbutton" value="Add New" outcome="newbasestation" />
 
 		<!-- This creates the Google Maps element on the man page -->
 		<p:gmap center="0,0" zoom="2" type="MAP" model="#{baseStationMap.map}"
@@ -50,7 +51,10 @@
 					<br />
 					<h:commandButton id="viewbasestation" value="View" />
 					<h:commandButton id="editbasestation" value="Edit" />
-					<h:commandButton id="deletebasestation" value="Delete" />
+					<h:commandButton id="deletebasestation" value="Delete"
+						action="#{baseStationMap.update()}">
+						<f:actionListener binding="#{baseStationMap.selectedMarker.data.delete()}" />
+					</h:commandButton>
 				</p:outputPanel>
 			</p:gmapInfoWindow>
 		</p:gmap>

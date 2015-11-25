@@ -8,6 +8,7 @@
 	<title>New Base Station</title>
 
 	<h:outputScript library="js" name="enterkeyprevent.js" />
+	<h:outputScript library="js" name="editbasestationchecker.js" />
 
 	<h:outputStylesheet name="css/editbasestation.css" />
 	<h:outputStylesheet name="css/header.css" />
@@ -107,11 +108,13 @@
 		</h:dataTable>
 		<br />
 		<h:button id="newantennabutton" value="New Antenna"
-			action="newantenna?bsp=newbasestation" />
+			outcome="newantenna?bsp=newbasestation" />
 
+		<h:commandButton id="testingbutton" value="test" onclick="window.alert('hello')"
+			action="main" />
 
 		<h:commandButton id="basestationsave" value="Save"
-			action="#{baseStationBean.create('main')}" />
+			onpress="checkForm()" action="#{baseStationBean.create('main')}" />
 		<h:commandButton id="basestationdiscard" value="Discard"
 			action="#{baseStationBean.discard('main')}" />
 

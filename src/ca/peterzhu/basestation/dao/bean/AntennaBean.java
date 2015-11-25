@@ -2,11 +2,11 @@ package ca.peterzhu.basestation.dao.bean;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.ConversationScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 @Named("antennaBean")
-@ConversationScoped
+@ViewScoped
 public class AntennaBean implements Serializable {
 	private int slotNumber;
 	private int height;

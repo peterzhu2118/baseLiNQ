@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.peterzhu.basestation.dao.BaseStationDAO;
+import ca.peterzhu.basestation.googlemaps.BaseStationSearch;
 
 /**
  * 
@@ -202,7 +203,7 @@ public class BaseStationBean implements Serializable {
 
 
 		if (uniqueId == null || uniqueId == "") {
-			throw new IllegalStateException("Unique ID is black for saving Base Station");
+			throw new IllegalStateException("Unique ID is blank for saving Base Station");
 		}
 
 		dao.create(this);
@@ -216,6 +217,20 @@ public class BaseStationBean implements Serializable {
 		clearFields();
 
 		return redirect;
+	}
+	
+	public void delete() throws SQLException, InterruptedException{
+		System.out.println("Delete");
+		
+		BaseStationDAO dao = new BaseStationDAO();
+		
+		if(uniqueId == null || uniqueId == ""){
+			throw new IllegalStateException ("Unique ID is blank for deleting Base Station");
+		}
+		
+		dao.delete(uniqueId);
+		
+		clearFields();
 	}
 
 	private void ensureCabinetOrder() {

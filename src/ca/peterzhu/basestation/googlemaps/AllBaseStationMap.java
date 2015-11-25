@@ -40,6 +40,8 @@ public class AllBaseStationMap implements Serializable {
 	}
 
 	public void update() throws SQLException {
+		System.out.println("update");
+		
 		map = new DefaultMapModel();
 
 		baseStationDao = new BaseStationDAO();
