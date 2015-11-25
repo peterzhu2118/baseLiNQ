@@ -4,9 +4,18 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<h:outputStylesheet name="css/header.css" />
+<f:view>
+	<f:metadata>
+		<f:viewParam name="bsp" id="bsp" />
+	</f:metadata>
+</f:view>
 
+<h:head>
+	<title>New Antenna</title>
+
+	<h:outputScript library="js" name="enterkeyprevent.js" />
+
+	<h:outputStylesheet name="css/header.css" />
 </h:head>
 
 <h:body>

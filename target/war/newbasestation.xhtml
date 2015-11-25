@@ -74,11 +74,11 @@
 			</h:column>
 
 			<h:column>
-				<h:commandButton value="Remove" />
+				<h:commandButton id="editcabinetbutton" value="Edit" />
 			</h:column>
 
 			<h:column>
-				<h:commandButton value="Edit" />
+				<h:commandButton id="removecabinetbutton" value="Remove" />
 			</h:column>
 		</h:dataTable>
 		<br />
@@ -91,7 +91,21 @@
 
 		<h:outputLabel id="antennalabel" value="Antennas" />
 		<br />
-		<!-- Insert data table here -->
+		<!-- <h:dataTable value="#{baseStationBean.antenna}" var="c">
+			<h:column>
+				<h:outputText id="antennanamelabelone" value="Antenna " />
+				<h:outputText id="antennanamelabeltwo" value="#{c.slotNumber}" />
+			</h:column>
+
+			<h:column>
+				<h:commandButton id="editcabinetbutton" value="Edit" />
+			</h:column>
+
+			<h:column>
+				<h:commandButton id="removeantennabutton" value="Remove" />
+			</h:column>
+		</h:dataTable> -->
+		<br />
 		<h:button id="newantennabutton" value="New Antenna"
 			action="newantenna?bsp=newbasestation" />
 
