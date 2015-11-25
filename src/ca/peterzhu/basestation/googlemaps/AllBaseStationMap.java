@@ -30,12 +30,12 @@ public class AllBaseStationMap implements Serializable {
 	private BaseStationSearch baseStationSearch;
 
 	public AllBaseStationMap() {
-		System.out.println("const");
+		// System.out.println("const");
 	}
 
 	@PostConstruct
 	public void init() throws SQLException {
-		System.out.println("init");
+		// System.out.println("init");
 		update();
 	}
 
@@ -46,14 +46,16 @@ public class AllBaseStationMap implements Serializable {
 
 		List<BaseStationBean> baseStations = baseStationDao.retrieveAll();
 
-		System.out.println("Search term: " + baseStationSearch.getSearchTerm());
-		System.out.println("Search Type: " + baseStationSearch.getSearchType());
+		// System.out.println("Search term: " +
+		// baseStationSearch.getSearchTerm());
+		// System.out.println("Search Type: " +
+		// baseStationSearch.getSearchType());
 
 		if (baseStationSearch.getSearchType() == 0) {
 
 		} else if (baseStationSearch.getSearchType() == 1 && baseStationSearch.getSearchTerm() != null
 				&& baseStationSearch.getSearchTerm() != "") {
-			System.out.println("Size: " + baseStations.size());
+			// System.out.println("Size: " + baseStations.size());
 			for (int i = 0; i < baseStations.size(); i++) {
 				if (!baseStations.get(i).getName().toLowerCase()
 						.contains(baseStationSearch.getSearchTerm().toLowerCase())) {

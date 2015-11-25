@@ -61,6 +61,21 @@ public class BaseStationBean implements Serializable {
 	public String toString() {
 		return name;
 	}
+	
+	public String setThisObject(BaseStationBean b, String redirect){
+		this.name = b.getName();
+		this.uniqueId = b.getUniqueId();
+		this.latitude = b.getLatitude();
+		this.longitude = b.getLongitude();
+		this.altitude = b.getAltitude();
+		this.cabinets = b.getCabinets();
+		this.antennas = b.getAntennas();
+		
+		ensureAntennaOrder();
+		ensureCabinetOrder();
+		
+		return redirect;
+	}
 
 	/**
 	 * Returns the 10 digit alphanumeric UID (Unique ID) of the Base Station.
@@ -182,7 +197,7 @@ public class BaseStationBean implements Serializable {
 		return redirect;
 	}
 
-	public String save(String redirect) throws SQLException {
+	public String update(String redirect) throws SQLException {
 		BaseStationDAO dao = new BaseStationDAO();
 
 

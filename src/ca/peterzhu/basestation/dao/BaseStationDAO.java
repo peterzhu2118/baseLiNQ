@@ -179,7 +179,6 @@ public class BaseStationDAO {
 		}
 
 		boolean exists = false;
-		;
 
 		String sqlStatement = "SELECT * FROM " + TABLE_NAME + " WHERE uniqueid=?;";
 		Connection connection = null;
