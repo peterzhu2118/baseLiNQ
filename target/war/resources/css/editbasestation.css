@@ -82,9 +82,22 @@
 	font-size: 25px;
 }
 
+#mainform\3A antennatable {
+	margin-left: 35%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}
+
+#mainform\3A antennatable\3A antennanamecolumn\3A antennanamelabelone {
+	margin-left: 35%;
+	margin-top: 7%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
 #mainform\3A newantennabutton {
 	margin-left: 30%;
-	margin-top: 3%;
+	margin-top: 1%;
 	font-family: "Times New Roman";
 	font-size: 20px;
 }

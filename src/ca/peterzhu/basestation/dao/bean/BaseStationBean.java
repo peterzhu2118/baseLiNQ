@@ -188,6 +188,10 @@ public class BaseStationBean implements Serializable {
 	public List<AntennaBean> getAntennas() {
 		return antennas;
 	}
+	
+	public void removeAntenna(AntennaBean a) {
+		antennas.remove(a);
+	}
 
 	public String addAntenna(AntennaBean a, String redirect) {
 		a.setSlotNumber(antennas.size());

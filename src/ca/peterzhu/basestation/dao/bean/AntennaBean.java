@@ -26,12 +26,23 @@ public class AntennaBean implements Serializable {
 		this.azimuth = a;
 		this.downtilt = d;
 	}
-	
-	public AntennaBean(AntennaBean a){
+
+	public AntennaBean(AntennaBean a) {
 		this.slotNumber = a.getSlotNumber();
 		this.height = a.getHeight();
 		this.azimuth = a.getAzimuth();
 		this.downtilt = a.getDowntilt();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof AntennaBean) {
+			AntennaBean ab = (AntennaBean) o;
+
+			return ab.getSlotNumber() == this.getSlotNumber() && ab.getHeight() == this.getHeight()
+					&& ab.getDowntilt() == this.getDowntilt() && ab.getAzimuth() == this.getAzimuth();
+		} else
+			return false;
 	}
 
 	public int getSlotNumber() {
