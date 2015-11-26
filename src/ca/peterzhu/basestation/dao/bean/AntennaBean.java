@@ -26,6 +26,13 @@ public class AntennaBean implements Serializable {
 		this.azimuth = a;
 		this.downtilt = d;
 	}
+	
+	public AntennaBean(AntennaBean a){
+		this.slotNumber = a.getSlotNumber();
+		this.height = a.getHeight();
+		this.azimuth = a.getAzimuth();
+		this.downtilt = a.getDowntilt();
+	}
 
 	public int getSlotNumber() {
 		return slotNumber;
@@ -80,7 +87,7 @@ public class AntennaBean implements Serializable {
 		this.downtilt = downtilt;
 	}
 
-	private void clearFields() {
+	public void clearFields() {
 		slotNumber = 0;
 		height = 0;
 		azimuth = 0;

@@ -5,13 +5,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.peterzhu.basestation.dao.BaseStationDAO;
-import ca.peterzhu.basestation.googlemaps.BaseStationSearch;
 
 /**
  * 
@@ -49,6 +49,11 @@ public class BaseStationBean implements Serializable {
 		ensureAntennaOrder();
 		ensureCabinetOrder();
 	}
+	
+	@PostConstruct
+	private void init(){
+		beginConversation();
+	}
 
 	@Override
 	public boolean equals(Object o) {
@@ -63,7 +68,17 @@ public class BaseStationBean implements Serializable {
 		return name;
 	}
 	
-	public String setThisObject(BaseStationBean b, String redirect){
+	private void beginConversation(){
+		System.out.println("Begin");
+		conversation.begin();
+	}
+	
+	private void endConversation(){
+		System.out.println("End");
+		conversation.end();
+	}
+
+	public String setThisObject(BaseStationBean b, String redirect) {
 		this.name = b.getName();
 		this.uniqueId = b.getUniqueId();
 		this.latitude = b.getLatitude();
@@ -71,10 +86,10 @@ public class BaseStationBean implements Serializable {
 		this.altitude = b.getAltitude();
 		this.cabinets = b.getCabinets();
 		this.antennas = b.getAntennas();
-		
+
 		ensureAntennaOrder();
 		ensureCabinetOrder();
-		
+
 		return redirect;
 	}
 
@@ -174,12 +189,16 @@ public class BaseStationBean implements Serializable {
 		return antennas;
 	}
 
-	public void addAntenna(AntennaBean a) {
+	public String addAntenna(AntennaBean a, String redirect) {
 		a.setSlotNumber(antennas.size());
 
-		antennas.add(a);
+		antennas.add(new AntennaBean(a));
+		
+		a.clearFields();
 
 		ensureAntennaOrder();
+
+		return redirect;
 	}
 
 	public String create(String redirect) throws SQLException {
@@ -201,7 +220,6 @@ public class BaseStationBean implements Serializable {
 	public String update(String redirect) throws SQLException {
 		BaseStationDAO dao = new BaseStationDAO();
 
-
 		if (uniqueId == null || uniqueId == "") {
 			throw new IllegalStateException("Unique ID is blank for saving Base Station");
 		}
@@ -218,18 +236,18 @@ public class BaseStationBean implements Serializable {
 
 		return redirect;
 	}
-	
-	public void delete() throws SQLException, InterruptedException{
+
+	public void delete() throws SQLException, InterruptedException {
 		System.out.println("Delete");
-		
+
 		BaseStationDAO dao = new BaseStationDAO();
-		
-		if(uniqueId == null || uniqueId == ""){
-			throw new IllegalStateException ("Unique ID is blank for deleting Base Station");
+
+		if (uniqueId == null || uniqueId == "") {
+			throw new IllegalStateException("Unique ID is blank for deleting Base Station");
 		}
-		
+
 		dao.delete(uniqueId);
-		
+
 		clearFields();
 	}
 

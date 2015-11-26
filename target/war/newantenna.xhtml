@@ -14,7 +14,7 @@
 	<title>New Antenna</title>
 
 	<h:outputScript library="js" name="enterkeyprevent.js" />
-	
+
 
 	<h:outputStylesheet name="css/header.css" />
 	<h:outputStylesheet name="css/editantenna.css" />
@@ -29,7 +29,7 @@
 	</h1>
 
 	<h2>New Antenna</h2>
-	
+
 	<hr />
 
 	<h:form id="mainform">
@@ -38,12 +38,28 @@
 		<h:outputLabel id="heightlabel" value="Height (m)" />
 		<br />
 		<h:inputText id="heighttextbox" value="#{antennaBean.height}" />
-		
-		<br/>
-		<br/>
-		<br/>
-		
-		<h:outputLabel id="azimuthlabel" value="Azimuth"/>
+
+		<br />
+		<br />
+		<br />
+
+		<h:outputLabel id="azimuthlabel" value="Azimuth" />
+		<br />
+		<h:inputText id="azimuthtextbox" value="#{antennaBean.azimuth}" />
+
+		<br />
+		<br />
+		<br />
+
+		<h:outputLabel id="downtiltlabel" value="Downtilt" />
+		<br />
+		<h:inputText id="downtilttextbox" value="#{antennaBean.downtilt}" />
+
+		<br />
+		<br />
+
+		<h:commandButton id="discardbutton" value="Discard" action="#{bsp}" />
+		<h:commandButton id="savebutton"  value="Save" action="#{baseStationBean.addAntenna(antennaBean, bsp)}" />
 	</h:form>
 
 </h:body>
