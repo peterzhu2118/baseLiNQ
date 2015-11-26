@@ -69,12 +69,12 @@ public class BaseStationBean implements Serializable {
 	}
 	
 	private void beginConversation(){
-		System.out.println("Begin");
+		//System.out.println("Begin");
 		conversation.begin();
 	}
 	
 	private void endConversation(){
-		System.out.println("End");
+		//System.out.println("End");
 		conversation.end();
 	}
 
@@ -124,7 +124,7 @@ public class BaseStationBean implements Serializable {
 	 *            the name of the Base Station
 	 */
 	public void setName(String name) {
-		System.out.println("Set name");
+		//System.out.println("Set name");
 		this.name = name;
 	}
 

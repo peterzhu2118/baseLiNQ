@@ -36,7 +36,7 @@ public class AntennaDAO {
 			prepStmt.setInt(2, a.getSlotNumber());
 			prepStmt.setInt(3, a.getHeight());
 			prepStmt.setInt(4, a.getAzimuth());
-			prepStmt.setInt(5, a.getHeight());
+			prepStmt.setInt(5, a.getDowntilt());
 
 			prepStmt.execute();
 			// connection.commit();
