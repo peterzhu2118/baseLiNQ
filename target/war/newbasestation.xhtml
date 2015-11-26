@@ -83,7 +83,7 @@
 			</h:column>
 		</h:dataTable>
 		<br />
-		<h:button id="newcabinetbutton" value="New Cabinet"
+		<h:commandButton id="newcabinetbutton" value="New Cabinet"
 			action="newcabinet?bsp=newbasestation" />
 
 		<br />
@@ -107,8 +107,8 @@
 			</h:column>
 		</h:dataTable>
 		<br />
-		<h:button id="newantennabutton" value="New Antenna"
-			outcome="newantenna?bsp=newbasestation" />
+		<h:commandButton id="newantennabutton" value="New Antenna"
+			action="newantenna?faces-redirect=true&amp;bsp=newbasestation" />
 
 		<!-- <h:commandButton id="testingbutton" value="test" onclick="window.alert('hello')"
 			action="main" /> -->
