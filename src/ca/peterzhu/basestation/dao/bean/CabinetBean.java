@@ -14,7 +14,7 @@ import javax.inject.Named;
  */
 @Named("cabinetBean")
 @ConversationScoped
-public class CabinetBean implements Serializable{
+public class CabinetBean implements Serializable {
 	private int slotNumber;
 	private List<TxBoardBean> txBoards;
 
@@ -25,7 +25,7 @@ public class CabinetBean implements Serializable{
 	public CabinetBean(int slot, List<TxBoardBean> tx) {
 		this.slotNumber = slot;
 		this.txBoards = tx;
-		
+
 		ensureTXBoardOrder();
 	}
 
@@ -54,6 +54,12 @@ public class CabinetBean implements Serializable{
 				txBoards.get(i).setSlotNumber(i + 1);
 			}
 		}
+	}
+
+	public String discard(String redirect) {
+		clearFields();
+		
+		return redirect;
 	}
 
 	private void clearFields() {

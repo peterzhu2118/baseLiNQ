@@ -4,9 +4,20 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<h:outputStylesheet name="css/header.css" />
+<f:view>
+	<f:metadata>
+		<f:viewParam name="bsp" id="bsp" />
+	</f:metadata>
+</f:view>
 
+<h:head>
+	<title>New Cabinet</title>
+
+	<h:outputScript library="js" name="enterkeyprevent.js" />
+
+	<h:outputStylesheet name="css/header.css" />
+	<h:outputStylesheet name="css/formtemplate.css" />
+	<h:outputStylesheet name="css/editcabinet.css" />
 </h:head>
 
 <h:body>
@@ -16,6 +27,43 @@
 			image="http://solutionscenter.nethope.org/images/site_images/Blinq_Networks_Logo.png"
 			style="position:relative;margin-left:1%;margin-top:1%; width:20%; height:7%" />
 	</h1>
+
+	<h2>New Cabinet</h2>
+
+	<hr />
+
+	<h:form id="mainform">
+		<h:outputText value="#{bsp}" />
+
+		<br />
+
+		<h:outputText id="txboardlabel" value="TX Boards" />
+		<h:dataTable id="txboardtable" value="#{cabinetBean.txBoards}"
+			var="tx">
+			<h:column id="txboardnamecolumn">
+				<h:outputText id="txboardlabelone" value="TX Board " />
+				<h:outputText id="txboardlabeltwo" value="#{tx.slotNumber}" />
+			</h:column>
+
+			<h:column id="edittxboardcolumn">
+				<h:commandButton id="edittxboardbutton" value="Edit" />
+			</h:column>
+
+			<h:column id="removetxboardcolumn">
+				<h:commandButton id="removetxboardbutton" value="Remove" />
+			</h:column>
+		</h:dataTable>
+		<br />
+		<h:commandButton id="newtxboardbutton" value="New TX Board"
+			action="newtxboard?faces-redirect=true&amp;includeViewParams=true&amp;ncp=newcabinet" />
+
+		<br />
+
+		<h:commandButton id="savebutton" value="Save"
+			action="#{baseStationBean.addCabinet(cabinetBean, bsp)}" />
+		<h:commandButton id="discardbutton" value="Discard"
+			action="#{cabinetBean.discard(bsp)}" />
+	</h:form>
 
 </h:body>
 

@@ -68,9 +68,15 @@
 	font-size: 25px;
 }
 
+#mainform\3A cabinettable {
+	margin-left: 35%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}
+
 #mainform\3A newcabinetbutton {
 	margin-left: 30%;
-	margin-top: 3%;
+	margin-top: 1%;
 	font-family: "Times New Roman";
 	font-size: 20px;
 }
@@ -102,14 +108,14 @@
 	font-size: 20px;
 }
 
-#mainform\3A basestationsave {
+#mainform\3A savebutton {
 	margin-left: 60%;
 	margin-top: 3%;
 	font-family: "Times New Roman";
 	font-size: 25px;
 }
 
-#mainform\3A basestationdiscard {
+#mainform\3A discardbutton {
 	margin-left: 1%;
 	margin-top: 3%;
 	font-family: "Times New Roman";

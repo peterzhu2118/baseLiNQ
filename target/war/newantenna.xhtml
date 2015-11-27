@@ -35,7 +35,7 @@
 	<h:form id="mainform">
 		<br />
 
-		<h:outputLabel id="heightlabel" value="Height (m)" />
+		<h:outputText id="heightlabel" value="Height (m)" />
 		<br />
 		<h:inputText id="heighttextbox" value="#{antennaBean.height}" />
 
@@ -43,7 +43,7 @@
 		<br />
 		<br />
 
-		<h:outputLabel id="azimuthlabel" value="Azimuth" />
+		<h:outputText id="azimuthlabel" value="Azimuth" />
 		<br />
 		<h:inputText id="azimuthtextbox" value="#{antennaBean.azimuth}" />
 
@@ -51,14 +51,14 @@
 		<br />
 		<br />
 
-		<h:outputLabel id="downtiltlabel" value="Downtilt" />
+		<h:outputText id="downtiltlabel" value="Downtilt" />
 		<br />
 		<h:inputText id="downtilttextbox" value="#{antennaBean.downtilt}" />
 
 		<br />
 		<br />
 
-		<h:commandButton id="discardbutton" value="Discard" action="#{bsp}" />
+		<h:button id="discardbutton" value="Discard" outcome="#{bsp}" />
 		<h:commandButton id="savebutton" value="Save"
 			action="#{baseStationBean.addAntenna(antennaBean, bsp)}" />
 	</h:form>

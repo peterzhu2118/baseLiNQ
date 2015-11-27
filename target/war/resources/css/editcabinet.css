@@ -1,0 +1,40 @@
+@CHARSET "ISO-8859-1";
+
+#mainform\3A txboardlabel {
+	margin-left: 30%;
+	margin-top: 20%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A txboardtable {
+	margin-left: 35%;
+	margin-top: 3%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}
+
+#mainform\3A newtxboardbutton {
+	margin-left: 30%;
+	margin-top: 3%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}
+
+#mainform\3A savebutton {
+	margin-left: 45%;
+	margin-top: 1%;
+	width: 10%;
+	height: 10%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}
+
+#mainform\3A discardbutton {
+	margin-left: 2%;
+	margin-top: 1%;
+	width: 10%;
+	height: 10%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}

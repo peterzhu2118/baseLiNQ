@@ -66,7 +66,7 @@
 		<br />
 
 
-		<h:outputLabel id="cabinetlabel" value="Cabinets" />
+		<h:outputText id="cabinetlabel" value="Cabinets" />
 		<br />
 		<h:dataTable value="#{baseStationBean.cabinets}" var="c">
 			<h:column>
@@ -84,15 +84,16 @@
 		</h:dataTable>
 		<br />
 		<h:commandButton id="newcabinetbutton" value="New Cabinet"
-			action="newcabinet?bsp=newbasestation" />
+			action="newcabinet?faces-redirect=true&amp;bsp=newbasestation" />
 
 		<br />
 		<br />
 		<br />
 
-		<h:outputLabel id="antennalabel" value="Antennas" />
+		<h:outputText id="antennalabel" value="Antennas" />
 		<br />
-		<h:dataTable id="antennatable" value="#{baseStationBean.antennas}" var="a">
+		<h:dataTable id="antennatable" value="#{baseStationBean.antennas}"
+			var="a">
 			<h:column id="antennanamecolumn">
 				<h:outputText id="antennanamelabelone" value="Antenna " />
 				<h:outputText id="antennanamelabeltwo" value="#{a.slotNumber}" />
@@ -103,7 +104,8 @@
 			</h:column>
 
 			<h:column id="removeantennacolumn">
-				<h:commandButton id="removeantennabutton" value="Remove" action="#{baseStationBean.removeAntenna(a)}"/>
+				<h:commandButton id="removeantennabutton" value="Remove"
+					action="#{baseStationBean.removeAntenna(a)}" />
 			</h:column>
 		</h:dataTable>
 		<br />
@@ -113,9 +115,9 @@
 		<!-- <h:commandButton id="testingbutton" value="test" onclick="window.alert('hello')"
 			action="main" /> -->
 
-		<h:commandButton id="basestationsave" value="Save"
-			onpress="checkForm()" action="#{baseStationBean.create('main')}" />
-		<h:commandButton id="basestationdiscard" value="Discard"
+		<h:commandButton id="savebutton" value="Save" onpress="checkForm()"
+			action="#{baseStationBean.create('main')}" />
+		<h:commandButton id="discardbutton" value="Discard"
 			action="#{baseStationBean.discard('main')}" />
 
 		<br />

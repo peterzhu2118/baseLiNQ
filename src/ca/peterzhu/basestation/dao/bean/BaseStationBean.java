@@ -49,9 +49,9 @@ public class BaseStationBean implements Serializable {
 		ensureAntennaOrder();
 		ensureCabinetOrder();
 	}
-	
+
 	@PostConstruct
-	private void init(){
+	private void init() {
 		beginConversation();
 	}
 
@@ -67,14 +67,14 @@ public class BaseStationBean implements Serializable {
 	public String toString() {
 		return name;
 	}
-	
-	private void beginConversation(){
-		//System.out.println("Begin");
+
+	private void beginConversation() {
+		// System.out.println("Begin");
 		conversation.begin();
 	}
-	
-	private void endConversation(){
-		//System.out.println("End");
+
+	private void endConversation() {
+		// System.out.println("End");
 		conversation.end();
 	}
 
@@ -124,7 +124,7 @@ public class BaseStationBean implements Serializable {
 	 *            the name of the Base Station
 	 */
 	public void setName(String name) {
-		//System.out.println("Set name");
+		// System.out.println("Set name");
 		this.name = name;
 	}
 
@@ -177,18 +177,20 @@ public class BaseStationBean implements Serializable {
 		return cabinets;
 	}
 
-	public void addCabinet(CabinetBean c) {
+	public String addCabinet(CabinetBean c, String redirect) {
 		c.setSlotNumber(cabinets.size());
 
 		cabinets.add(c);
 
 		ensureCabinetOrder();
+
+		return redirect;
 	}
 
 	public List<AntennaBean> getAntennas() {
 		return antennas;
 	}
-	
+
 	public void removeAntenna(AntennaBean a) {
 		antennas.remove(a);
 	}
@@ -197,7 +199,7 @@ public class BaseStationBean implements Serializable {
 		a.setSlotNumber(antennas.size());
 
 		antennas.add(new AntennaBean(a));
-		
+
 		a.clearFields();
 
 		ensureAntennaOrder();
@@ -207,8 +209,8 @@ public class BaseStationBean implements Serializable {
 
 	public String create(String redirect) throws SQLException {
 		BaseStationDAO dao = new BaseStationDAO();
-		System.out.println("Unique ID: " + uniqueId);
-		System.out.println("Unique ID: " + (uniqueId == ""));
+		// System.out.println("Unique ID: " + uniqueId);
+		// System.out.println("Unique ID: " + (uniqueId == ""));
 
 		if (uniqueId != null && uniqueId != "") {
 			throw new IllegalStateException("Unique ID is not blank for new Base Station");
@@ -242,7 +244,7 @@ public class BaseStationBean implements Serializable {
 	}
 
 	public void delete() throws SQLException, InterruptedException {
-		System.out.println("Delete");
+		// System.out.println("Delete");
 
 		BaseStationDAO dao = new BaseStationDAO();
 
