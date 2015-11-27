@@ -74,6 +74,13 @@
 	font-size: 20px;
 }
 
+#mainform\3A cabinettable\3A cabinetnamecolumn\3A cabinetnamelabelone {
+	margin-left: 35%;
+	margin-top: 7%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
 #mainform\3A newcabinetbutton {
 	margin-left: 30%;
 	margin-top: 1%;
@@ -106,18 +113,4 @@
 	margin-top: 1%;
 	font-family: "Times New Roman";
 	font-size: 20px;
-}
-
-#mainform\3A savebutton {
-	margin-left: 60%;
-	margin-top: 3%;
-	font-family: "Times New Roman";
-	font-size: 25px;
-}
-
-#mainform\3A discardbutton {
-	margin-left: 1%;
-	margin-top: 3%;
-	font-family: "Times New Roman";
-	font-size: 25px;
 }

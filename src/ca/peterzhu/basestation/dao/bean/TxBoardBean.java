@@ -2,7 +2,7 @@ package ca.peterzhu.basestation.dao.bean;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.ConversationScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 /**
@@ -11,7 +11,7 @@ import javax.inject.Named;
  * @version 3.0
  */
 @Named("txBoardBean")
-@ConversationScoped
+@ViewScoped
 public class TxBoardBean implements Serializable {
 	private int slotNumber;
 	private int transmitPower;
@@ -63,6 +63,12 @@ public class TxBoardBean implements Serializable {
 	 */
 	public void setFrequency(int frequency) {
 		this.frequency = frequency;
+	}
+
+	public String discard(String redirect) {
+		clearFields();
+
+		return redirect;
 	}
 
 	private void clearFields() {

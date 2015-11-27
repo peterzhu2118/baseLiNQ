@@ -68,23 +68,24 @@
 
 		<h:outputText id="cabinetlabel" value="Cabinets" />
 		<br />
-		<h:dataTable value="#{baseStationBean.cabinets}" var="c">
-			<h:column>
+		<h:dataTable id="cabinettable" value="#{baseStationBean.cabinets}"
+			var="c">
+			<h:column id="cabinetnamecolumn">
 				<h:outputText id="cabinetnamelabelone" value="Cabinet " />
 				<h:outputText id="cabinetnamelabeltwo" value="#{c.slotNumber}" />
 			</h:column>
 
-			<h:column>
+			<h:column id="editcabinetcolumn">
 				<h:commandButton id="editcabinetbutton" value="Edit" />
 			</h:column>
 
-			<h:column>
+			<h:column id="removecabinetcolumn">
 				<h:commandButton id="removecabinetbutton" value="Remove" />
 			</h:column>
 		</h:dataTable>
 		<br />
 		<h:commandButton id="newcabinetbutton" value="New Cabinet"
-			action="newcabinet?faces-redirect=true&amp;bsp=newbasestation" />
+			action="newcabinet?faces-redirect=true&amp;basestationpage=newbasestation" />
 
 		<br />
 		<br />
@@ -110,7 +111,7 @@
 		</h:dataTable>
 		<br />
 		<h:commandButton id="newantennabutton" value="New Antenna"
-			action="newantenna?faces-redirect=true&amp;bsp=newbasestation" />
+			action="newantenna?faces-redirect=true&amp;basestationpage=newbasestation" />
 
 		<!-- <h:commandButton id="testingbutton" value="test" onclick="window.alert('hello')"
 			action="main" /> -->

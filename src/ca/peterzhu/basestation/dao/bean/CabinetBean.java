@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -18,6 +21,9 @@ public class CabinetBean implements Serializable {
 	private int slotNumber;
 	private List<TxBoardBean> txBoards;
 
+	@Inject
+	private Conversation conversation;
+
 	public CabinetBean() {
 		this(0, new ArrayList<TxBoardBean>());
 	}
@@ -27,6 +33,10 @@ public class CabinetBean implements Serializable {
 		this.txBoards = tx;
 
 		ensureTXBoardOrder();
+	}
+	
+	public CabinetBean (CabinetBean c){
+		
 	}
 
 	public int getSlotNumber() {
@@ -41,11 +51,16 @@ public class CabinetBean implements Serializable {
 		return txBoards;
 	}
 
-	public void addTxBoard(TxBoardBean t) {
+	public String addTxBoard(TxBoardBean t, String redirect) {
+		// System.out.println("TX Board null: " + (t == null));
+		// System.out.println("List null: " + (txBoards == null));
+
 		t.setSlotNumber(txBoards.size());
 		txBoards.add(t);
 
 		ensureTXBoardOrder();
+
+		return redirect;
 	}
 
 	private void ensureTXBoardOrder() {
@@ -58,7 +73,7 @@ public class CabinetBean implements Serializable {
 
 	public String discard(String redirect) {
 		clearFields();
-		
+
 		return redirect;
 	}
 

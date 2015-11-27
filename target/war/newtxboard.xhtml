@@ -4,9 +4,20 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
+<f:view>
+	<f:metadata>
+		<f:viewParam name="basestationpage" id="basestationpage" />
+		<f:viewParam name="cabinetpage" id="cabinetpage" />
+	</f:metadata>
+</f:view>
+
 <h:head>
 	<title>New TX Board</title>
 
+	<h:outputScript library="js" name="enterkeyprevent.js" />
+
+	<h:outputStylesheet name="css/edittxboard.css" />
+	<h:outputStylesheet name="css/formtemplate.css" />
 	<h:outputStylesheet name="css/header.css" />
 </h:head>
 
@@ -18,8 +29,32 @@
 			style="position:relative;margin-left:1%;margin-top:1%; width:20%; height:7%" />
 	</h1>
 
-	<h:form>
-	
+	<h2>New TX Board</h2>
+	<hr />
+
+	<h:form id="mainform">
+		<br />
+
+		<h:outputText id="transmitpowerlabel" value="Transmit Power (dB)" />
+		<br />
+		<h:inputText id="transmitpowertextbox"
+			value="#{txBoardBean.transmitPower}" />
+
+		<br />
+		<br />
+		<br />
+
+		<h:outputText id="frequencylabel" value="Frequency (MHz)" />
+		<br />
+		<h:inputText id="frequencytextbox" value="#{txBoardBean.frequency}" />
+
+		<h:commandButton id="savebutton" value="Save"
+			action="#{cabinetBean.addTxBoard(txBoardBean, cabinetpage.concat('?faces-redirect=true&amp;basestationpage=').concat(basestationpage))}" />
+		<h:commandButton id="discardbutton" value="Discard"
+			action="#{txBoardBean.discard(cabinetpage.concat('?faces-redirect=true&amp;basestationpage=').concat(basestationpage))}" />
+		<br />
+		<br />
+		<br />
 	</h:form>
 
 </h:body>

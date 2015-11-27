@@ -6,7 +6,7 @@
 
 <f:view>
 	<f:metadata>
-		<f:viewParam name="bsp" id="bsp" />
+		<f:viewParam name="basestationpage" id="basestationpage" />
 	</f:metadata>
 </f:view>
 
@@ -33,8 +33,6 @@
 	<hr />
 
 	<h:form id="mainform">
-		<h:outputText value="#{bsp}" />
-
 		<br />
 
 		<h:outputText id="txboardlabel" value="TX Boards" />
@@ -55,14 +53,16 @@
 		</h:dataTable>
 		<br />
 		<h:commandButton id="newtxboardbutton" value="New TX Board"
-			action="newtxboard?faces-redirect=true&amp;includeViewParams=true&amp;ncp=newcabinet" />
-
-		<br />
+			action="newtxboard?faces-redirect=true&amp;includeViewParams=true&amp;cabinetpage=newcabinet" />
 
 		<h:commandButton id="savebutton" value="Save"
-			action="#{baseStationBean.addCabinet(cabinetBean, bsp)}" />
+			action="#{baseStationBean.addCabinet(cabinetBean, basestationpage)}" />
 		<h:commandButton id="discardbutton" value="Discard"
-			action="#{cabinetBean.discard(bsp)}" />
+			action="#{cabinetBean.discard(basestationpage)}" />
+
+		<br />
+		<br />
+		<br />
 	</h:form>
 
 </h:body>
