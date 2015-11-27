@@ -27,6 +27,12 @@ public class TxBoardBean implements Serializable {
 		this.frequency = freq;
 	}
 
+	public TxBoardBean(TxBoardBean t) {
+		this.slotNumber = t.getSlotNumber();
+		this.transmitPower = t.getTransmitPower();
+		this.frequency = t.getFrequency();
+	}
+
 	public int getSlotNumber() {
 		return slotNumber;
 	}

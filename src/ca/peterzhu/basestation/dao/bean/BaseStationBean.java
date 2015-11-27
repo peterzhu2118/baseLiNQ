@@ -3,6 +3,7 @@ package ca.peterzhu.basestation.dao.bean;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -33,7 +34,7 @@ public class BaseStationBean implements Serializable {
 	private Conversation conversation;
 
 	public BaseStationBean() {
-		this("", "", 0.0, 0.0, 0, new ArrayList<CabinetBean>(), new ArrayList<AntennaBean>());
+		this("", "", 0.0, 0.0, 0, new LinkedList<CabinetBean>(), new LinkedList<AntennaBean>());
 	}
 
 	public BaseStationBean(String n, String uid, double lng, double lat, int alt, List<CabinetBean> cab,
@@ -178,9 +179,14 @@ public class BaseStationBean implements Serializable {
 	}
 
 	public String addCabinet(CabinetBean c, String redirect) {
+		//System.out.println("Cabinet null: " + (c == null));
+		//System.out.println("Cabinet list null: " + (cabinets == null));
+
 		c.setSlotNumber(cabinets.size());
 
-		cabinets.add(c);
+		cabinets.add(new CabinetBean(c));
+
+		c.clearFields();
 
 		ensureCabinetOrder();
 

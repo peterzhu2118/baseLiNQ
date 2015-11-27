@@ -2,6 +2,7 @@ package ca.peterzhu.basestation.dao.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -21,11 +22,8 @@ public class CabinetBean implements Serializable {
 	private int slotNumber;
 	private List<TxBoardBean> txBoards;
 
-	@Inject
-	private Conversation conversation;
-
 	public CabinetBean() {
-		this(0, new ArrayList<TxBoardBean>());
+		this(0, new LinkedList<TxBoardBean>());
 	}
 
 	public CabinetBean(int slot, List<TxBoardBean> tx) {
@@ -34,9 +32,15 @@ public class CabinetBean implements Serializable {
 
 		ensureTXBoardOrder();
 	}
-	
-	public CabinetBean (CabinetBean c){
-		
+
+	public CabinetBean(CabinetBean c) {
+		this(c.getSlotNumber(), new LinkedList<TxBoardBean>());
+
+		for (TxBoardBean txb : c.getTxBoards()) {
+			txBoards.add(new TxBoardBean(txb));
+		}
+
+		ensureTXBoardOrder();
 	}
 
 	public int getSlotNumber() {
@@ -77,7 +81,7 @@ public class CabinetBean implements Serializable {
 		return redirect;
 	}
 
-	private void clearFields() {
+	public void clearFields() {
 		slotNumber = 0;
 		txBoards = new ArrayList<>();
 	}
