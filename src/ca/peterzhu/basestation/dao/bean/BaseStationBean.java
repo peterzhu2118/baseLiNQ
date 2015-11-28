@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -179,8 +180,8 @@ public class BaseStationBean implements Serializable {
 	}
 
 	public String addCabinet(CabinetBean c, String redirect) {
-		//System.out.println("Cabinet null: " + (c == null));
-		//System.out.println("Cabinet list null: " + (cabinets == null));
+		// System.out.println("Cabinet null: " + (c == null));
+		// System.out.println("Cabinet list null: " + (cabinets == null));
 
 		c.setSlotNumber(cabinets.size());
 

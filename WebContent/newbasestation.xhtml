@@ -2,7 +2,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:o="http://omnifaces.org/ui">
 
 <h:head>
 	<title>New Base Station</title>
@@ -30,36 +32,51 @@
 
 	<h:form id="mainform">
 		<br />
+
 		<h:outputText id="namelabel" value="Name" />
-
+		<h:message for="nametextbox" id="namevalidatormessage" />
 		<br />
-
-		<h:inputText id="nametextbox" value="#{baseStationBean.name}" />
+		<h:inputText id="nametextbox" value="#{baseStationBean.name}"
+			validatorMessage="Invalid Value: Must be between 1 and 255 characters">
+			<f:validateLength minimum="1" maximum="255" />
+		</h:inputText>
 
 		<br />
 		<br />
 		<br />
 
 		<h:outputText id="longitudelabel" value="Longitude" />
+		<h:message for="longitudetextbox" id="longitudevalidatormessage" />
 		<br />
 		<h:inputText id="longitudetextbox"
-			value="#{baseStationBean.longitude}" />
+			value="#{baseStationBean.longitude}"
+			validatorMessage="Invalid Value: Must be between -180 and +180">
+			<f:validateDoubleRange minimum="-180" maximum="180" />
+		</h:inputText>
 
 		<br />
 		<br />
 		<br />
 
 		<h:outputText id="latitudelabel" value="Latitude" />
+		<h:message for="latitudetextbox" id="latitudevalidatormessage" />
 		<br />
-		<h:inputText id="latitudetextbox" value="#{baseStationBean.latitude}" />
+		<h:inputText id="latitudetextbox" value="#{baseStationBean.latitude}"
+			validatorMessage="Invalid Value: Must be between -90 and +90">
+			<f:validateDoubleRange minimum="-90" maximum="90" />
+		</h:inputText>
 
 		<br />
 		<br />
 		<br />
 
 		<h:outputText id="altitudelabel" value="Altitude" />
+		<h:message for="altitudetextbox" id="altitudevalidatormessage" />
 		<br />
-		<h:inputText id="altitudetextbox" value="#{baseStationBean.altitude}" />
+		<h:inputText id="altitudetextbox" value="#{baseStationBean.altitude}"
+			validatorMessage="Invalid Value: Must be 4 digits or below">
+			<f:validateLongRange minimum="-9999" maximum="9999" />
+		</h:inputText>
 
 		<br />
 		<br />
@@ -76,16 +93,19 @@
 			</h:column>
 
 			<h:column id="editcabinetcolumn">
-				<h:commandButton id="editcabinetbutton" value="Edit" />
+				<h:commandButton id="editcabinetbutton" value="Edit"
+					immediate="true" />
 			</h:column>
 
 			<h:column id="removecabinetcolumn">
-				<h:commandButton id="removecabinetbutton" value="Remove" />
+				<h:commandButton id="removecabinetbutton" value="Remove"
+					immediate="true" />
 			</h:column>
 		</h:dataTable>
 		<br />
 		<h:commandButton id="newcabinetbutton" value="New Cabinet"
-			action="newcabinet?faces-redirect=true&amp;basestationpage=newbasestation" />
+			action="newcabinet?faces-redirect=true&amp;basestationpage=newbasestation"
+			immediate="true" />
 
 		<br />
 		<br />
@@ -101,17 +121,19 @@
 			</h:column>
 
 			<h:column id="editcabinetcolumn">
-				<h:commandButton id="editcabinetbutton" value="Edit" />
+				<h:commandButton id="editcabinetbutton" value="Edit"
+					immediate="true" />
 			</h:column>
 
 			<h:column id="removeantennacolumn">
 				<h:commandButton id="removeantennabutton" value="Remove"
-					action="#{baseStationBean.removeAntenna(a)}" />
+					action="#{baseStationBean.removeAntenna(a)}" immediate="true" />
 			</h:column>
 		</h:dataTable>
 		<br />
 		<h:commandButton id="newantennabutton" value="New Antenna"
-			action="newantenna?faces-redirect=true&amp;basestationpage=newbasestation" />
+			action="newantenna?faces-redirect=true&amp;basestationpage=newbasestation"
+			immediate="true" />
 
 		<!-- <h:commandButton id="testingbutton" value="test" onclick="window.alert('hello')"
 			action="main" /> -->
@@ -119,7 +141,7 @@
 		<h:commandButton id="savebutton" value="Save" onpress="checkForm()"
 			action="#{baseStationBean.create('main')}" />
 		<h:commandButton id="discardbutton" value="Discard"
-			action="#{baseStationBean.discard('main')}" />
+			action="#{baseStationBean.discard('main')}" immediate="true" />
 
 		<br />
 		<br />

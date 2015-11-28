@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="mysql-connector-java-5.1.36-bin.jar"/>
 	<classpathentry kind="lib" path="primefaces-5.3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="omnifaces-2.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -2,7 +2,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:o="http://omnifaces.org/ui">
 
 <h:head>
 	<title>Base Station Database</title>
@@ -53,7 +55,8 @@
 					<h:commandButton id="editbasestation" value="Edit" />
 					<h:commandButton id="deletebasestation" value="Delete"
 						action="#{baseStationMap.update()}">
-						<f:actionListener binding="#{baseStationMap.selectedMarker.data.delete()}" />
+						<f:actionListener
+							binding="#{baseStationMap.selectedMarker.data.delete()}" />
 					</h:commandButton>
 				</p:outputPanel>
 			</p:gmapInfoWindow>

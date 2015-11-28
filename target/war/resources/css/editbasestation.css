@@ -7,6 +7,13 @@
 	font-size: 25px;
 }
 
+#mainform\3A namevalidatormessage {
+	margin-left: 1%;
+	font-family: "Times New Roman";
+	font-size: 15px;
+	color: red;
+}
+
 #mainform\3A nametextbox {
 	margin-left: 30%;
 	margin-top: 0%;
@@ -20,6 +27,13 @@
 	margin-top: 3%;
 	font-family: "Times New Roman";
 	font-size: 25px;
+}
+
+#mainform\3A longitudevalidatormessage {
+	margin-left: 1%;
+	font-family: "Times New Roman";
+	font-size: 15px;
+	color: red;
 }
 
 #mainform\3A longitudetextbox {
@@ -37,6 +51,13 @@
 	font-size: 25px;
 }
 
+#mainform\3A latitudevalidatormessage {
+	margin-left: 1%;
+	font-family: "Times New Roman";
+	font-size: 15px;
+	color: red;
+}
+
 #mainform\3A latitudetextbox {
 	margin-left: 30%;
 	margin-top: 0%;
@@ -47,10 +68,16 @@
 
 #mainform\3A altitudelabel {
 	margin-left: 30%;
-	margin-top: 0%;
-	width: 8%;
+	margin-top: 3%;
 	font-family: "Times New Roman";
-	font-size: 20px;
+	font-size: 25px;
+}
+
+#mainform\3A altitudevalidatormessage {
+	margin-left: 1%;
+	font-family: "Times New Roman";
+	font-size: 15px;
+	color: red;
 }
 
 #mainform\3A altitudetextbox {
@@ -80,7 +107,6 @@
 	font-family: "Times New Roman";
 	font-size: 25px;
 }*/
-
 #mainform\3A newcabinetbutton {
 	margin-left: 30%;
 	margin-top: 1%;
