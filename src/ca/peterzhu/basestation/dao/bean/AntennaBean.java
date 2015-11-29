@@ -12,6 +12,7 @@ public class AntennaBean implements Serializable {
 	private int height;
 	private int azimuth;
 	private int downtilt;
+	private String baseStationPage;
 
 	/**
 	 * This constructor initializes the bean with blank fields.
@@ -98,11 +99,27 @@ public class AntennaBean implements Serializable {
 		this.downtilt = downtilt;
 	}
 
+	/**
+	 * @return the baseStationPage
+	 */
+	public String getBaseStationPage() {
+		return baseStationPage;
+	}
+
+	/**
+	 * @param baseStationPage
+	 *            the baseStationPage to set
+	 */
+	public void setBaseStationPage(String baseStationPage) {
+		this.baseStationPage = baseStationPage;
+	}
+
 	public void clearFields() {
 		slotNumber = 0;
 		height = 0;
 		azimuth = 0;
 		downtilt = 0;
+		baseStationPage = "";
 	}
 
 }

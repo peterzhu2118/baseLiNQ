@@ -8,7 +8,8 @@
 
 <f:view>
 	<f:metadata>
-		<f:viewParam name="basestationpage" id="basestationpage" />
+		<f:viewParam name="basestationpage" id="basestationpage"
+			value="#{cabinetBean.baseStationPage}" />
 	</f:metadata>
 </f:view>
 
@@ -25,9 +26,8 @@
 <h:body>
 	<!-- This produces the header of the web page -->
 	<h1>
-		<h:button
-			image="http://solutionscenter.nethope.org/images/site_images/Blinq_Networks_Logo.png"
-			style="position:relative;margin-left:1%;margin-top:1%; width:20%; height:7%" />
+		<h:graphicImage id="headermainimage" library="images"
+			name="Blinq_Networks_Logo.png" />
 	</h1>
 
 	<h2>New Cabinet</h2>
@@ -50,7 +50,8 @@
 			</h:column>
 
 			<h:column id="removetxboardcolumn">
-				<h:commandButton id="removetxboardbutton" value="Remove" />
+				<h:commandButton id="removetxboardbutton" value="Remove"
+					action="#{cabinetBean.removeTxBoard(tx)}" />
 			</h:column>
 		</h:dataTable>
 		<br />
@@ -58,9 +59,9 @@
 			action="newtxboard?faces-redirect=true&amp;includeViewParams=true&amp;cabinetpage=newcabinet" />
 
 		<h:commandButton id="savebutton" value="Save"
-			action="#{baseStationBean.addCabinet(cabinetBean, basestationpage)}" />
+			action="#{baseStationBean.addCabinet(cabinetBean, cabinetBean.baseStationPage)}" />
 		<h:commandButton id="discardbutton" value="Discard"
-			action="#{cabinetBean.discard(basestationpage)}" />
+			action="#{cabinetBean.discard(cabinetBean.baseStationPage)}" />
 
 		<br />
 		<br />

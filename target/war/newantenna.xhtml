@@ -8,7 +8,8 @@
 
 <f:view>
 	<f:metadata>
-		<f:viewParam name="basestationpage" id="basestationpage" />
+		<f:viewParam name="basestationpage" id="basestationpage"
+			value="#{antennaBean.baseStationPage}" />
 	</f:metadata>
 </f:view>
 
@@ -26,9 +27,8 @@
 <h:body>
 	<!-- This produces the header of the web page -->
 	<h1>
-		<h:button
-			image="http://solutionscenter.nethope.org/images/site_images/Blinq_Networks_Logo.png"
-			style="position:relative;margin-left:1%;margin-top:1%; width:20%; height:7%" />
+		<h:graphicImage id="headermainimage" library="images"
+			name="Blinq_Networks_Logo.png" />
 	</h1>
 
 	<h2>New Antenna</h2>
@@ -36,32 +36,46 @@
 	<hr />
 
 	<h:form id="mainform">
+		<!-- <h:outputText value="#{antennaBean.baseStationPageRedirect}" /> -->
+
 		<br />
 
 		<h:outputText id="heightlabel" value="Height (m)" />
+		<h:message for="heighttextbox" id="heightvalidatormessage" />
 		<br />
-		<h:inputText id="heighttextbox" value="#{antennaBean.height}" />
+		<h:inputText id="heighttextbox" value="#{antennaBean.height}"
+			validatorMessage="Invalid Value: Must be 4 digits or less">
+			<f:validateLongRange minimum="-9999" maximum="9999" />
+		</h:inputText>
 
 		<br />
 		<br />
 		<br />
 
 		<h:outputText id="azimuthlabel" value="Azimuth" />
+		<h:message for="azimuthtextbox" id="azimuthvalidatormessage" />
 		<br />
-		<h:inputText id="azimuthtextbox" value="#{antennaBean.azimuth}" />
+		<h:inputText id="azimuthtextbox" value="#{antennaBean.azimuth}"
+			validatorMessage="Invalid Value: Must be between 0 and 360">
+			<f:validateLongRange minimum="0" maximum="360" />
+		</h:inputText>
 
 		<br />
 		<br />
 		<br />
 
 		<h:outputText id="downtiltlabel" value="Downtilt" />
+		<h:message for="downtilttextbox" id="downtiltvalidatormessage" />
 		<br />
-		<h:inputText id="downtilttextbox" value="#{antennaBean.downtilt}" />
+		<h:inputText id="downtilttextbox" value="#{antennaBean.downtilt}"
+			validatorMessage="Invalid Value: Must be between 0 and 360">
+			<f:validateLongRange minimum="0" maximum="360" />
+		</h:inputText>
 
 		<h:commandButton id="savebutton" value="Save"
-			action="#{baseStationBean.addAntenna(antennaBean, basestationpage)}" />
-		<h:button id="discardbutton" value="Discard"
-			outcome="#{basestationpage}" />
+			action="#{baseStationBean.addAntenna(antennaBean, antennaBean.baseStationPage)}" />
+		<h:commandButton id="discardbutton" value="Discard"
+			action="#{antennaBean.getBaseStationPage()}" immediate="true" />
 
 		<br />
 		<br />

@@ -21,6 +21,7 @@ import javax.inject.Named;
 public class CabinetBean implements Serializable {
 	private int slotNumber;
 	private List<TxBoardBean> txBoards;
+	private String baseStationPage;
 
 	public CabinetBean() {
 		this(0, new LinkedList<TxBoardBean>());
@@ -43,6 +44,24 @@ public class CabinetBean implements Serializable {
 		ensureTXBoardOrder();
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof CabinetBean) {
+			CabinetBean c = (CabinetBean) o;
+
+			if (c.getTxBoards().size() == this.getTxBoards().size()) {
+				for (int i = 0; i < c.getTxBoards().size(); i++) {
+					if (!c.getTxBoards().get(i).equals(this.getTxBoards().get(i)))
+						return false;
+				}
+
+				return true;
+			} else
+				return false;
+		} else
+			return false;
+	}
+
 	public int getSlotNumber() {
 		return slotNumber;
 	}
@@ -55,6 +74,21 @@ public class CabinetBean implements Serializable {
 		return txBoards;
 	}
 
+	/**
+	 * @return the baseStationPage
+	 */
+	public String getBaseStationPage() {
+		return baseStationPage;
+	}
+
+	/**
+	 * @param baseStationPage
+	 *            the baseStationPage to set
+	 */
+	public void setBaseStationPage(String baseStationPage) {
+		this.baseStationPage = baseStationPage;
+	}
+
 	public String addTxBoard(TxBoardBean t, String redirect) {
 		// System.out.println("TX Board null: " + (t == null));
 		// System.out.println("List null: " + (txBoards == null));
@@ -65,6 +99,12 @@ public class CabinetBean implements Serializable {
 		ensureTXBoardOrder();
 
 		return redirect;
+	}
+
+	public void removeTxBoard(TxBoardBean t) {
+		txBoards.remove(t);
+
+		ensureTXBoardOrder();
 	}
 
 	private void ensureTXBoardOrder() {
@@ -84,6 +124,7 @@ public class CabinetBean implements Serializable {
 	public void clearFields() {
 		slotNumber = 0;
 		txBoards = new ArrayList<>();
+		baseStationPage = "";
 	}
 
 }

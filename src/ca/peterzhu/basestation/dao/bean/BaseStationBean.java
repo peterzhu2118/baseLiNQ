@@ -36,6 +36,8 @@ public class BaseStationBean implements Serializable {
 
 	public BaseStationBean() {
 		this("", "", 0.0, 0.0, 0, new LinkedList<CabinetBean>(), new LinkedList<AntennaBean>());
+
+		// System.out.println("Constructor");
 	}
 
 	public BaseStationBean(String n, String uid, double lng, double lat, int alt, List<CabinetBean> cab,
@@ -54,6 +56,7 @@ public class BaseStationBean implements Serializable {
 
 	@PostConstruct
 	private void init() {
+		// System.out.println("Init");
 		beginConversation();
 	}
 
@@ -179,6 +182,12 @@ public class BaseStationBean implements Serializable {
 		return cabinets;
 	}
 
+	public void removeCabinet(CabinetBean a) {
+		cabinets.remove(a);
+
+		ensureCabinetOrder();
+	}
+
 	public String addCabinet(CabinetBean c, String redirect) {
 		// System.out.println("Cabinet null: " + (c == null));
 		// System.out.println("Cabinet list null: " + (cabinets == null));
@@ -200,6 +209,8 @@ public class BaseStationBean implements Serializable {
 
 	public void removeAntenna(AntennaBean a) {
 		antennas.remove(a);
+
+		ensureAntennaOrder();
 	}
 
 	public String addAntenna(AntennaBean a, String redirect) {

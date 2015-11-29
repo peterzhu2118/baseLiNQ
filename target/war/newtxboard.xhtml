@@ -8,8 +8,8 @@
 
 <f:view>
 	<f:metadata>
-		<f:viewParam name="basestationpage" id="basestationpage" />
-		<f:viewParam name="cabinetpage" id="cabinetpage" />
+		<f:viewParam name="cabinetpage" id="cabinetpage"
+			value="#{txBoardBean.cabinetPage}" />
 	</f:metadata>
 </f:view>
 
@@ -26,9 +26,8 @@
 <h:body>
 	<!-- This produces the header of the web page -->
 	<h1>
-		<h:button
-			image="http://solutionscenter.nethope.org/images/site_images/Blinq_Networks_Logo.png"
-			style="position:relative;margin-left:1%;margin-top:1%; width:20%; height:7%" />
+		<h:graphicImage id="headermainimage" library="images"
+			name="Blinq_Networks_Logo.png" />
 	</h1>
 
 	<h2>New TX Board</h2>
@@ -38,22 +37,32 @@
 		<br />
 
 		<h:outputText id="transmitpowerlabel" value="Transmit Power (dB)" />
+		<h:message for="transmitpowertextbox"
+			id="tramsmitpowervalidatormessage" />
 		<br />
 		<h:inputText id="transmitpowertextbox"
-			value="#{txBoardBean.transmitPower}" />
+			value="#{txBoardBean.transmitPower}"
+			validatorMessage="Invalid Value: Must be between -27 and +27">
+			<f:validateLongRange minimum="-27" maximum="27" />
+		</h:inputText>
 
 		<br />
 		<br />
 		<br />
 
 		<h:outputText id="frequencylabel" value="Frequency (MHz)" />
+		<h:message for="frequencytextbox" id="frequencyvalidatormessage" />
 		<br />
-		<h:inputText id="frequencytextbox" value="#{txBoardBean.frequency}" />
+		<h:inputText id="frequencytextbox" value="#{txBoardBean.frequency}"
+			validatorMessage="Invalid Value: Must be 4 digits or less">
+			<f:validateLongRange minimum="-9999" maximum="9999" />
+		</h:inputText>
 
 		<h:commandButton id="savebutton" value="Save"
-			action="#{cabinetBean.addTxBoard(txBoardBean, cabinetpage.concat('?faces-redirect=true&amp;basestationpage=').concat(basestationpage))}" />
+			action="#{cabinetBean.addTxBoard(txBoardBean, txBoardBean.cabinetPage)}" />
 		<h:commandButton id="discardbutton" value="Discard"
-			action="#{txBoardBean.discard(cabinetpage.concat('?faces-redirect=true&amp;basestationpage=').concat(basestationpage))}" />
+			action="#{txBoardBean.discard(txBoardBean.cabinetPage)}"
+			immediate="true" />
 		<br />
 		<br />
 		<br />

@@ -7,6 +7,13 @@
 	font-size: 25px;
 }
 
+#mainform\3A tramsmitpowervalidatormessage {
+	margin-left: 1%;
+	font-family: "Times New Roman";
+	font-size: 15px;
+	color: red;
+}
+
 #mainform\3A transmitpowertextbox {
 	margin-left: 30%;
 	margin-top: 1%;
@@ -21,6 +28,13 @@
 	margin-top: 20%;
 	font-family: "Times New Roman";
 	font-size: 25px
+}
+
+#mainform\3A frequencyvalidatormessage {
+	margin-left: 1%;
+	font-family: "Times New Roman";
+	font-size: 15px;
+	color: red;
 }
 
 #mainform\3A frequencytextbox {

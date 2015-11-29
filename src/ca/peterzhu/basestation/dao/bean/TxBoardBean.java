@@ -16,6 +16,7 @@ public class TxBoardBean implements Serializable {
 	private int slotNumber;
 	private int transmitPower;
 	private int frequency;
+	private String cabinetPage;
 
 	public TxBoardBean() {
 		this(0, 0, 0);
@@ -31,6 +32,17 @@ public class TxBoardBean implements Serializable {
 		this.slotNumber = t.getSlotNumber();
 		this.transmitPower = t.getTransmitPower();
 		this.frequency = t.getFrequency();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof TxBoardBean) {
+			TxBoardBean t = (TxBoardBean) o;
+
+			return t.getSlotNumber() == this.getSlotNumber() && t.getFrequency() == this.getFrequency()
+					&& t.getTransmitPower() == this.getTransmitPower();
+		} else
+			return false;
 	}
 
 	public int getSlotNumber() {
@@ -69,6 +81,21 @@ public class TxBoardBean implements Serializable {
 	 */
 	public void setFrequency(int frequency) {
 		this.frequency = frequency;
+	}
+
+	/**
+	 * @return the cabinetPage
+	 */
+	public String getCabinetPage() {
+		return cabinetPage;
+	}
+
+	/**
+	 * @param cabinetPage
+	 *            the cabinetPage to set
+	 */
+	public void setCabinetPage(String cabinetPage) {
+		this.cabinetPage = cabinetPage;
 	}
 
 	public String discard(String redirect) {

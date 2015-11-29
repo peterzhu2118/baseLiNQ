@@ -10,11 +10,10 @@
 	<title>New Base Station</title>
 
 	<h:outputScript library="js" name="enterkeyprevent.js" />
-	<h:outputScript library="js" name="editbasestationchecker.js" />
 
 	<h:outputStylesheet name="css/editbasestation.css" />
-	<h:outputStylesheet name="css/header.css" />
 	<h:outputStylesheet name="css/formtemplate.css" />
+	<h:outputStylesheet name="css/header.css" />
 </h:head>
 
 <h:body>
@@ -30,7 +29,7 @@
 	<hr />
 
 
-	<h:form id="mainform">
+	<o:form id="mainform">
 		<br />
 
 		<h:outputText id="namelabel" value="Name" />
@@ -74,7 +73,7 @@
 		<h:message for="altitudetextbox" id="altitudevalidatormessage" />
 		<br />
 		<h:inputText id="altitudetextbox" value="#{baseStationBean.altitude}"
-			validatorMessage="Invalid Value: Must be 4 digits or below">
+			validatorMessage="Invalid Value: Must be 4 digits or less">
 			<f:validateLongRange minimum="-9999" maximum="9999" />
 		</h:inputText>
 
@@ -99,14 +98,15 @@
 
 			<h:column id="removecabinetcolumn">
 				<h:commandButton id="removecabinetbutton" value="Remove"
-					immediate="true" />
+					action="#{baseStationBean.removeCabinet(c)}" immediate="true" />
 			</h:column>
 		</h:dataTable>
 		<br />
 		<h:commandButton id="newcabinetbutton" value="New Cabinet"
-			action="newcabinet?faces-redirect=true&amp;basestationpage=newbasestation"
-			immediate="true" />
-
+			action="newcabinet?faces-redirect=true&amp;basestationpage=newbasestation">
+			<o:ignoreValidationFailed />
+			<f:ajax execute="@form" />
+		</h:commandButton>
 		<br />
 		<br />
 		<br />
@@ -133,10 +133,10 @@
 		<br />
 		<h:commandButton id="newantennabutton" value="New Antenna"
 			action="newantenna?faces-redirect=true&amp;basestationpage=newbasestation"
-			immediate="true" />
-
-		<!-- <h:commandButton id="testingbutton" value="test" onclick="window.alert('hello')"
-			action="main" /> -->
+			immediate="true">
+			<o:ignoreValidationFailed />
+			<f:ajax execute="@form" />
+		</h:commandButton>
 
 		<h:commandButton id="savebutton" value="Save" onpress="checkForm()"
 			action="#{baseStationBean.create('main')}" />
@@ -146,7 +146,7 @@
 		<br />
 		<br />
 		<br />
-	</h:form>
+	</o:form>
 
 </h:body>
 
