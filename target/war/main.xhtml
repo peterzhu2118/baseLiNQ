@@ -51,7 +51,8 @@
 					<h:outputText id="basestationtitle"
 						value="#{baseStationMap.selectedMarker.title}" />
 					<br />
-					<h:commandButton id="viewbasestation" value="View" />
+					<h:commandButton id="viewbasestation" value="View"
+						action="#{baseStationBean.setThisObject(baseStationMap.selectedMarker.getData(), 'viewbasestation')}" />
 					<h:commandButton id="editbasestation" value="Edit" />
 					<h:commandButton id="deletebasestation" value="Delete"
 						action="#{baseStationMap.update()}">

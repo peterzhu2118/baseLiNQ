@@ -87,8 +87,7 @@
 		<h:dataTable id="cabinettable" value="#{baseStationBean.cabinets}"
 			var="c">
 			<h:column id="cabinetnamecolumn">
-				<h:outputText id="cabinetnamelabelone" value="Cabinet " />
-				<h:outputText id="cabinetnamelabeltwo" value="#{c.slotNumber}" />
+				<h:outputText id="cabinetnamelabel" value="Cabinet #{c.slotNumber}" />
 			</h:column>
 
 			<h:column id="editcabinetcolumn">
@@ -116,8 +115,7 @@
 		<h:dataTable id="antennatable" value="#{baseStationBean.antennas}"
 			var="a">
 			<h:column id="antennanamecolumn">
-				<h:outputText id="antennanamelabelone" value="Antenna " />
-				<h:outputText id="antennanamelabeltwo" value="#{a.slotNumber}" />
+				<h:outputText id="antennanamelabel" value="Antenna #{a.slotNumber}" />
 			</h:column>
 
 			<h:column id="editcabinetcolumn">
@@ -132,16 +130,18 @@
 		</h:dataTable>
 		<br />
 		<h:commandButton id="newantennabutton" value="New Antenna"
-			action="newantenna?faces-redirect=true&amp;basestationpage=newbasestation"
-			immediate="true">
+			action="newantenna?faces-redirect=true&amp;basestationpage=newbasestation">
 			<o:ignoreValidationFailed />
 			<f:ajax execute="@form" />
 		</h:commandButton>
 
-		<h:commandButton id="savebutton" value="Save" onpress="checkForm()"
+		<h:commandButton id="savebutton" value="Save"
 			action="#{baseStationBean.create('main')}" />
 		<h:commandButton id="discardbutton" value="Discard"
-			action="#{baseStationBean.discard('main')}" immediate="true" />
+			action="#{baseStationBean.discard('main?faces-redirect=true')}">
+			<o:ignoreValidationFailed />
+			<f:ajax execute="@form" />
+		</h:commandButton>
 
 		<br />
 		<br />

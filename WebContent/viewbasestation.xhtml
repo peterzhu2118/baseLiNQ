@@ -7,9 +7,11 @@
 	xmlns:o="http://omnifaces.org/ui">
 
 <h:head>
-	<title></title>
+	<title>View Base Station</title>
 
 	<h:outputStylesheet name="css/header.css" />
+	<h:outputStylesheet name="css/formtemplate.css" />
+	<h:outputStylesheet name="css/viewbasestation.css" />
 </h:head>
 
 <h:body>
@@ -19,6 +21,76 @@
 			name="Blinq_Networks_Logo.png" />
 	</h1>
 
+	<h2>View Base Station</h2>
+
+	<hr />
+
+	<h:form id="mainform">
+		<br />
+
+		<h:outputText id="namelabel" value="Name: #{baseStationBean.name}" />
+
+		<br />
+		<br />
+
+		<h:outputText id="longitudelabel"
+			value="Longitude: #{baseStationBean.longitude}" />
+
+		<br />
+		<br />
+
+		<h:outputText id="latitudelabel"
+			value="Latitude: #{baseStationBean.latitude}" />
+
+		<br />
+		<br />
+
+		<h:outputText id="altitudelabel"
+			value="Altitude: #{baseStationBean.altitude}" />
+
+		<br />
+		<br />
+
+		<h:outputText id="cabinetlabel" value="Cabinets" />
+
+		<h:dataTable id="cabinettable" value="#{baseStationBean.cabinets}"
+			var="c">
+			<h:column id="cabinetnamecolumn">
+				<h:outputText id="cabinetnamelabel" value="Cabinet #{c.slotNumber}" />
+			</h:column>
+
+			<h:column id="viewcabinetcolumn">
+				<h:commandButton id="viewcabinetbutton" value="View" />
+			</h:column>
+		</h:dataTable>
+
+		<br />
+		<br />
+
+		<h:outputText id="antennalabel" value="Antennas" />
+
+		<h:dataTable id="antennatable" value="#{baseStationBean.antennas}"
+			var="a">
+			<h:column id="antennanamecolumn">
+				<h:outputText id="antennanamelabel" value="Antenna #{a.slotNumber}" />
+			</h:column>
+
+			<h:column id="viewantennacolumn">
+				<h:commandButton id="viewantennabutton" value="View"
+					action="viewantenna?faces-redirect=true&amp;height=#{a.getHeight()}&amp;azimuth=#{a.getAzimuth()}&amp;downtilt=#{a.getDowntilt()}" />
+			</h:column>
+		</h:dataTable>
+
+		<br />
+		<br />
+
+		<h:commandButton id="backbutton" value="Back"
+			action="#{baseStationBean.discard('main')}" />
+
+		<br />
+		<br />
+		<br />
+	</h:form>
 </h:body>
 
 </html>

@@ -1,0 +1,64 @@
+@CHARSET "ISO-8859-1";
+
+#mainform\3A namelabel {
+	margin-left: 30%;
+	margin-top: 1%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A longitudelabel {
+	margin-left: 30%;
+	margin-top: 1%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A latitudelabel {
+	margin-left: 30%;
+	margin-top: 1%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A altitudelabel {
+	margin-left: 30%;
+	margin-top: 1%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A cabinetlabel {
+	margin-left: 30%;
+	margin-top: 3%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A cabinettable {
+	margin-left: 35%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}
+
+#mainform\3A antennalabel {
+	margin-left: 30%;
+	margin-top: 3%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A antennatable {
+	margin-left: 35%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}
+
+#mainform\3A backbutton {
+	margin-left: 55%;
+	margin-top: 3%;
+	width: 10%;
+	height: 10%;
+	font-family: "Times New Roman";
+	font-size: 20px
+}

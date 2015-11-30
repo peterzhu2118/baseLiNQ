@@ -46,6 +46,24 @@ public class AntennaBean implements Serializable {
 			return false;
 	}
 
+	public String setThisObject(Object o, String redirect) {
+		if (o instanceof AntennaBean) {
+			System.out.println("Set Object");
+
+			AntennaBean a = (AntennaBean) o;
+
+			System.out.println("Height: " + a.getHeight());
+
+			this.slotNumber = a.getSlotNumber();
+			this.height = a.getHeight();
+			this.azimuth = a.getAzimuth();
+			this.downtilt = a.getDowntilt();
+
+			return redirect;
+		} else
+			throw new IllegalArgumentException("Object not instance of AntennaBean");
+	}
+
 	public int getSlotNumber() {
 		return slotNumber;
 	}

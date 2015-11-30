@@ -83,19 +83,24 @@ public class BaseStationBean implements Serializable {
 		conversation.end();
 	}
 
-	public String setThisObject(BaseStationBean b, String redirect) {
-		this.name = b.getName();
-		this.uniqueId = b.getUniqueId();
-		this.latitude = b.getLatitude();
-		this.longitude = b.getLongitude();
-		this.altitude = b.getAltitude();
-		this.cabinets = b.getCabinets();
-		this.antennas = b.getAntennas();
+	public String setThisObject(Object b, String redirect) {
+		if (b instanceof BaseStationBean) {
+			BaseStationBean bsb = (BaseStationBean) b;
 
-		ensureAntennaOrder();
-		ensureCabinetOrder();
+			this.name = bsb.getName();
+			this.uniqueId = bsb.getUniqueId();
+			this.latitude = bsb.getLatitude();
+			this.longitude = bsb.getLongitude();
+			this.altitude = bsb.getAltitude();
+			this.cabinets = bsb.getCabinets();
+			this.antennas = bsb.getAntennas();
 
-		return redirect;
+			ensureAntennaOrder();
+			ensureCabinetOrder();
+
+			return redirect;
+		} else
+			throw new IllegalArgumentException("Object not instance of BaseStationBean");
 	}
 
 	/**
