@@ -63,8 +63,6 @@ public class CabinetBean implements Serializable {
 	}
 
 	public String setThisObject(CabinetBean c, String redirect) {
-		// System.out.println("Set cabinet");
-
 		this.slotNumber = c.getSlotNumber();
 
 		this.txBoards = new LinkedList<TxBoardBean>();
@@ -81,6 +79,8 @@ public class CabinetBean implements Serializable {
 	}
 
 	public void setSlotNumber(int slotNumber) {
+		System.out.println("Set slot number from " + this.slotNumber + " to " + slotNumber);
+
 		this.slotNumber = slotNumber;
 	}
 
@@ -104,9 +104,6 @@ public class CabinetBean implements Serializable {
 	}
 
 	public String addTxBoard(TxBoardBean t, String redirect) {
-		// System.out.println("TX Board null: " + (t == null));
-		// System.out.println("List null: " + (txBoards == null));
-
 		t.setSlotNumber(txBoards.size());
 		txBoards.add(t);
 
@@ -141,7 +138,7 @@ public class CabinetBean implements Serializable {
 
 	public void clearFields() {
 		slotNumber = 0;
-		txBoards = new ArrayList<>();
+		txBoards = new LinkedList<>();
 		baseStationPage = "";
 	}
 

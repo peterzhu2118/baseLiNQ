@@ -134,7 +134,6 @@ public class BaseStationBean implements Serializable {
 	 *            the name of the Base Station
 	 */
 	public void setName(String name) {
-		// System.out.println("Set name");
 		this.name = name;
 	}
 
@@ -194,9 +193,6 @@ public class BaseStationBean implements Serializable {
 	}
 
 	public String addCabinet(CabinetBean c, String redirect) {
-		// System.out.println("Cabinet null: " + (c == null));
-		// System.out.println("Cabinet list null: " + (cabinets == null));
-
 		c.setSlotNumber(cabinets.size());
 
 		cabinets.add(new CabinetBean(c));
@@ -219,13 +215,15 @@ public class BaseStationBean implements Serializable {
 	}
 
 	public String updateCabinet(CabinetBean c, String redirect) {
-		cabinets.set(c.getSlotNumber() - 1, c);
+		cabinets.set(c.getSlotNumber() - 1, new CabinetBean(c));
+
+		c.clearFields();
 
 		return redirect;
 	}
 
 	public String addAntenna(AntennaBean a, String redirect) {
-		a.setSlotNumber(antennas.size());
+		a.setSlotNumber(antennas.size() + 1);
 
 		antennas.add(new AntennaBean(a));
 
