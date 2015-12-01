@@ -63,8 +63,15 @@ public class CabinetBean implements Serializable {
 	}
 
 	public String setThisObject(CabinetBean c, String redirect) {
+		// System.out.println("Set cabinet");
+
 		this.slotNumber = c.getSlotNumber();
-		this.txBoards = c.getTxBoards();
+
+		this.txBoards = new LinkedList<TxBoardBean>();
+
+		for (TxBoardBean tx : c.txBoards) {
+			this.txBoards.add(new TxBoardBean(tx));
+		}
 
 		return redirect;
 	}

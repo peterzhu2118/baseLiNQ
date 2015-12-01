@@ -218,6 +218,12 @@ public class BaseStationBean implements Serializable {
 		ensureAntennaOrder();
 	}
 
+	public String updateCabinet(CabinetBean c, String redirect) {
+		cabinets.set(c.getSlotNumber() - 1, c);
+
+		return redirect;
+	}
+
 	public String addAntenna(AntennaBean a, String redirect) {
 		a.setSlotNumber(antennas.size());
 

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:o="http://omnifaces.org/ui">
+
+<f:view>
+	<f:metadata>
+		<f:viewParam name="basestationpage" id="basestationpage"
+			value="#{cabinetBean.baseStationPage}" />
+	</f:metadata>
+</f:view>
+
+<h:head>
+	<title>Edit Cabinet</title>
+
+	<h:outputScript library="js" name="enterkeyprevent.js" />
+
+	<h:outputStylesheet name="css/header.css" />
+	<h:outputStylesheet name="css/formtemplate.css" />
+	<h:outputStylesheet name="css/editcabinet.css" />
+</h:head>
+
+<h:body>
+	<!-- This produces the header of the web page -->
+	<h1>
+		<h:graphicImage id="headermainimage" library="images"
+			name="Blinq_Networks_Logo.png" />
+	</h1>
+
+	<h2>Edit Cabinet</h2>
+
+	<hr />
+
+	<h:form id="mainform">
+		<br />
+
+		<h:outputText id="txboardlabel" value="TX Boards" />
+		<h:dataTable id="txboardtable" value="#{cabinetBean.txBoards}"
+			var="tx">
+			<h:column id="txboardnamecolumn">
+				<h:outputText id="txboardnamelabel" value="TX Board #{tx.slotNumber}" />
+			</h:column>
+
+			<h:column id="edittxboardcolumn">
+				<h:commandButton id="edittxboardbutton" value="Edit" />
+			</h:column>
+
+			<h:column id="removetxboardcolumn">
+				<h:commandButton id="removetxboardbutton" value="Remove"
+					action="#{cabinetBean.removeTxBoard(tx)}" />
+			</h:column>
+		</h:dataTable>
+		<br />
+		<h:commandButton id="newtxboardbutton" value="New TX Board"
+			action="newtxboard?faces-redirect=true&amp;includeViewParams=true&amp;cabinetpage=editcabinet" />
+
+		<h:commandButton id="savebutton" value="Save"
+			action="#{baseStationBean.updateCabinet(cabinetBean, cabinetBean.baseStationPage)}" />
+		<h:commandButton id="discardbutton" value="Discard"
+			action="#{cabinetBean.discard(cabinetBean.baseStationPage)}" />
+
+		<br />
+		<br />
+		<br />
+	</h:form>
+
+</h:body>
+
+</html>

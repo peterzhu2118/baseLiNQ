@@ -41,8 +41,7 @@
 		<h:dataTable id="txboardtable" value="#{cabinetBean.txBoards}"
 			var="tx">
 			<h:column id="txboardnamecolumn">
-				<h:outputText id="txboardlabelone" value="TX Board " />
-				<h:outputText id="txboardlabeltwo" value="#{tx.slotNumber}" />
+				<h:outputText id="txboardnamelabel" value="TX Board #{tx.slotNumber}" />
 			</h:column>
 
 			<h:column id="edittxboardcolumn">
