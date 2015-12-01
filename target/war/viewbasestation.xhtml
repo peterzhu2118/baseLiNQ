@@ -60,7 +60,8 @@
 			</h:column>
 
 			<h:column id="viewcabinetcolumn">
-				<h:commandButton id="viewcabinetbutton" value="View" />
+				<h:commandButton id="viewcabinetbutton" value="View"
+					action="#{cabinetBean.setThisObject(c, 'viewcabinet?faces-redirect=true&amp;includeViewParams=true')}" />
 			</h:column>
 		</h:dataTable>
 
@@ -77,7 +78,7 @@
 
 			<h:column id="viewantennacolumn">
 				<h:commandButton id="viewantennabutton" value="View"
-					action="viewantenna?faces-redirect=true&amp;height=#{a.getHeight()}&amp;azimuth=#{a.getAzimuth()}&amp;downtilt=#{a.getDowntilt()}" />
+					action="#{'viewantenna?faces-redirect=true&amp;includeViewParams=true&amp;slotnumber='.concat(a.slotNumber)}" />
 			</h:column>
 		</h:dataTable>
 

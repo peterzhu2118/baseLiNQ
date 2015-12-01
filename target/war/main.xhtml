@@ -53,7 +53,8 @@
 					<br />
 					<h:commandButton id="viewbasestation" value="View"
 						action="#{baseStationBean.setThisObject(baseStationMap.selectedMarker.getData(), 'viewbasestation')}" />
-					<h:commandButton id="editbasestation" value="Edit" />
+					<h:commandButton id="editbasestation" value="Edit"
+						action="#{baseStationBean.setThisObject(baseStationMap.selectedMarker.getData(), 'editbasestation')}" />
 					<h:commandButton id="deletebasestation" value="Delete"
 						action="#{baseStationMap.update()}">
 						<f:actionListener

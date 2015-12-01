@@ -1,0 +1,31 @@
+@CHARSET "ISO-8859-1";
+
+#mainform\3A heightlabel {
+	margin-left: 30%;
+	margin-top: 3%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A azimuthlabel {
+	margin-left: 30%;
+	margin-top: 3%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A downtiltlabel {
+	margin-left: 30%;
+	margin-top: 3%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A backbutton {
+	margin-left: 55%;
+	margin-top: 3%;
+	width: 10%;
+	height: 10%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}

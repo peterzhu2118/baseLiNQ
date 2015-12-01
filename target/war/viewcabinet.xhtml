@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:o="http://omnifaces.org/ui">
+
+<h:head>
+	<title>View Cabinet</title>
+
+	<h:outputStylesheet name="css/header.css" />
+	<h:outputStylesheet name="css/formtemplate.css" />
+	<h:outputStylesheet name="css/viewcabinet.css" />
+</h:head>
+
+<h:body>
+	<!-- This produces the header of the web page -->
+	<h1>
+		<h:graphicImage id="headermainimage" library="images"
+			name="Blinq_Networks_Logo.png" />
+	</h1>
+
+	<h2>View Cabinet</h2>
+
+	<hr />
+
+	<h:form id="mainform">
+		<br />
+
+		<h:outputText id="txboardlabel" value="TX Boards" />
+
+		<br />
+
+		<h:dataTable id="txboardtable" value="#{cabinetBean.txBoards}"
+			var="tx">
+			<h:column id="txboardnamecolumn">
+				<h:outputText id="txboardnamelabel"
+					value="TX Board #{tx.slotNumber}" />
+			</h:column>
+
+			<h:column id="viewtxboardcolumn">
+				<h:commandButton id="viewtxboardbutton" value="View"
+					action="#{'viewtxboard?faces-redirect=true&amp;includeViewParams=true&amp;slotnumber='.concat(tx.slotNumber)}" />
+			</h:column>
+		</h:dataTable>
+
+		<br />
+		<br />
+
+		<h:commandButton id="backbutton" value="Back"
+			action="viewbasestation?faces-redirect=true" />
+	</h:form>
+
+</h:body>
+
+</html>

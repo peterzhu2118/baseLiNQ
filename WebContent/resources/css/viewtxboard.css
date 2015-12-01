@@ -1,0 +1,24 @@
+@CHARSET "ISO-8859-1";
+
+#mainform\3A transmitpowerlabel {
+	margin-left: 30%;
+	margin-top: 3%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A frequencylabel {
+	margin-left: 30%;
+	margin-top: 3%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A backbutton {
+	margin-left: 55%;
+	margin-top: 3%;
+	width: 10%;
+	height: 10%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:o="http://omnifaces.org/ui">
+
+<h:head>
+	<title>Edit Base Station</title>
+
+	<h:outputScript library="js" name="enterkeyprevent.js" />
+
+	<h:outputStylesheet name="css/editbasestation.css" />
+	<h:outputStylesheet name="css/formtemplate.css" />
+	<h:outputStylesheet name="css/header.css" />
+</h:head>
+
+<h:body>
+	<!-- This produces the header of the web page -->
+	<h1>
+		<h:graphicImage id="headermainimage" library="images"
+			name="Blinq_Networks_Logo.png" />
+	</h1>
+
+	<!-- Header title for the form -->
+	<h2>Edit Base Station</h2>
+
+	<hr />
+
+
+	<o:form id="mainform">
+		<br />
+
+		<h:outputText id="namelabel" value="Name" />
+		<h:message for="nametextbox" id="namevalidatormessage" />
+		<br />
+		<h:inputText id="nametextbox" value="#{baseStationBean.name}"
+			validatorMessage="Invalid Value: Must be between 1 and 255 characters">
+			<f:validateLength minimum="1" maximum="255" />
+		</h:inputText>
+
+		<br />
+		<br />
+		<br />
+
+		<h:outputText id="longitudelabel" value="Longitude" />
+		<h:message for="longitudetextbox" id="longitudevalidatormessage" />
+		<br />
+		<h:inputText id="longitudetextbox"
+			value="#{baseStationBean.longitude}"
+			validatorMessage="Invalid Value: Must be between -180 and +180">
+			<f:validateDoubleRange minimum="-180" maximum="180" />
+		</h:inputText>
+
+		<br />
+		<br />
+		<br />
+
+		<h:outputText id="latitudelabel" value="Latitude" />
+		<h:message for="latitudetextbox" id="latitudevalidatormessage" />
+		<br />
+		<h:inputText id="latitudetextbox" value="#{baseStationBean.latitude}"
+			validatorMessage="Invalid Value: Must be between -90 and +90">
+			<f:validateDoubleRange minimum="-90" maximum="90" />
+		</h:inputText>
+
+		<br />
+		<br />
+		<br />
+
+		<h:outputText id="altitudelabel" value="Altitude" />
+		<h:message for="altitudetextbox" id="altitudevalidatormessage" />
+		<br />
+		<h:inputText id="altitudetextbox" value="#{baseStationBean.altitude}"
+			validatorMessage="Invalid Value: Must be 4 digits or less">
+			<f:validateLongRange minimum="-9999" maximum="9999" />
+		</h:inputText>
+
+		<br />
+		<br />
+		<br />
+
+
+		<h:outputText id="cabinetlabel" value="Cabinets" />
+		<br />
+		<h:dataTable id="cabinettable" value="#{baseStationBean.cabinets}"
+			var="c">
+			<h:column id="cabinetnamecolumn">
+				<h:outputText id="cabinetnamelabel" value="Cabinet #{c.slotNumber}" />
+			</h:column>
+
+			<h:column id="editcabinetcolumn">
+				<h:commandButton id="editcabinetbutton" value="Edit"
+					immediate="true" />
+			</h:column>
+
+			<h:column id="removecabinetcolumn">
+				<h:commandButton id="removecabinetbutton" value="Remove"
+					action="#{baseStationBean.removeCabinet(c)}" immediate="true" />
+			</h:column>
+		</h:dataTable>
+		<br />
+		<h:commandButton id="newcabinetbutton" value="New Cabinet"
+			action="newcabinet?faces-redirect=true&amp;basestationpage=editbasestation">
+			<o:ignoreValidationFailed />
+			<f:ajax execute="@form" />
+		</h:commandButton>
+		<br />
+		<br />
+		<br />
+
+		<h:outputText id="antennalabel" value="Antennas" />
+		<br />
+		<h:dataTable id="antennatable" value="#{baseStationBean.antennas}"
+			var="a">
+			<h:column id="antennanamecolumn">
+				<h:outputText id="antennanamelabel" value="Antenna #{a.slotNumber}" />
+			</h:column>
+
+			<h:column id="editcabinetcolumn">
+				<h:commandButton id="editcabinetbutton" value="Edit"
+					action="#{'editantenna?faces-redirect=true&amp;basestationpage=editbasestation&amp;slotnumber='.concat(a.slotNumber)}"
+					immediate="true" />
+			</h:column>
+
+			<h:column id="removeantennacolumn">
+				<h:commandButton id="removeantennabutton" value="Remove"
+					action="#{baseStationBean.removeAntenna(a)}" immediate="true" />
+			</h:column>
+		</h:dataTable>
+		<br />
+		<h:commandButton id="newantennabutton" value="New Antenna"
+			action="newantenna?faces-redirect=true&amp;basestationpage=editbasestation">
+			<o:ignoreValidationFailed />
+			<f:ajax execute="@form" />
+		</h:commandButton>
+
+		<h:commandButton id="savebutton" value="Save"
+			action="#{baseStationBean.update('main')}" />
+		<h:commandButton id="discardbutton" value="Discard"
+			action="#{baseStationBean.discard('main?faces-redirect=true')}">
+			<o:ignoreValidationFailed />
+			<f:ajax execute="@form" />
+		</h:commandButton>
+
+		<br />
+		<br />
+		<br />
+	</o:form>
+
+</h:body>
+
+</html>

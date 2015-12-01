@@ -48,11 +48,11 @@ public class AntennaBean implements Serializable {
 
 	public String setThisObject(Object o, String redirect) {
 		if (o instanceof AntennaBean) {
-			System.out.println("Set Object");
+			// System.out.println("Set Object");
 
 			AntennaBean a = (AntennaBean) o;
 
-			System.out.println("Height: " + a.getHeight());
+			// System.out.println("Height: " + a.getHeight());
 
 			this.slotNumber = a.getSlotNumber();
 			this.height = a.getHeight();

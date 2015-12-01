@@ -230,6 +230,16 @@ public class BaseStationBean implements Serializable {
 		return redirect;
 	}
 
+	public String updateAntenna(AntennaBean a, String redirect) {
+		antennas.set(a.getSlotNumber() - 1, a);
+
+		return redirect;
+	}
+
+	public AntennaBean getAntenna(int slotNumber) {
+		return antennas.get(slotNumber - 1);
+	}
+
 	public String create(String redirect) throws SQLException {
 		BaseStationDAO dao = new BaseStationDAO();
 		// System.out.println("Unique ID: " + uniqueId);
@@ -253,7 +263,7 @@ public class BaseStationBean implements Serializable {
 			throw new IllegalStateException("Unique ID is blank for saving Base Station");
 		}
 
-		dao.create(this);
+		dao.update(this);
 
 		clearFields();
 

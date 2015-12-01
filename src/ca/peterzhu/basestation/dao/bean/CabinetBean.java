@@ -62,6 +62,13 @@ public class CabinetBean implements Serializable {
 			return false;
 	}
 
+	public String setThisObject(CabinetBean c, String redirect) {
+		this.slotNumber = c.getSlotNumber();
+		this.txBoards = c.getTxBoards();
+
+		return redirect;
+	}
+
 	public int getSlotNumber() {
 		return slotNumber;
 	}
@@ -105,6 +112,10 @@ public class CabinetBean implements Serializable {
 		txBoards.remove(t);
 
 		ensureTXBoardOrder();
+	}
+
+	public TxBoardBean getTxBoard(int slotNumber) {
+		return txBoards.get(slotNumber - 1);
 	}
 
 	private void ensureTXBoardOrder() {

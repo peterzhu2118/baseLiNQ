@@ -8,9 +8,7 @@
 
 <f:view>
 	<f:metadata>
-		<f:viewParam name="height" id="height" />
-		<f:viewParam name="azimuth" id="azimuth" />
-		<f:viewParam name="downtilt" id="downtilt" />
+		<f:viewParam name="slotnumber" id="slotnumber" />
 	</f:metadata>
 </f:view>
 
@@ -19,6 +17,7 @@
 
 	<h:outputStylesheet name="css/header.css" />
 	<h:outputStylesheet name="css/formtemplate.css" />
+	<h:outputStylesheet name="css/viewantenna.css" />
 </h:head>
 
 <h:body>
@@ -32,20 +31,23 @@
 
 	<hr />
 
-	<h:form>
+	<h:form id="mainform">
 		<br />
 
-		<h:outputText id="heightlabel" value="Height (m): #{height}" />
-
-		<br />
-		<br />
-
-		<h:outputText id="azimuthlabel" value="Azimuth: #{azimuth}" />
+		<h:outputText id="heightlabel"
+			value="Height (m): #{baseStationBean.getAntenna(slotnumber).height}" />
 
 		<br />
 		<br />
 
-		<h:outputText id="downtiltlabel" value="Downtilt: #{downtilt}" />
+		<h:outputText id="azimuthlabel"
+			value="Azimuth: #{baseStationBean.getAntenna(slotnumber).azimuth}" />
+
+		<br />
+		<br />
+
+		<h:outputText id="downtiltlabel"
+			value="Downtilt: #{baseStationBean.getAntenna(slotnumber).downtilt}" />
 
 		<br />
 		<br />
