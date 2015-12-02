@@ -16,6 +16,8 @@ import javax.inject.Named;
 import ca.peterzhu.basestation.dao.BaseStationDAO;
 
 /**
+ * Contains all the the fields to represent a Base Station. This is a managed
+ * bean using CDI to interact with the HTML JSF pages.
  * 
  * @author Peter Zhu
  * @version 3.0

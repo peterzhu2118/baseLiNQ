@@ -5,6 +5,13 @@ import java.io.Serializable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+/**
+ * Contains all the fields to represent a Antenna. This is a managed
+ * bean using CDI to interact with the HTML JSF pages.
+ * 
+ * @author Peter Zhu
+ * @version 3.0
+ */
 @Named("antennaBean")
 @ViewScoped
 public class AntennaBean implements Serializable {
@@ -15,19 +22,37 @@ public class AntennaBean implements Serializable {
 	private String baseStationPage;
 
 	/**
-	 * This constructor initializes the bean with blank fields.
+	 * Initializes the bean with blank fields.
 	 */
 	public AntennaBean() {
 		this(0, 0, 0, 0);
 	}
 
-	public AntennaBean(int slotNumber, int h, int a, int d) {
-		this.slotNumber = slotNumber;
+	/**
+	 * Initializes with fields passed in.
+	 * 
+	 * @param s
+	 *            slot number to set
+	 * @param h
+	 *            height to set
+	 * @param a
+	 *            azimuth to set
+	 * @param d
+	 *            downtilt to set
+	 */
+	public AntennaBean(int s, int h, int a, int d) {
+		this.slotNumber = s;
 		this.height = h;
 		this.azimuth = a;
 		this.downtilt = d;
 	}
 
+	/**
+	 * Initializes with a copy of the AntennaBean passed in.
+	 * 
+	 * @param a
+	 *            the AntennaBean to be copied
+	 */
 	public AntennaBean(AntennaBean a) {
 		this.slotNumber = a.getSlotNumber();
 		this.height = a.getHeight();
@@ -35,6 +60,14 @@ public class AntennaBean implements Serializable {
 		this.downtilt = a.getDowntilt();
 	}
 
+	/**
+	 * Overrides the equals method in the Object class. Compares all the fields
+	 * of this Object and the Object passed in.
+	 * 
+	 * @param o
+	 *            the Object to be compared
+	 * @return if the Object passed in equals this Object
+	 */
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof AntennaBean) {
@@ -46,6 +79,16 @@ public class AntennaBean implements Serializable {
 			return false;
 	}
 
+	/**
+	 * Sets this Object with the Object passed in. Returns the redirect value
+	 * passed in (for redirecting in JSF).
+	 * 
+	 * @param o
+	 *            the Object to set this Object to
+	 * @param redirect
+	 *            the URL to be redirected
+	 * @return the redirect URL
+	 */
 	public String setThisObject(Object o, String redirect) {
 		if (o instanceof AntennaBean) {
 			// System.out.println("Set Object");
@@ -64,10 +107,17 @@ public class AntennaBean implements Serializable {
 			throw new IllegalArgumentException("Object not instance of AntennaBean");
 	}
 
+	/**
+	 * @return the slot number
+	 */
 	public int getSlotNumber() {
 		return slotNumber;
 	}
 
+	/**
+	 * @param slotNumber
+	 *            the slot number to set
+	 */
 	public void setSlotNumber(int slotNumber) {
 		this.slotNumber = slotNumber;
 	}
@@ -118,20 +168,27 @@ public class AntennaBean implements Serializable {
 	}
 
 	/**
-	 * @return the baseStationPage
+	 * This method is only used in HTML for temporary variable storage.
+	 * 
+	 * @return the Base Station page URL
 	 */
 	public String getBaseStationPage() {
 		return baseStationPage;
 	}
 
 	/**
+	 * This method is only used in HTML for temporary variable storage.
+	 * 
 	 * @param baseStationPage
-	 *            the baseStationPage to set
+	 *            the Base Station page URL to set
 	 */
 	public void setBaseStationPage(String baseStationPage) {
 		this.baseStationPage = baseStationPage;
 	}
 
+	/**
+	 * Clears all the fields with empty (non null) values.
+	 */
 	public void clearFields() {
 		slotNumber = 0;
 		height = 0;
