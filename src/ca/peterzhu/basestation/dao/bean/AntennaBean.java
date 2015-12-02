@@ -66,7 +66,7 @@ public class AntennaBean implements Serializable {
 	 * 
 	 * @param o
 	 *            the Object to be compared
-	 * @return if the Object passed in equals this Object
+	 * @return true if the Object passed in is equal to this Object; false otherwise
 	 */
 	@Override
 	public boolean equals(Object o) {

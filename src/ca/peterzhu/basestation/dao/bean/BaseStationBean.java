@@ -9,7 +9,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -36,12 +35,31 @@ public class BaseStationBean implements Serializable {
 	@Inject
 	private Conversation conversation;
 
+	/**
+	 * Constructs an empty non-null value bean.
+	 */
 	public BaseStationBean() {
 		this("", "", 0.0, 0.0, 0, new LinkedList<CabinetBean>(), new LinkedList<AntennaBean>());
-
-		// System.out.println("Constructor");
 	}
 
+	/**
+	 * Initializes with the bean with the specified values.
+	 * 
+	 * @param n
+	 *            name of the Base Station
+	 * @param uid
+	 *            unique ID of the Base Station
+	 * @param lng
+	 *            longitude of the Base Station
+	 * @param lat
+	 *            latitude of the Base Station
+	 * @param alt
+	 *            altitude of the Base Station
+	 * @param cab
+	 *            cabinets in the Base Station
+	 * @param ant
+	 *            antennas in the Base Station
+	 */
 	public BaseStationBean(String n, String uid, double lng, double lat, int alt, List<CabinetBean> cab,
 			List<AntennaBean> ant) {
 		this.name = n;
@@ -56,12 +74,24 @@ public class BaseStationBean implements Serializable {
 		ensureCabinetOrder();
 	}
 
+	/**
+	 * Initializes the bean by elevating it to ConversationScope.
+	 */
 	@PostConstruct
 	private void init() {
-		// System.out.println("Init");
 		beginConversation();
 	}
 
+	/**
+	 * Overrides the equals method in the Object class. Compares only the Unique
+	 * ID of this Object to the Object passed in.
+	 * 
+	 * @param o
+	 *            The Object to compare this Object to
+	 * @return true if the Object passed in is the same as this Object; false
+	 *         otherwise
+	 * 
+	 */
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof BaseStationBean) {
@@ -70,21 +100,41 @@ public class BaseStationBean implements Serializable {
 			return false;
 	}
 
+	/**
+	 * Overrides the toString method in Object class. Returns the name of the
+	 * Base Station.
+	 * 
+	 * @return the name of the Base Station
+	 */
 	@Override
 	public String toString() {
 		return name;
 	}
 
+	/**
+	 * Elevates this bean into a long running Conversation scope.
+	 */
 	private void beginConversation() {
-		// System.out.println("Begin");
 		conversation.begin();
 	}
 
+	/**
+	 * Ends the Conversation and marks the bean into transient.
+	 */
 	private void endConversation() {
-		// System.out.println("End");
 		conversation.end();
 	}
 
+	/**
+	 * Copies the Object passed in into this Object. Returns the redirect link
+	 * passed in (for HTML).
+	 * 
+	 * @param b
+	 *            the Object to be copied
+	 * @param redirect
+	 *            the link to be redirected
+	 * @return the redirect link passed in
+	 */
 	public String setThisObject(Object b, String redirect) {
 		if (b instanceof BaseStationBean) {
 			BaseStationBean bsb = (BaseStationBean) b;
@@ -118,7 +168,7 @@ public class BaseStationBean implements Serializable {
 	 * Sets the 10 digit alphanumeric UID (Unique ID) of the Base Station.
 	 * 
 	 * @param uniqueId
-	 *            the UID of the Base Station
+	 *            the UID to set
 	 */
 	public void setUniqueId(String uniqueId) {
 		this.uniqueId = uniqueId;
@@ -133,7 +183,7 @@ public class BaseStationBean implements Serializable {
 
 	/**
 	 * @param name
-	 *            the name of the Base Station
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -148,7 +198,7 @@ public class BaseStationBean implements Serializable {
 
 	/**
 	 * @param longitude
-	 *            the latitude of the Base Station
+	 *            the latitude to set
 	 */
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
@@ -163,7 +213,7 @@ public class BaseStationBean implements Serializable {
 
 	/**
 	 * @param latitude
-	 *            the latitude of the Base Station
+	 *            the latitude to set
 	 */
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
@@ -178,22 +228,41 @@ public class BaseStationBean implements Serializable {
 
 	/**
 	 * @param altitude
-	 *            the altitude of the Base Station
+	 *            the altitude to set
 	 */
 	public void setAltitude(int altitude) {
 		this.altitude = altitude;
 	}
 
+	/**
+	 * @return the List of CabinetBean
+	 */
 	public List<CabinetBean> getCabinets() {
 		return cabinets;
 	}
 
+	/**
+	 * Removes the first occurrence of the CabinetBean (found using the equals
+	 * method in CabinetBean).
+	 * 
+	 * @param a
+	 *            the CabinetBean to remove
+	 */
 	public void removeCabinet(CabinetBean a) {
 		cabinets.remove(a);
 
 		ensureCabinetOrder();
 	}
 
+	/**
+	 * Adds a CabinetBean to the end of the List of CabinetBeans.
+	 * 
+	 * @param c
+	 *            the CabinetBean to add to the List
+	 * @param redirect
+	 *            the redirect link to return
+	 * @return the redirect link
+	 */
 	public String addCabinet(CabinetBean c, String redirect) {
 		c.setSlotNumber(cabinets.size());
 
@@ -206,16 +275,16 @@ public class BaseStationBean implements Serializable {
 		return redirect;
 	}
 
-	public List<AntennaBean> getAntennas() {
-		return antennas;
-	}
-
-	public void removeAntenna(AntennaBean a) {
-		antennas.remove(a);
-
-		ensureAntennaOrder();
-	}
-
+	/**
+	 * The CabinetBean to update. Replaces the CabinetBean at element number
+	 * (slotNumber - 1).
+	 * 
+	 * @param c
+	 *            the CabinetBean to replace
+	 * @param redirect
+	 *            the redirect link to return
+	 * @return the redirect link
+	 */
 	public String updateCabinet(CabinetBean c, String redirect) {
 		cabinets.set(c.getSlotNumber() - 1, new CabinetBean(c));
 
@@ -224,6 +293,33 @@ public class BaseStationBean implements Serializable {
 		return redirect;
 	}
 
+	/**
+	 * @return the List of AntennaBean
+	 */
+	public List<AntennaBean> getAntennas() {
+		return antennas;
+	}
+
+	/**
+	 * Removes the first occurrence of the AntennaBean (found using the equals
+	 * method in AntennaBean).
+	 * 
+	 * @param a
+	 *            the AntennaBean to remove
+	 */
+	public void removeAntenna(AntennaBean a) {
+		antennas.remove(a);
+
+		ensureAntennaOrder();
+	}
+
+	/**
+	 * Adds an AntennaBean to the end of the List of AntennaBean.
+	 * 
+	 * @param a the AntennaBean to add to the List
+	 * @param redirect the redirect link to return
+	 * @return the redirect link
+	 */
 	public String addAntenna(AntennaBean a, String redirect) {
 		a.setSlotNumber(antennas.size() + 1);
 
@@ -236,6 +332,12 @@ public class BaseStationBean implements Serializable {
 		return redirect;
 	}
 
+	/**
+	 * 
+	 * @param a
+	 * @param redirect
+	 * @return
+	 */
 	public String updateAntenna(AntennaBean a, String redirect) {
 		antennas.set(a.getSlotNumber() - 1, a);
 
