@@ -126,8 +126,7 @@ public class BaseStationBean implements Serializable {
 	}
 
 	/**
-	 * Copies the Object passed in into this Object. Returns the redirect link
-	 * passed in (for HTML).
+	 * Copies the Object passed in into this Object.
 	 * 
 	 * @param b
 	 *            the Object to be copied
@@ -175,7 +174,7 @@ public class BaseStationBean implements Serializable {
 	}
 
 	/**
-	 * @return name of the Base Station
+	 * @return the name
 	 */
 	public String getName() {
 		return name;
@@ -190,7 +189,7 @@ public class BaseStationBean implements Serializable {
 	}
 
 	/**
-	 * @return the longitude of the Base Station
+	 * @return the longitude
 	 */
 	public double getLongitude() {
 		return longitude;
@@ -205,7 +204,7 @@ public class BaseStationBean implements Serializable {
 	}
 
 	/**
-	 * @return the latitude of the Base Station
+	 * @return the latitude
 	 */
 	public double getLatitude() {
 		return latitude;
@@ -220,7 +219,7 @@ public class BaseStationBean implements Serializable {
 	}
 
 	/**
-	 * @return the altitude of the Base Station
+	 * @return the altitude
 	 */
 	public int getAltitude() {
 		return altitude;
@@ -235,7 +234,7 @@ public class BaseStationBean implements Serializable {
 	}
 
 	/**
-	 * @return the List of CabinetBean
+	 * @return the list of CabinetBean
 	 */
 	public List<CabinetBean> getCabinets() {
 		return cabinets;
@@ -243,7 +242,7 @@ public class BaseStationBean implements Serializable {
 
 	/**
 	 * Removes the first occurrence of the CabinetBean (found using the equals
-	 * method in CabinetBean).
+	 * method in CabinetBean) from the list of CabinetBean.
 	 * 
 	 * @param a
 	 *            the CabinetBean to remove
@@ -255,10 +254,10 @@ public class BaseStationBean implements Serializable {
 	}
 
 	/**
-	 * Adds a CabinetBean to the end of the List of CabinetBeans.
+	 * Adds the CabinetBean passed in to the end of the list of CabinetBeans.
 	 * 
 	 * @param c
-	 *            the CabinetBean to add to the List
+	 *            the CabinetBean to add to the list
 	 * @param redirect
 	 *            the redirect link to return
 	 * @return the redirect link
@@ -276,11 +275,11 @@ public class BaseStationBean implements Serializable {
 	}
 
 	/**
-	 * The CabinetBean to update. Replaces the CabinetBean at element number
-	 * (slotNumber - 1).
+	 * Updates the List of CabinetBean. Replaces the CabinetBean at element
+	 * number (slotNumber - 1).
 	 * 
 	 * @param c
-	 *            the CabinetBean to replace
+	 *            the CabinetBean to update
 	 * @param redirect
 	 *            the redirect link to return
 	 * @return the redirect link
@@ -294,7 +293,7 @@ public class BaseStationBean implements Serializable {
 	}
 
 	/**
-	 * @return the List of AntennaBean
+	 * @return the list of AntennaBean
 	 */
 	public List<AntennaBean> getAntennas() {
 		return antennas;
@@ -302,7 +301,7 @@ public class BaseStationBean implements Serializable {
 
 	/**
 	 * Removes the first occurrence of the AntennaBean (found using the equals
-	 * method in AntennaBean).
+	 * method in AntennaBean) from the list of AntennaBean.
 	 * 
 	 * @param a
 	 *            the AntennaBean to remove
@@ -314,10 +313,12 @@ public class BaseStationBean implements Serializable {
 	}
 
 	/**
-	 * Adds an AntennaBean to the end of the List of AntennaBean.
+	 * Adds the AntennaBean passed in to the end of the list of AntennaBean.
 	 * 
-	 * @param a the AntennaBean to add to the List
-	 * @param redirect the redirect link to return
+	 * @param a
+	 *            the AntennaBean to add to the list
+	 * @param redirect
+	 *            the redirect link to return
 	 * @return the redirect link
 	 */
 	public String addAntenna(AntennaBean a, String redirect) {
@@ -333,10 +334,14 @@ public class BaseStationBean implements Serializable {
 	}
 
 	/**
+	 * Updates the list of AntennaBean. Replaces the CabinetBean at element
+	 * number (slotNumber - 1).
 	 * 
 	 * @param a
+	 *            the AntennaBean to update
 	 * @param redirect
-	 * @return
+	 *            the redirect link to return
+	 * @return the redirect link
 	 */
 	public String updateAntenna(AntennaBean a, String redirect) {
 		antennas.set(a.getSlotNumber() - 1, a);
@@ -344,6 +349,14 @@ public class BaseStationBean implements Serializable {
 		return redirect;
 	}
 
+	/**
+	 * Returns the AntennaBean in position slotNumber - 1 from the list of
+	 * AnteannBean.
+	 * 
+	 * @param slotNumber
+	 *            the slot number of the AntennaBean
+	 * @return the AntennaBean at position slot number - 1
+	 */
 	public AntennaBean getAntenna(int slotNumber) {
 		return antennas.get(slotNumber - 1);
 	}
@@ -364,6 +377,15 @@ public class BaseStationBean implements Serializable {
 		return redirect;
 	}
 
+	/**
+	 * Updates this Base Station into the SQL server.
+	 * 
+	 * @param redirect
+	 *            the redirect URL to return
+	 * @return the redirect URL
+	 * @throws SQLException
+	 *             thrown when a SQL exception occurs
+	 */
 	public String update(String redirect) throws SQLException {
 		BaseStationDAO dao = new BaseStationDAO();
 
@@ -378,13 +400,27 @@ public class BaseStationBean implements Serializable {
 		return redirect;
 	}
 
+	/**
+	 * Discards the creation or modification to this bean by clearing all the
+	 * fields.
+	 * 
+	 * @param redirect
+	 *            the redirect URL to return
+	 * @return the redirect URL
+	 */
 	public String discard(String redirect) {
 		clearFields();
 
 		return redirect;
 	}
 
-	public void delete() throws SQLException, InterruptedException {
+	/**
+	 * Removes this Base Station from the SQL server.
+	 * 
+	 * @throws SQLException
+	 *             thrown when a SQL exception occurs
+	 */
+	public void delete() throws SQLException {
 		// System.out.println("Delete");
 
 		BaseStationDAO dao = new BaseStationDAO();
@@ -398,6 +434,11 @@ public class BaseStationBean implements Serializable {
 		clearFields();
 	}
 
+	/**
+	 * Loops through the list of CabinetBean and ensures all the slot numbers
+	 * are in order. If it is not in order, then the slot number is set to the
+	 * correct value.
+	 */
 	private void ensureCabinetOrder() {
 		for (int i = 0; i < cabinets.size(); i++) {
 			if (cabinets.get(i).getSlotNumber() != (i + 1)) {
@@ -406,6 +447,11 @@ public class BaseStationBean implements Serializable {
 		}
 	}
 
+	/**
+	 * Loops through the list of AntennaBean and ensures all the slot numbers
+	 * are in order. If it is not in order, then the slot number is set to the
+	 * correct value.
+	 */
 	private void ensureAntennaOrder() {
 		for (int i = 0; i < antennas.size(); i++) {
 			if (antennas.get(i).getSlotNumber() != (i + 1)) {
@@ -414,14 +460,17 @@ public class BaseStationBean implements Serializable {
 		}
 	}
 
+	/**
+	 * Clears all the fields to their empty (non null) values.
+	 */
 	private void clearFields() {
 		uniqueId = "";
 		name = "";
 		longitude = 0;
 		latitude = 0;
 		altitude = 0;
-		cabinets = new ArrayList<>();
-		antennas = new ArrayList<>();
+		cabinets = new LinkedList<>();
+		antennas = new LinkedList<>();
 	}
 
 }

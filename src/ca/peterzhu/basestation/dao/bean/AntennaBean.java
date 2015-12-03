@@ -80,8 +80,7 @@ public class AntennaBean implements Serializable {
 	}
 
 	/**
-	 * Sets this Object with the Object passed in. Returns the redirect value
-	 * passed in (for redirecting in JSF).
+	 * Sets this Object with the Object passed in.
 	 * 
 	 * @param o
 	 *            the Object to set this Object to
