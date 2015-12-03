@@ -36,7 +36,7 @@ public class CabinetBean implements Serializable {
 	 * Initializes all the fields with the specified parameters.
 	 * 
 	 * @param slot
-	 *            the slot number of this cabinet
+	 *            the slot number to set
 	 * @param tx
 	 *            the list of TX boards
 	 */
@@ -69,7 +69,7 @@ public class CabinetBean implements Serializable {
 	 * in.
 	 * 
 	 * @param o
-	 *            the Object to compare this CabinetBean tos
+	 *            the Object to compare this CabinetBean to
 	 * @return true if this CabinetBean is the same as the one passed in; false
 	 *         otherwise
 	 */
@@ -141,15 +141,19 @@ public class CabinetBean implements Serializable {
 	}
 
 	/**
-	 * @return the baseStationPage
+	 * This method is only used in HTML for temporary variable storage.
+	 * 
+	 * @return the base station page
 	 */
 	public String getBaseStationPage() {
 		return baseStationPage;
 	}
 
 	/**
+	 * This method is only used in HTML for temporary variable storage.
+	 * 
 	 * @param baseStationPage
-	 *            the baseStationPage to set
+	 *            the base station page to set
 	 */
 	public void setBaseStationPage(String baseStationPage) {
 		this.baseStationPage = baseStationPage;

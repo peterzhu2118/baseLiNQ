@@ -20,6 +20,10 @@ import ca.peterzhu.basestation.dao.bean.CabinetBean;
  * changes.
  * 
  * <p>
+ * The connection to the SQL serve will be done using the JDBC (Java Database
+ * Connectivity) framework.
+ * 
+ * <p>
  * This class utilizes the AntennaDAO and CabinetDAO to function.
  * 
  * @author Peter Zhu
@@ -31,6 +35,9 @@ public class BaseStationDAO {
 	private TxBoardDAO txBoardDAO;
 	private AntennaDAO antennaDAO;
 
+	/**
+	 * Initializes all the fields to their default values.
+	 */
 	public BaseStationDAO() {
 		TABLE_NAME = "basestation";
 
@@ -39,6 +46,15 @@ public class BaseStationDAO {
 		cabinetDAO = new CabinetDAO(txBoardDAO);
 	}
 
+	/**
+	 * Writes all the fields of the BaseStationBean passed in. Loops through the
+	 * list of CabinetBean and AntennaBean and create them through their DAO.
+	 * 
+	 * @param baseStation
+	 *            the BaseStationBean to create
+	 * @throws SQLException
+	 *             thrown when a SQL exception occurs
+	 */
 	public void create(BaseStationBean baseStation) throws SQLException {
 		baseStation.setUniqueId(generateUID());
 		String sqlStatement = "INSERT INTO " + TABLE_NAME + " VALUES (?, ?, ?, ?, ?)";
@@ -71,6 +87,12 @@ public class BaseStationDAO {
 		}
 	}
 
+	/**
+	 * Updates 
+	 * 
+	 * @param baseStation
+	 * @throws SQLException
+	 */
 	public void update(BaseStationBean baseStation) throws SQLException {
 		String sqlStatement = "UPDATE " + TABLE_NAME
 				+ " SET name=?, longitude=?, latitude=?, altitude=? WHERE uniqueid=?";

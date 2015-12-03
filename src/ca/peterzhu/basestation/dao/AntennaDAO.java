@@ -12,9 +12,13 @@ import ca.peterzhu.basestation.dao.bean.AntennaBean;
 /**
  * This class works for the BaseStationDAO class to create, delete and retrieve
  * AntennaBean Objects. Updating AntennaBean Objects will be done by deleting
- * and then recreating the AntennaBean Objects into the SQL server. Like the
- * BaseStationDAO class, this class assumes the SQL server will automatically
- * commit changes.
+ * and then recreating the AntennaBean Objects into the SQL server. All the
+ * methods in this class assumes the SQL server will automatically commit
+ * changes.
+ * 
+ * <p>
+ * The connection to the SQL serve will be done using the JDBC (Java Database
+ * Connectivity) framework.
  * 
  * @author Peter Zhu
  * @version 3.0
@@ -22,10 +26,23 @@ import ca.peterzhu.basestation.dao.bean.AntennaBean;
 public class AntennaDAO {
 	private final String TABLE_NAME;
 
+	/**
+	 * Initializes the fields to their default values.
+	 */
 	public AntennaDAO() {
 		TABLE_NAME = "antenna";
 	}
 
+	/**
+	 * Writes all the fields of the AntennaBean into the SQL server.
+	 * 
+	 * @param a
+	 *            the AntennaBean to write to the SQL server
+	 * @param baseStationID
+	 *            the unique ID of the Base Station this Antenna belongs to
+	 * @throws SQLException
+	 *             thrown when a SQL exception occurs
+	 */
 	public void create(AntennaBean a, String baseStationID) throws SQLException {
 		String sqlStatement = "INSERT INTO " + TABLE_NAME + " VALUES(?, ?, ?, ?, ?)";
 		Connection connection = null;
@@ -48,6 +65,15 @@ public class AntennaDAO {
 		}
 	}
 
+	/**
+	 * Deletes all the Antennas in the SQL database with the specified Base
+	 * Station Unique ID.
+	 * 
+	 * @param baseStationID
+	 *            the Base Station ID of the Antenna to delete
+	 * @throws SQLException
+	 *             thrown when a SQL exception occurs
+	 */
 	public void deleteAll(String baseStationID) throws SQLException {
 		String sqlStatement = "DELETE FROM " + TABLE_NAME + " WHERE basestationid=?";
 		Connection connection = null;
@@ -66,6 +92,15 @@ public class AntennaDAO {
 		}
 	}
 
+	/**
+	 * Returns a list of AntennaBean for the specified Base Station.
+	 * 
+	 * @param baseStationID
+	 *            the Base Station Unique ID of the AntennaBean to find
+	 * @return the list of AntennaBean that have the Base Station ID passed in
+	 * @throws SQLException
+	 *             thrown when a SQL exception occurs
+	 */
 	public List<AntennaBean> retrieve(String baseStationID) throws SQLException {
 		String sqlStatement = "SELECT * FROM " + TABLE_NAME + " WHERE basestationid=?";
 		Connection connection = null;
