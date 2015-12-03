@@ -17,7 +17,7 @@ import ca.peterzhu.basestation.dao.bean.AntennaBean;
  * changes.
  * 
  * <p>
- * The connection to the SQL serve will be done using the JDBC (Java Database
+ * The connection to the SQL server will be done using the JDBC (Java Database
  * Connectivity) framework.
  * 
  * @author Peter Zhu

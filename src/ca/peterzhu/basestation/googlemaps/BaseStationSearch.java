@@ -5,45 +5,54 @@ import java.io.Serializable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+/**
+ * Contains all the fields for searching.
+ * 
+ * @author Peter Zhu
+ * @version 1.0
+ */
 @Named("baseStationSearch")
 @ViewScoped
-public class BaseStationSearch implements Serializable{
+public class BaseStationSearch implements Serializable {
 	private String searchTerm;
 	private int searchType;
-	
-	public BaseStationSearch(){
+
+	/**
+	 * Initializes all the fields with default values.
+	 */
+	public BaseStationSearch() {
 		searchTerm = "";
 		searchType = 0;
-		//System.out.println("BASESTATION BEAN  SEARCH!!!!!!!!!!!!!!!!!!");
 	}
 
 	/**
-	 * @return the searchTerm
+	 * @return the search term
 	 */
 	public String getSearchTerm() {
 		return searchTerm;
 	}
 
 	/**
-	 * @param searchTerm the searchTerm to set
+	 * @param searchTerm
+	 *            the search term to set
 	 */
 	public void setSearchTerm(String searchTerm) {
 		this.searchTerm = searchTerm;
 	}
 
 	/**
-	 * @return the searchType
+	 * @return the search type
 	 */
 	public int getSearchType() {
 		return searchType;
 	}
 
 	/**
-	 * @param searchType the searchType to set
+	 * @param searchType
+	 *            the search type to set
 	 */
 	public void setSearchType(int searchType) {
 		this.searchType = searchType;
 	}
-	
-	
+
 }

@@ -17,6 +17,10 @@ import ca.peterzhu.basestation.dao.bean.TxBoardBean;
  * them. This class assumes the SQL server will automatically commit changes.
  * 
  * <p>
+ * The connection to the SQL server will be done using the JDBC (Java Database
+ * Connectivity) framework.
+ * 
+ * <p>
  * This class utilizes the TxBoardDAO class to function.
  * 
  * @author Peter Zhu
@@ -26,12 +30,29 @@ public class CabinetDAO {
 	private final String TABLE_NAME;
 	private TxBoardDAO txBoardDAO;
 
+	/**
+	 * Initializes all the fields to their default values.
+	 * 
+	 * @param d
+	 *            the TxBoardDAO to use
+	 */
 	public CabinetDAO(TxBoardDAO d) {
 		this.txBoardDAO = d;
 
 		TABLE_NAME = "cabinet";
 	}
 
+	/**
+	 * Creates a Cabinet in the SQL server with the specified Base Station ID.
+	 * Loops through the list of TxBoardBean and creates them.
+	 * 
+	 * @param c
+	 *            the CabinetBean to add to the SQL server
+	 * @param baseStationID
+	 *            the ID of the Base Station that this Cabinet belongs to
+	 * @throws SQLException
+	 *             thrown when a SQL exception occurs
+	 */
 	public void create(CabinetBean c, String baseStationID) throws SQLException {
 		String sqlStatement = "INSERT INTO " + TABLE_NAME + " VALUES(?, ?)";
 		Connection connection = null;
@@ -54,6 +75,14 @@ public class CabinetDAO {
 		}
 	}
 
+	/**
+	 * Deletes all the Cabinets with the specified Base Station ID.
+	 * 
+	 * @param baseStationID
+	 *            the Base Station ID of the Cabinets
+	 * @throws SQLException
+	 *             thrown when a SQL exception occurs
+	 */
 	public void deleteAll(String baseStationID) throws SQLException {
 		String sqlStatement = "DELETE FROM " + TABLE_NAME + " WHERE basestationid=?";
 		Connection connection = null;
@@ -73,6 +102,16 @@ public class CabinetDAO {
 		}
 	}
 
+	/**
+	 * Returns a fully initialized list of CabinetBean for the specified Base
+	 * Station ID.
+	 * 
+	 * @param baseStationID
+	 *            the Base Station ID of the Cabinets
+	 * @return a list of Cabinets with the Base Station ID
+	 * @throws SQLException
+	 *             thrown when a SQL exception occurs
+	 */
 	public List<CabinetBean> retrieve(String baseStationID) throws SQLException {
 		String sqlStatement = "SELECT * FROM " + TABLE_NAME + " WHERE basestationid=?";
 		Connection connection = null;

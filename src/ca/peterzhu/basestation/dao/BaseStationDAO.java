@@ -20,7 +20,7 @@ import ca.peterzhu.basestation.dao.bean.CabinetBean;
  * changes.
  * 
  * <p>
- * The connection to the SQL serve will be done using the JDBC (Java Database
+ * The connection to the SQL server will be done using the JDBC (Java Database
  * Connectivity) framework.
  * 
  * <p>
@@ -88,10 +88,15 @@ public class BaseStationDAO {
 	}
 
 	/**
-	 * Updates 
+	 * Updates an existing Base Station from the SQL server. Updates the entry
+	 * with the same unique ID as the BaseStationBean passed in. Also updates
+	 * all the Cabinets and Antennas by deleting all first and then recreating
+	 * them.
 	 * 
 	 * @param baseStation
+	 *            the BaseStationBean to update
 	 * @throws SQLException
+	 *             thrown when a SQL exception occurs
 	 */
 	public void update(BaseStationBean baseStation) throws SQLException {
 		String sqlStatement = "UPDATE " + TABLE_NAME
@@ -128,10 +133,28 @@ public class BaseStationDAO {
 		}
 	}
 
+	/**
+	 * Removes a BaseStationBean from the SQL server. Removes all the entries in
+	 * the SQL server with the unique ID of the BaseStationBean passed in.
+	 * 
+	 * @param b
+	 *            the BaseStationBean to remove
+	 * @throws SQLException
+	 *             thrown when a SQL exception occurs
+	 */
 	public void delete(BaseStationBean b) throws SQLException {
 		delete(b.getUniqueId());
 	}
 
+	/**
+	 * Removes a BaseStationBean from the SQL server. Removes all the entries in
+	 * the SQL server with the unique ID passed in.
+	 * 
+	 * @param uid
+	 *            the unique ID of the Base Station to remove
+	 * @throws SQLException
+	 *             thrown when a SQL exception occurs
+	 */
 	public void delete(String uid) throws SQLException {
 		String sqlStatement = "DELETE FROM " + TABLE_NAME + " WHERE uniqueid=?";
 		Connection connection = null;
@@ -153,6 +176,14 @@ public class BaseStationDAO {
 		}
 	}
 
+	/**
+	 * Returns a list of all the Base Stations in the SQL server packaged as
+	 * BaseStationBean.
+	 * 
+	 * @return the list of BaseStationBean
+	 * @throws SQLException
+	 *             thrown when a SQL exception occurs
+	 */
 	public List<BaseStationBean> retrieveAll() throws SQLException {
 		String sqlStatement = "SELECT * FROM " + TABLE_NAME;
 		Connection connection = null;
@@ -184,6 +215,13 @@ public class BaseStationDAO {
 		}
 	}
 
+	/**
+	 * Generates a unique 10 digit alphanumeric ID for a new Base Station.
+	 * 
+	 * @return a unique 10 digit alphanumeric ID
+	 * @throws SQLException
+	 *             thrown when a SQL exception occurs
+	 */
 	private String generateUID() throws SQLException {
 		String UID = "";
 
