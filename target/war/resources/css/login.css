@@ -1,0 +1,61 @@
+@CHARSET "ISO-8859-1";
+
+#mainform\3A messages {
+	margin-left: 30%;
+	font-family: "Times New Roman";
+	color: red;
+	font-size: 20px;
+}
+
+#mainform\3A usernamelabel {
+	margin-left: 30%;
+	margin-top: 20%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A usernamevalidatormessage {
+	margin-left: 1%;
+	font-family: "Times New Roman";
+	font-size: 15px;
+	color: red;
+}
+
+#mainform\3A usernametextbox {
+	margin-left: 30%;
+	margin-top: 0%;
+	width: 40%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}
+
+#mainform\3A passwordlabel {
+	margin-left: 30%;
+	margin-top: 20%;
+	font-family: "Times New Roman";
+	font-size: 25px;
+}
+
+#mainform\3A passwordvalidatormessage {
+	margin-left: 1%;
+	font-family: "Times New Roman";
+	font-size: 15px;
+	color: red;
+}
+
+#mainform\3A passwordtextbox {
+	margin-left: 30%;
+	margin-top: 0%;
+	width: 40%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}
+
+#mainform\3A loginbutton {
+	margin-left: 60%;
+	margin-top: 3%;
+	width: 10%;
+	height: 10%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}

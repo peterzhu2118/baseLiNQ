@@ -1,5 +1,22 @@
 @CHARSET "ISO-8859-1";
 
+#logoutform\3A headermainimage {
+	margin-left: 1%;
+	margin-top: 1%;
+	width: 20%;
+	height: 7%;
+}
+
+#logoutform\3A logoutbutton {
+	position: absolute;
+	margin-left: 65%;
+	margin-top: 1.5%;
+	width: 10%;
+	height: 40%;
+	font-family: "Times New Roman";
+	font-size: 20px;
+}
+
 #mainform\3A searchtextbox {
 	position: relative;
 	margin-left: 20%;

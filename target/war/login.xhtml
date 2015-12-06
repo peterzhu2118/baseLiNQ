@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:o="http://omnifaces.org/ui">
+
+<h:head>
+	<title>Login - Base Station Database</title>
+
+	<h:outputStylesheet name="css/header.css" />
+	<h:outputStylesheet name="css/formtemplate.css" />
+	<h:outputStylesheet name="css/login.css" />
+</h:head>
+
+<h:body>
+	<!-- This produces the header of the web page -->
+	<h1>
+		<h:graphicImage id="headermainimage" library="images"
+			name="Blinq_Networks_Logo.png" />
+	</h1>
+
+	<h2>Login</h2>
+
+	<hr />
+	<h:form id="mainform">
+		<br />
+
+		<h:messages id="messages" />
+
+		<h:outputText id="usernamelabel" value="Username" />
+		<h:message for="usernametextbox" id="usernamevalidatormessage" />
+		<br />
+		<h:inputText id="usernametextbox" value="#{accountBean.username}"
+			validatorMessage="Invalid Input: Must be between 4 and 16 characters">
+			<f:validateLength minimum="4" maximum="16" />
+		</h:inputText>
+
+		<br />
+		<br />
+
+		<h:outputText id="passwordlabel" value="Password" />
+		<h:message for="passwordtextbox" id="passwordvalidatormessage" />
+		<br />
+		<h:inputSecret id="passwordtextbox" value="#{accountBean.password}"
+			validatorMessage="Invalid Input: Must be between 4 and 20 characters">
+			<f:validateLength minimum="4" maximum="20" />
+		</h:inputSecret>
+
+		<br />
+		<br />
+
+		<h:commandButton id="loginbutton" action="#{accountBean.login()}"
+			value="Login" />
+	</h:form>
+
+</h:body>
+
+</html>
