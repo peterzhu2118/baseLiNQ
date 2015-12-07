@@ -12,7 +12,7 @@ public class AccountDAO {
 	}
 
 	public boolean authenticate(String u, String p) throws SQLException {
-		String sqlStatement = "SELECT * FROM " + TABLE_NAME + " WHERE username=? AND password=?;";
+		String sqlStatement = "SELECT * FROM " + TABLE_NAME + " WHERE BINARY username=? AND BINARY password=?;";
 		Connection connection = null;
 		try {
 			connection = SQLConnector.getConnection();
