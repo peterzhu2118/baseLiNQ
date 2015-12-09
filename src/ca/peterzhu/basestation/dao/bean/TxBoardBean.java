@@ -76,6 +76,14 @@ public class TxBoardBean implements Serializable {
 			return false;
 	}
 
+	public String setThisObject(TxBoardBean t, String redirect) {
+		this.frequency = t.getFrequency();
+		this.slotNumber = t.getSlotNumber();
+		this.transmitPower = t.getTransmitPower();
+
+		return redirect;
+	}
+
 	/**
 	 * @return the slot number
 	 */

@@ -41,11 +41,13 @@
 		<h:dataTable id="txboardtable" value="#{cabinetBean.txBoards}"
 			var="tx">
 			<h:column id="txboardnamecolumn">
-				<h:outputText id="txboardnamelabel" value="TX Board #{tx.slotNumber}" />
+				<h:outputText id="txboardnamelabel"
+					value="TX Board #{tx.slotNumber}" />
 			</h:column>
 
 			<h:column id="edittxboardcolumn">
-				<h:commandButton id="edittxboardbutton" value="Edit" />
+				<h:commandButton id="edittxboardbutton" value="Edit"
+					action="#{'edittxboard?faces-redirect=true&amp;includeViewParams=true&amp;cabinetpage=newcabinet&amp;slotnumber='.concat(tx.slotNumber)}" />
 			</h:column>
 
 			<h:column id="removetxboardcolumn">

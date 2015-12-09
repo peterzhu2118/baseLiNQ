@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:o="http://omnifaces.org/ui">
+
+<f:view>
+	<f:metadata>
+		<f:viewParam name="cabinetpage" id="cabinetpage"
+			value="#{txBoardBean.cabinetPage}" />
+		<f:viewParam name="slotnumber" id="slotnumber" />
+		<f:viewAction
+			action="#{txBoardBean.setThisObject(cabinetBean.getTxBoard(slotnumber), '')}" />
+
+	</f:metadata>
+</f:view>
+
+<h:head>
+	<title>Edit TX Board</title>
+
+	<h:outputScript library="js" name="enterkeyprevent.js" />
+
+	<h:outputStylesheet name="css/edittxboard.css" />
+	<h:outputStylesheet name="css/formtemplate.css" />
+	<h:outputStylesheet name="css/header.css" />
+</h:head>
+
+<h:body>
+	<!-- This produces the header of the web page -->
+	<h1>
+		<h:graphicImage id="headermainimage" library="images"
+			name="Blinq_Networks_Logo.png" />
+	</h1>
+
+	<h2>Edit TX Board</h2>
+	<hr />
+
+	<h:form id="mainform">
+		<br />
+
+		<h:outputText id="transmitpowerlabel" value="Transmit Power (dB)" />
+		<h:message for="transmitpowertextbox"
+			id="tramsmitpowervalidatormessage" />
+		<br />
+		<h:inputText id="transmitpowertextbox"
+			value="#{txBoardBean.transmitPower}"
+			validatorMessage="Invalid Value: Must be between -27 and +27">
+			<f:validateLongRange minimum="-27" maximum="27" />
+		</h:inputText>
+
+		<br />
+		<br />
+		<br />
+
+		<h:outputText id="frequencylabel" value="Frequency (MHz)" />
+		<h:message for="frequencytextbox" id="frequencyvalidatormessage" />
+		<br />
+		<h:inputText id="frequencytextbox" value="#{txBoardBean.frequency}"
+			validatorMessage="Invalid Value: Must be 4 digits or less">
+			<f:validateLongRange minimum="-9999" maximum="9999" />
+		</h:inputText>
+
+		<h:commandButton id="savebutton" value="Save"
+			action="#{cabinetBean.updateTxBoard(txBoardBean, txBoardBean.cabinetPage)}" />
+		<h:commandButton id="discardbutton" value="Discard"
+			action="#{txBoardBean.discard(txBoardBean.cabinetPage)}"
+			immediate="true" />
+		<br />
+		<br />
+		<br />
+	</h:form>
+
+</h:body>
+
+</html>

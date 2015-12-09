@@ -202,6 +202,13 @@ public class CabinetBean implements Serializable {
 		return txBoards.get(slotNumber - 1);
 	}
 
+	public String updateTxBoard(TxBoardBean tx, String redirect) {
+		txBoards.set(tx.getSlotNumber() - 1, new TxBoardBean(tx));
+		tx.discard("");
+
+		return redirect;
+	}
+
 	/**
 	 * Loops through the list of TxBoardBean and ensures all the slot numbers
 	 * are in order. If it is not in order, then the slot number is set to the

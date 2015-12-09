@@ -92,7 +92,8 @@
 
 			<h:column id="editcabinetcolumn">
 				<h:commandButton id="editcabinetbutton" value="Edit"
-					immediate="true" />
+					immediate="true"
+					action="#{cabinetBean.setThisObject(c, 'editcabinet?faces-redirect=true&amp;includeViewParams=true&amp;basestationpage=newbasestation')}" />
 			</h:column>
 
 			<h:column id="removecabinetcolumn">
@@ -118,7 +119,7 @@
 				<h:outputText id="antennanamelabel" value="Antenna #{a.slotNumber}" />
 			</h:column>
 
-			<h:column id="editcabinetcolumn">
+			<h:column id="editantennacolumn">
 				<h:commandButton id="editcabinetbutton" value="Edit"
 					action="#{'editantenna?faces-redirect=true&amp;basestationpage=newbasestation&amp;slotnumber='.concat(a.slotNumber)}"
 					immediate="true" />
