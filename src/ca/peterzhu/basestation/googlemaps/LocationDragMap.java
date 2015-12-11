@@ -1,8 +1,11 @@
 package ca.peterzhu.basestation.googlemaps;
 
+import java.io.Serializable;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.Conversation;
-import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -15,19 +18,32 @@ import org.primefaces.model.map.Marker;
 import ca.peterzhu.basestation.dao.bean.BaseStationBean;
 
 @Named("locationDragMap")
-@ConversationScoped
-public class LocationDragMap {
+// @ConversationScoped
+@SessionScoped
+public class LocationDragMap implements Serializable {
 	private MapModel map;
 	private Marker selectedMarker;
 
-	@Inject
-	private Conversation conversation;
+	/*
+	 * @Inject private Conversation conversation;
+	 */
 
 	@Inject
 	private BaseStationBean baseStationBean;
 
+	public LocationDragMap() {
+
+	}
+
 	@PostConstruct
 	private void init() {
+		//System.out.println("Init");
+
+		/*
+		 * System.out.println("Is transient: " + conversation.isTransient());
+		 * conversation.begin();
+		 */
+
 		map = new DefaultMapModel();
 
 		LatLng coord = new LatLng(baseStationBean.getLatitude(), baseStationBean.getLongitude());
@@ -46,14 +62,15 @@ public class LocationDragMap {
 		selectedMarker = event.getMarker();
 
 		LatLng latLng = selectedMarker.getLatlng();
-		
+
 		System.out.println("Lat: " + latLng.getLat());
 		System.out.println("Lng: " + latLng.getLng());
 
-		/*DecimalFormat format = new DecimalFormat("#.######");
+		DecimalFormat format = new DecimalFormat("#.######");
 		format.setRoundingMode(RoundingMode.HALF_UP);
 
 		baseStationBean.setLatitude(Double.parseDouble(format.format(latLng.getLat())));
-		baseStationBean.setLongitude(Double.parseDouble(format.format(latLng.getLng())));*/
+		baseStationBean.setLongitude(Double.parseDouble(format.format(latLng.getLng())));
+
 	}
 }

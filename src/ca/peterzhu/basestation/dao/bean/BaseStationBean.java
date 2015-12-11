@@ -16,7 +16,7 @@ import ca.peterzhu.basestation.dao.BaseStationDAO;
 
 /**
  * Contains all the the fields to represent a Base Station. This is a managed
- * bean using CDI to interact with the HTML JSF pages.
+ * bean using CDI to interact with the HTML JSF frontend pages.
  * 
  * @author Peter Zhu
  * @version 3.0
@@ -119,7 +119,7 @@ public class BaseStationBean implements Serializable {
 	}
 
 	/**
-	 * Ends the Conversation and marks the bean into transient.
+	 * Ends the Conversation and marks the bean as transient.
 	 */
 	private void endConversation() {
 		conversation.end();
@@ -276,7 +276,7 @@ public class BaseStationBean implements Serializable {
 
 	/**
 	 * Updates the List of CabinetBean. Replaces the CabinetBean at element
-	 * number (slotNumber - 1).
+	 * number slotNumber - 1.
 	 * 
 	 * @param c
 	 *            the CabinetBean to update
@@ -361,11 +361,20 @@ public class BaseStationBean implements Serializable {
 		return antennas.get(slotNumber - 1);
 	}
 
+	/**
+	 * Creates this Base Station inside the SQL server.
+	 * 
+	 * @param redirect
+	 *            the redirect link to return
+	 * @return the redirect link
+	 * @throws SQLException
+	 *             thrown when a SQL exceptions occurs
+	 */
 	public String create(String redirect) throws SQLException {
 		BaseStationDAO dao = new BaseStationDAO();
-		// System.out.println("Unique ID: " + uniqueId);
-		// System.out.println("Unique ID: " + (uniqueId == ""));
 
+		// If the Base Station contains a UID (i.e. it already exists in the SQL
+		// server)
 		if (uniqueId != null && uniqueId != "") {
 			throw new IllegalStateException("Unique ID is not blank for new Base Station");
 		}
@@ -389,6 +398,8 @@ public class BaseStationBean implements Serializable {
 	public String update(String redirect) throws SQLException {
 		BaseStationDAO dao = new BaseStationDAO();
 
+		// If the Base Station doesn't contain a UID (i.e. it doesn't exist on
+		// the SQL server)
 		if (uniqueId == null || uniqueId == "") {
 			throw new IllegalStateException("Unique ID is blank for saving Base Station");
 		}
@@ -441,7 +452,10 @@ public class BaseStationBean implements Serializable {
 	 */
 	private void ensureCabinetOrder() {
 		for (int i = 0; i < cabinets.size(); i++) {
+			// If the current CabinetBean's value doesn't equal to the counter +
+			// 1 (not in order)
 			if (cabinets.get(i).getSlotNumber() != (i + 1)) {
+				// Set the slot number to the correct value
 				cabinets.get(i).setSlotNumber(i + 1);
 			}
 		}
@@ -454,7 +468,10 @@ public class BaseStationBean implements Serializable {
 	 */
 	private void ensureAntennaOrder() {
 		for (int i = 0; i < antennas.size(); i++) {
+			// If the current AntennaBean's value doesn't equal to the counter +
+			// 1 (not in order)
 			if (antennas.get(i).getSlotNumber() != (i + 1)) {
+				// Set the slot number to the correct value
 				antennas.get(i).setSlotNumber(i + 1);
 			}
 		}
