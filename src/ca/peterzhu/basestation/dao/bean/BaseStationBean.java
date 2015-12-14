@@ -2,7 +2,6 @@ package ca.peterzhu.basestation.dao.bean;
 
 import java.io.Serializable;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.peterzhu.basestation.dao.BaseStationDAO;
+import ca.peterzhu.basestation.googlemaps.LocationDragMap;
 
 /**
  * Contains all the the fields to represent a Base Station. This is a managed
@@ -34,6 +34,9 @@ public class BaseStationBean implements Serializable {
 
 	@Inject
 	private Conversation conversation;
+
+	@Inject
+	private LocationDragMap dragMap;
 
 	/**
 	 * Constructs an empty non-null value bean.
@@ -79,7 +82,9 @@ public class BaseStationBean implements Serializable {
 	 */
 	@PostConstruct
 	private void init() {
+		System.out.println("init is transient: " + conversation.isTransient());
 		beginConversation();
+		System.out.println("After init is transient: " + conversation.isTransient());
 	}
 
 	/**
@@ -109,6 +114,10 @@ public class BaseStationBean implements Serializable {
 	@Override
 	public String toString() {
 		return name;
+	}
+	
+	public String getConversationId(){
+		return conversation.getId();
 	}
 
 	/**
@@ -200,6 +209,8 @@ public class BaseStationBean implements Serializable {
 	 *            the latitude to set
 	 */
 	public void setLongitude(double longitude) {
+		System.out.println("Set Long to: " + longitude);
+		System.out.println("Lat is: " + latitude);
 		this.longitude = longitude;
 	}
 
@@ -215,6 +226,8 @@ public class BaseStationBean implements Serializable {
 	 *            the latitude to set
 	 */
 	public void setLatitude(double latitude) {
+		System.out.println("Set lat to: " + latitude);
+		System.out.println("Long is: " + longitude);
 		this.latitude = latitude;
 	}
 
@@ -432,8 +445,6 @@ public class BaseStationBean implements Serializable {
 	 *             thrown when a SQL exception occurs
 	 */
 	public void delete() throws SQLException {
-		// System.out.println("Delete");
-
 		BaseStationDAO dao = new BaseStationDAO();
 
 		if (uniqueId == null || uniqueId == "") {
@@ -488,6 +499,8 @@ public class BaseStationBean implements Serializable {
 		altitude = 0;
 		cabinets = new LinkedList<>();
 		antennas = new LinkedList<>();
+		if (dragMap != null)
+			dragMap.resetMap();
 	}
 
 }

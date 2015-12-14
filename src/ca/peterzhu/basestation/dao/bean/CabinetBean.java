@@ -128,7 +128,7 @@ public class CabinetBean implements Serializable {
 	 *            the slot number to set
 	 */
 	public void setSlotNumber(int slotNumber) {
-		System.out.println("Set slot number from " + this.slotNumber + " to " + slotNumber);
+		// System.out.println("Set slot number from " + this.slotNumber + " to " + slotNumber);
 
 		this.slotNumber = slotNumber;
 	}

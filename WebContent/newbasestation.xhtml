@@ -46,11 +46,6 @@
 		<br />
 		<br />
 		<br />
-		
-		<p:gmap center="0,0" zoom="2" type="MAP"
-			model="#{locationDragMap.map}" style="position:fixed;left:50%; width:20%;height:100px">
-			<p:ajax event="markerDrag" listener="#{locationDragMap.onMarkerDrag}" />
-		</p:gmap>
 
 		<h:outputText id="longitudelabel" value="Longitude" />
 		<h:message for="longitudetextbox" id="longitudevalidatormessage" />
@@ -58,6 +53,8 @@
 		<h:inputText id="longitudetextbox"
 			value="#{baseStationBean.longitude}"
 			validatorMessage="Invalid Value: Must be between -180 and +180">
+			<p:ajax event="keyup" listener="#{locationDragMap.onLatLngChange}"
+				update="locationdragmap" />
 			<f:validateDoubleRange minimum="-180" maximum="180" />
 		</h:inputText>
 
@@ -70,8 +67,17 @@
 		<br />
 		<h:inputText id="latitudetextbox" value="#{baseStationBean.latitude}"
 			validatorMessage="Invalid Value: Must be between -85 and +85">
+			<p:ajax event="keyup" listener="#{locationDragMap.onLatLngChange}"
+				update="locationdragmap" />
 			<f:validateDoubleRange minimum="-85" maximum="85" />
 		</h:inputText>
+
+		<p:gmap id="locationdragmap" center="0,0" zoom="2" type="MAP"
+			model="#{locationDragMap.map}"
+			style="position:fixed;left:30%; width:40%;height:300px">
+			<p:ajax event="markerDrag" listener="#{locationDragMap.onMarkerDrag}"
+				update="latitudetextbox, longitudetextbox" />
+		</p:gmap>
 
 		<br />
 		<br />

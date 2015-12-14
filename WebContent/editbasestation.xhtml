@@ -14,6 +14,9 @@
 	<h:outputStylesheet name="css/editbasestation.css" />
 	<h:outputStylesheet name="css/formtemplate.css" />
 	<h:outputStylesheet name="css/header.css" />
+
+	<script src="http://maps.google.com/maps/api/js?sensor=false&amp;v=3.4"
+		type="text/javascript"></script>
 </h:head>
 
 <h:body>
@@ -50,6 +53,8 @@
 		<h:inputText id="longitudetextbox"
 			value="#{baseStationBean.longitude}"
 			validatorMessage="Invalid Value: Must be between -180 and +180">
+			<p:ajax event="keyup" listener="#{locationDragMap.onLatLngChange}"
+				update="locationdragmap" />
 			<f:validateDoubleRange minimum="-180" maximum="180" />
 		</h:inputText>
 
@@ -62,8 +67,17 @@
 		<br />
 		<h:inputText id="latitudetextbox" value="#{baseStationBean.latitude}"
 			validatorMessage="Invalid Value: Must be between -85 and +85">
+			<p:ajax event="keyup" listener="#{locationDragMap.onLatLngChange}"
+				update="locationdragmap" />
 			<f:validateDoubleRange minimum="-85" maximum="85" />
 		</h:inputText>
+
+		<p:gmap id="locationdragmap" center="0,0" zoom="2" type="MAP"
+			model="#{locationDragMap.map}"
+			style="position:fixed;left:30%; width:40%;height:300px">
+			<p:ajax event="markerDrag" listener="#{locationDragMap.onMarkerDrag}"
+				update="latitudetextbox, longitudetextbox" />
+		</p:gmap>
 
 		<br />
 		<br />
