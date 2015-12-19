@@ -72,6 +72,9 @@
 			<f:validateDoubleRange minimum="-85" maximum="85" />
 		</h:inputText>
 
+		<br />
+		<br />
+
 		<p:gmap id="locationdragmap" center="0,0" zoom="2" type="MAP"
 			model="#{locationDragMap.map}"
 			style="position:fixed;left:30%; width:40%;height:300px">
@@ -79,8 +82,6 @@
 				update="latitudetextbox, longitudetextbox" />
 		</p:gmap>
 
-		<br />
-		<br />
 		<br />
 
 		<h:outputText id="altitudelabel" value="Altitude" />
