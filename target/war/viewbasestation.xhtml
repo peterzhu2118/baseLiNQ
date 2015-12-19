@@ -6,12 +6,21 @@
 	xmlns:of="http://omnifaces.org/functions"
 	xmlns:o="http://omnifaces.org/ui">
 
+<f:view>
+	<f:metadata>
+		<f:viewAction action="#{locationDragMap.disableDrag()}" />
+	</f:metadata>
+</f:view>
+
 <h:head>
 	<title>View Base Station</title>
 
 	<h:outputStylesheet name="css/header.css" />
 	<h:outputStylesheet name="css/formtemplate.css" />
 	<h:outputStylesheet name="css/viewbasestation.css" />
+
+	<script src="http://maps.google.com/maps/api/js?sensor=false&amp;v=3.4"
+		type="text/javascript"></script>
 </h:head>
 
 <h:body>
@@ -43,6 +52,13 @@
 			value="Latitude: #{baseStationBean.latitude}" />
 
 		<br />
+		<br />
+
+		<p:gmap id="locationdragmap" center="0,0" zoom="2" type="MAP"
+			model="#{locationDragMap.map}"
+			style="position:fixed;left:30%; width:40%;height:300px">
+		</p:gmap>
+
 		<br />
 
 		<h:outputText id="altitudelabel"

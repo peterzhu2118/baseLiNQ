@@ -71,6 +71,12 @@ public class LocationDragMap implements Serializable {
 	public void resetMap() {
 		init();
 	}
+	
+	public void disableDrag(){
+		System.out.println("Disable drag");
+		
+		map.getMarkers().get(0).setDraggable(false);
+	}
 
 	private double round(double value, int places) {
 		if (places < 0)
