@@ -29,6 +29,8 @@ public class BaseStationSearch implements Serializable {
 	 * @return the search term
 	 */
 	public String getSearchTerm() {
+		// System.out.println("get search term: " + searchTerm);
+		
 		return searchTerm;
 	}
 
@@ -37,7 +39,7 @@ public class BaseStationSearch implements Serializable {
 	 *            the search term to set
 	 */
 	public void setSearchTerm(String searchTerm) {
-		this.searchTerm = searchTerm;
+		this.searchTerm = searchTerm.trim();
 	}
 
 	/**

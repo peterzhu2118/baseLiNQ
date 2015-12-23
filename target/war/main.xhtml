@@ -36,15 +36,18 @@
 		<h:selectOneMenu id="searchtypeselect"
 			value="#{baseStationSearch.searchType}">
 			<f:selectItem itemValue="1" itemLabel="Name" />
+			<f:selectItem itemValue="2" itemLabel="Location" />
 		</h:selectOneMenu>
 
 		<h:commandButton id="searchbutton" value="Search"
 			action="#{baseStationMap.update()}" />
-		<h:button id="addnewbutton" value="Add New" outcome="#{'newbasestation?includeViewParams=true&amp;faces-redirect=true&amp;cid='.concat(baseStationBean.conversationId)}" />
+		<h:button id="addnewbutton" value="Add New"
+			outcome="#{'newbasestation?includeViewParams=true&amp;faces-redirect=true&amp;cid='.concat(baseStationBean.conversationId)}" />
 
 		<!-- This creates the Google Maps element on the man page -->
-		<p:gmap center="0,0" zoom="2" type="MAP" model="#{baseStationMap.map}"
-			id="gmap"
+		<p:gmap center="#{baseStationMap.mapCenter}"
+			zoom="#{baseStationMap.zoom}" type="MAP"
+			model="#{baseStationMap.map}" id="gmap"
 			style="margin-left: 5%;margin-top: 1%;width: 90%;height: 500px;">
 			<p:ajax event="overlaySelect"
 				listener="#{baseStationMap.onMarkerSelect}" />

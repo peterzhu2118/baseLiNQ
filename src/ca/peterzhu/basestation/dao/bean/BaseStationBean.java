@@ -82,9 +82,11 @@ public class BaseStationBean implements Serializable {
 	 */
 	@PostConstruct
 	private void init() {
-		System.out.println("init is transient: " + conversation.isTransient());
+		// System.out.println("init is transient: " +
+		// conversation.isTransient());
 		beginConversation();
-		System.out.println("After init is transient: " + conversation.isTransient());
+		// System.out.println("After init is transient: " +
+		// conversation.isTransient());
 	}
 
 	/**
@@ -115,8 +117,8 @@ public class BaseStationBean implements Serializable {
 	public String toString() {
 		return name;
 	}
-	
-	public String getConversationId(){
+
+	public String getConversationId() {
 		return conversation.getId();
 	}
 

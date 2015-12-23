@@ -1,7 +1,6 @@
 package ca.peterzhu.basestation.googlemaps;
 
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -30,6 +29,8 @@ import ca.peterzhu.basestation.dao.bean.BaseStationBean;
 public class AllBaseStationMap implements Serializable {
 	private MapModel map;
 	private Marker selectedMarker;
+	private String mapCenter;
+	private int zoom;
 
 	private BaseStationDAO baseStationDao;
 
@@ -40,37 +41,43 @@ public class AllBaseStationMap implements Serializable {
 	 *
 	 */
 	public AllBaseStationMap() {
+		mapCenter = "0,0";
+		zoom = 2;
 
 	}
 
 	/**
 	 * Initializes the map.
 	 * 
-	 * @throws SQLException
-	 *             thrown when a SQL exception occurs
+	 * @throws Exception
 	 */
 	@PostConstruct
-	public void init() throws SQLException {
+	public void init() throws Exception {
 		update();
 	}
 
 	/**
 	 * Updates the map with the specified search terms.
 	 * 
-	 * @throws SQLException
-	 *             thrown when a SQL exception occurs
+	 * @throws Exception
 	 */
-	public void update() throws SQLException {
+	public void update() throws Exception {
+		// System.out.println("Update");
+
 		map = new DefaultMapModel();
 
 		baseStationDao = new BaseStationDAO();
 
 		List<BaseStationBean> baseStations = baseStationDao.retrieveAll();
 
-		if (baseStationSearch.getSearchType() == 0) {
-
+		if (baseStationSearch.getSearchTerm() == null || baseStationSearch.getSearchTerm().equals("")) {
+			mapCenter = "0,0";
+			zoom = 2;
 		} else if (baseStationSearch.getSearchType() == 1 && baseStationSearch.getSearchTerm() != null
-				&& baseStationSearch.getSearchTerm() != "") {
+				&& !baseStationSearch.getSearchTerm().equals("")) {
+			mapCenter = "0,0";
+			zoom = 2;
+
 			for (int i = 0; i < baseStations.size(); i++) {
 				if (!baseStations.get(i).getName().toLowerCase()
 						.contains(baseStationSearch.getSearchTerm().toLowerCase())) {
@@ -78,6 +85,15 @@ public class AllBaseStationMap implements Serializable {
 					i--;
 				}
 			}
+		} else if (baseStationSearch.getSearchType() == 2 && baseStationSearch.getSearchTerm() != null
+				&& !baseStationSearch.getSearchTerm().equals("")) {
+			Geocode geocode = new Geocode(baseStationSearch.getSearchTerm());
+
+			com.google.maps.model.LatLng coord = geocode.geocode();
+
+			mapCenter = coord.lat + "," + coord.lng;
+
+			zoom = 10;
 		}
 
 		for (BaseStationBean bsb : baseStations) {
@@ -91,6 +107,8 @@ public class AllBaseStationMap implements Serializable {
 	 * @return the map
 	 */
 	public MapModel getMap() {
+		// System.out.println("Get map center: " + mapCenter);
+
 		return map;
 	}
 
@@ -107,5 +125,13 @@ public class AllBaseStationMap implements Serializable {
 	 */
 	public Marker getSelectedMarker() {
 		return selectedMarker;
+	}
+
+	public String getMapCenter() {
+		return mapCenter;
+	}
+
+	public int getZoom() {
+		return zoom;
 	}
 }

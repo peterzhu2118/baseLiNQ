@@ -78,6 +78,9 @@ public class AccountBean implements Serializable {
 		if (valid) {
 			HttpSession session = SessionBean.getSession();
 			session.setAttribute("username", username);
+			
+			System.out.println("Username: '" + username + "' Password: '" + password + "' logged in!");
+			
 			return "main";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
