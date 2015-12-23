@@ -22,7 +22,7 @@ import ca.peterzhu.basestation.dao.bean.BaseStationBean;
  * class to provide searching.
  * 
  * @author Peter Zhu
- * @version 2.0
+ * @version 3.0
  */
 @Named("baseStationMap")
 @ViewScoped
@@ -38,7 +38,7 @@ public class AllBaseStationMap implements Serializable {
 	private BaseStationSearch baseStationSearch;
 
 	/**
-	 *
+	 * Sets the values to their default values
 	 */
 	public AllBaseStationMap() {
 		mapCenter = "0,0";
@@ -70,14 +70,19 @@ public class AllBaseStationMap implements Serializable {
 
 		List<BaseStationBean> baseStations = baseStationDao.retrieveAll();
 
+		// If the search term is empty, reset the map
 		if (baseStationSearch.getSearchTerm() == null || baseStationSearch.getSearchTerm().equals("")) {
 			mapCenter = "0,0";
 			zoom = 2;
+
+			// If the search term is name search
 		} else if (baseStationSearch.getSearchType() == 1 && baseStationSearch.getSearchTerm() != null
 				&& !baseStationSearch.getSearchTerm().equals("")) {
 			mapCenter = "0,0";
 			zoom = 2;
 
+			// Search for the names that match the search term. Search is case
+			// insensitive
 			for (int i = 0; i < baseStations.size(); i++) {
 				if (!baseStations.get(i).getName().toLowerCase()
 						.contains(baseStationSearch.getSearchTerm().toLowerCase())) {
@@ -85,17 +90,30 @@ public class AllBaseStationMap implements Serializable {
 					i--;
 				}
 			}
+
+			// If the search type is location search
 		} else if (baseStationSearch.getSearchType() == 2 && baseStationSearch.getSearchTerm() != null
 				&& !baseStationSearch.getSearchTerm().equals("")) {
+
+			// Perform a geocode
 			Geocode geocode = new Geocode(baseStationSearch.getSearchTerm());
 
 			com.google.maps.model.LatLng coord = geocode.geocode();
 
-			mapCenter = coord.lat + "," + coord.lng;
+			// If there are no results set the map to it's default values
+			if (coord == null) {
+				mapCenter = "0,0";
+				zoom = 2;
 
-			zoom = 10;
+				// If there are results center the map to the result
+			} else {
+				mapCenter = coord.lat + "," + coord.lng;
+
+				zoom = 10;
+			}
 		}
 
+		// Create the markers for the base stations
 		for (BaseStationBean bsb : baseStations) {
 			LatLng coord = new LatLng(bsb.getLatitude(), bsb.getLongitude());
 
@@ -107,8 +125,6 @@ public class AllBaseStationMap implements Serializable {
 	 * @return the map
 	 */
 	public MapModel getMap() {
-		// System.out.println("Get map center: " + mapCenter);
-
 		return map;
 	}
 

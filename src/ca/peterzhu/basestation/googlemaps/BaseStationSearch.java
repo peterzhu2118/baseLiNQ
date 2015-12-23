@@ -28,9 +28,7 @@ public class BaseStationSearch implements Serializable {
 	/**
 	 * @return the search term
 	 */
-	public String getSearchTerm() {
-		// System.out.println("get search term: " + searchTerm);
-		
+	public String getSearchTerm() {		
 		return searchTerm;
 	}
 
