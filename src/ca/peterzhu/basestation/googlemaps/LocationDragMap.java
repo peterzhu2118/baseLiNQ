@@ -17,6 +17,12 @@ import org.primefaces.model.map.Marker;
 
 import ca.peterzhu.basestation.dao.bean.BaseStationBean;
 
+/**
+ * Provides a draggable map for the new/edit base station page.
+ * 
+ * @author Peter Zhu
+ * @version 1.0
+ */
 @Named("locationDragMap")
 @ViewScoped
 public class LocationDragMap implements Serializable {
@@ -26,10 +32,16 @@ public class LocationDragMap implements Serializable {
 	@Inject
 	private BaseStationBean baseStationBean;
 
+	/**
+	 * 
+	 */
 	public LocationDragMap() {
 
 	}
 
+	/**
+	 * Initializes the map
+	 */
 	@PostConstruct
 	private void init() {
 		map = new DefaultMapModel();
@@ -42,42 +54,58 @@ public class LocationDragMap implements Serializable {
 		map.addOverlay(marker);
 	}
 
+	/**
+	 * @return the drag map
+	 */
 	public MapModel getMap() {
 		return map;
 	}
 
+	/**
+	 * @param event
+	 *            the marker dragged
+	 */
 	public void onMarkerDrag(MarkerDragEvent event) {
 		selectedMarker = event.getMarker();
 
 		LatLng latLng = selectedMarker.getLatlng();
 
-		// System.out.println("Lat: " + latLng.getLat());
-		// System.out.println("Lng: " + latLng.getLng());
-
 		baseStationBean.setLongitude(round(latLng.getLng(), 6));
 		baseStationBean.setLatitude(round(latLng.getLat(), 6));
 	}
 
+	/**
+	 * Called when a latitude/longitude change happens in the BaseStationBean
+	 * class.
+	 */
 	public void onLatLngChange() {
 		double lat = baseStationBean.getLatitude();
 		double lng = baseStationBean.getLongitude();
 
-		//System.out.println("Lat: " + lat);
-		//System.out.println("Lng: " + lng);
-
 		map.getMarkers().get(0).setLatlng(new LatLng(lat, lng));
 	}
 
+	/**
+	 * Resets the map.
+	 */
 	public void resetMap() {
 		init();
 	}
-	
-	public void disableDrag(){
-		System.out.println("Disable drag");
-		
+
+	/**
+	 * Disables drag on the map. Used for viewing.
+	 */
+	public void disableDrag() {
 		map.getMarkers().get(0).setDraggable(false);
 	}
 
+	/**
+	 * Rounds a double value to a specific amount of decimal places.
+	 * 
+	 * @param value the value to be rounded
+	 * @param places the decimal places to be rounded
+	 * @return the rounded number
+	 */
 	private double round(double value, int places) {
 		if (places < 0)
 			throw new IllegalArgumentException();

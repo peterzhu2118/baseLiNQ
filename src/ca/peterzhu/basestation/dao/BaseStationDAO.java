@@ -14,10 +14,8 @@ import ca.peterzhu.basestation.dao.bean.CabinetBean;
 
 /**
  * This class contains all the methods to create, update, delete and retrieve
- * BaseStationBean Objects. The connection is done using JDBC's
- * java.sql.Connection class and JDBC's java.sql.PreparedStatement class. The
- * methods in this class assumes the SQL server will automatically commit the
- * changes.
+ * BaseStationBean Objects. The methods in this class assumes the SQL server
+ * will automatically commit the changes.
  * 
  * <p>
  * The connection to the SQL server will be done using the JDBC (Java Database
@@ -48,7 +46,7 @@ public class BaseStationDAO {
 
 	/**
 	 * Writes all the fields of the BaseStationBean passed in. Loops through the
-	 * list of CabinetBean and AntennaBean and create them through their DAO.
+	 * list of CabinetBean and AntennaBean and creates them through their DAO.
 	 * 
 	 * @param baseStation
 	 *            the BaseStationBean to create
@@ -70,7 +68,6 @@ public class BaseStationDAO {
 			prepStmt.setInt(5, baseStation.getAltitude());
 
 			prepStmt.execute();
-			// connection.commit();
 		} finally {
 			if (connection != null) {
 				connection.close();
@@ -90,7 +87,7 @@ public class BaseStationDAO {
 	/**
 	 * Updates an existing Base Station from the SQL server. Updates the entry
 	 * with the same unique ID as the BaseStationBean passed in. Also updates
-	 * all the Cabinets and Antennas by deleting all first and then recreating
+	 * all the Cabinets and Antennas by deleting all and then recreating
 	 * them.
 	 * 
 	 * @param baseStation

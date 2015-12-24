@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- * Manages all the This is a fully static class meaning that no object of this
+ * Manages all the HTTP sessions. This is a fully static class meaning that no object of this
  * class can be created.
  * 
  * @author Peter Zhu

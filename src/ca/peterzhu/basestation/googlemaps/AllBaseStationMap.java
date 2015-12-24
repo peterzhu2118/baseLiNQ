@@ -62,8 +62,6 @@ public class AllBaseStationMap implements Serializable {
 	 * @throws Exception
 	 */
 	public void update() throws Exception {
-		// System.out.println("Update");
-
 		map = new DefaultMapModel();
 
 		baseStationDao = new BaseStationDAO();
@@ -143,10 +141,16 @@ public class AllBaseStationMap implements Serializable {
 		return selectedMarker;
 	}
 
+	/**
+	 * @return the location of the center of the map
+	 */
 	public String getMapCenter() {
 		return mapCenter;
 	}
 
+	/**
+	 * @return the zoom of the map
+	 */
 	public int getZoom() {
 		return zoom;
 	}

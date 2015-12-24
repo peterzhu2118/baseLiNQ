@@ -12,10 +12,10 @@ import javax.servlet.http.HttpSession;
 import ca.peterzhu.basestation.dao.AccountDAO;
 
 /**
- * Authenticates the user for their login. This is a managed bean t interact
+ * Authenticates the user for their login. This is a managed bean that interactsF
  * directly with the JSF frontend.
  * 
- * @author Peter
+ * @author Peter Zhu
  * @version 2.0
  */
 @Named("accountBean")
@@ -78,9 +78,9 @@ public class AccountBean implements Serializable {
 		if (valid) {
 			HttpSession session = SessionBean.getSession();
 			session.setAttribute("username", username);
-			
+
 			System.out.println("Username: '" + username + "' Password: '" + password + "' logged in!");
-			
+
 			return "main";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,

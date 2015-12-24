@@ -13,7 +13,7 @@ import javax.inject.Named;
 
 /**
  * Contains all the the fields to represent a Cabinet. This is a managed bean
- * using CDI to interact with the HTML JSF pages.
+ * using CDI to interact with the JSF frontend.
  * 
  * @author Peter Zhu
  * @version 3.0

@@ -6,7 +6,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 /**
- * Contains all the fields for searching.
+ * Contains all the fields for searching for the AllBaseStationMap class.
  * 
  * @author Peter Zhu
  * @version 1.0

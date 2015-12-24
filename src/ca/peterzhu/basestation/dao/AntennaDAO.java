@@ -11,8 +11,8 @@ import ca.peterzhu.basestation.dao.bean.AntennaBean;
 
 /**
  * This class works for the BaseStationDAO class to create, delete and retrieve
- * AntennaBean Objects. Updating AntennaBean Objects will be done by deleting
- * and then recreating the AntennaBean Objects into the SQL server. All the
+ * AntennaBean objects. Updating AntennaBean objects will be done by deleting
+ * and then recreating the AntennaBean objects into the SQL server. All the
  * methods in this class assumes the SQL server will automatically commit
  * changes.
  * 

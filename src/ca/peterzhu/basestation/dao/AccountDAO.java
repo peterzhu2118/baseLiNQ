@@ -5,7 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Performs retrieves on user accounts in the SQL server.
+ * Retrieves user accounts from the SQL server.
+ * 
+ * <p>
+ * The connection to the SQL server will be done using the JDBC (Java Database
+ * Connectivity) framework.
  * 
  * @author Peter Zhu
  * @version 1.0

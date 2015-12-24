@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Filters the pages depending if the user has been authenticated.
+ * Filters the pages depending on if the user has been authenticated.
  * 
  * @author Peter Zhu
  * @version 1.0

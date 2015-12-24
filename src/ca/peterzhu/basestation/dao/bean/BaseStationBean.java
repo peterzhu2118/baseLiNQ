@@ -16,7 +16,7 @@ import ca.peterzhu.basestation.googlemaps.LocationDragMap;
 
 /**
  * Contains all the the fields to represent a Base Station. This is a managed
- * bean using CDI to interact with the HTML JSF frontend pages.
+ * bean using CDI to interact with the JSF frontend.
  * 
  * @author Peter Zhu
  * @version 3.0
@@ -78,15 +78,11 @@ public class BaseStationBean implements Serializable {
 	}
 
 	/**
-	 * Initializes the bean by elevating it to ConversationScope.
+	 * Initializes the bean by elevating it to conversation scope.
 	 */
 	@PostConstruct
 	private void init() {
-		// System.out.println("init is transient: " +
-		// conversation.isTransient());
 		beginConversation();
-		// System.out.println("After init is transient: " +
-		// conversation.isTransient());
 	}
 
 	/**
@@ -118,6 +114,9 @@ public class BaseStationBean implements Serializable {
 		return name;
 	}
 
+	/** 
+	 * @return the conversation ID
+	 */
 	public String getConversationId() {
 		return conversation.getId();
 	}

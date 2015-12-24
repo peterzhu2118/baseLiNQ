@@ -11,8 +11,8 @@ import ca.peterzhu.basestation.dao.bean.TxBoardBean;
 
 /**
  * This class works for the CabinetDAO class to create, delete and retrieve
- * TxBoardBean Objects from the SQL server. Updating the TxBoardBean Objects
- * will be done by deleting all TxBoardBean Objects then adding them again. This
+ * TxBoardBean objects from the SQL server. Updating the TxBoardBean objects
+ * will be done by deleting all TxBoardBean objects then adding them again. This
  * class assumes the SQL server will automatically commit the changes.
  * 
  * <p>

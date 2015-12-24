@@ -7,7 +7,7 @@ import javax.inject.Named;
 
 /**
  * Contains all the fields to represent a Antenna. This is a managed
- * bean using CDI to interact with the HTML JSF pages.
+ * bean using CDI to interact with the JSF frontend.
  * 
  * @author Peter Zhu
  * @version 3.0
