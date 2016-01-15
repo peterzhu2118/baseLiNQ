@@ -90,11 +90,8 @@ public class AntennaBean implements Serializable {
 	 */
 	public String setThisObject(Object o, String redirect) {
 		if (o instanceof AntennaBean) {
-			// System.out.println("Set Object");
 
 			AntennaBean a = (AntennaBean) o;
-
-			// System.out.println("Height: " + a.getHeight());
 
 			this.slotNumber = a.getSlotNumber();
 			this.height = a.getHeight();
@@ -167,7 +164,8 @@ public class AntennaBean implements Serializable {
 	}
 
 	/**
-	 * This method is only used in HTML for temporary variable storage.
+	 * This method is only used in HTML for temporary variable storage. Gets
+	 * the Base Station page it should be redirected to.
 	 * 
 	 * @return the Base Station page URL
 	 */
@@ -176,7 +174,8 @@ public class AntennaBean implements Serializable {
 	}
 
 	/**
-	 * This method is only used in HTML for temporary variable storage.
+	 * This method is only used in HTML for temporary variable storage. Stores
+	 * the Base Station page it should be redirected to.
 	 * 
 	 * @param baseStationPage
 	 *            the Base Station page URL to set

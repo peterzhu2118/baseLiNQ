@@ -110,7 +110,6 @@ public class BaseStationDAO {
 			prepStmt.setString(5, baseStation.getUniqueId());
 
 			prepStmt.execute();
-			// connection.commit();
 		} finally {
 			if (connection != null) {
 				connection.close();
@@ -131,7 +130,7 @@ public class BaseStationDAO {
 	}
 
 	/**
-	 * Removes a BaseStationBean from the SQL server. Removes all the entries in
+	 * Removes the BaseStationBean passed from the SQL server. Removes all the entries in
 	 * the SQL server with the unique ID of the BaseStationBean passed in.
 	 * 
 	 * @param b
@@ -175,7 +174,7 @@ public class BaseStationDAO {
 
 	/**
 	 * Returns a list of all the Base Stations in the SQL server packaged as
-	 * BaseStationBean.
+	 * BaseStationBean objects.
 	 * 
 	 * @return the list of BaseStationBean
 	 * @throws SQLException
@@ -237,6 +236,7 @@ public class BaseStationDAO {
 
 		boolean exists = false;
 
+		// Checks if the UID is used
 		String sqlStatement = "SELECT * FROM " + TABLE_NAME + " WHERE uniqueid=?;";
 		Connection connection = null;
 		try {
@@ -245,7 +245,6 @@ public class BaseStationDAO {
 			prepStmt.setString(1, UID);
 
 			exists = prepStmt.executeQuery().next();
-			// connection.commit();
 		} finally {
 			if (connection != null) {
 				connection.close();
@@ -253,6 +252,7 @@ public class BaseStationDAO {
 			}
 		}
 
+		// Recursively generates another one if it exists
 		if (exists)
 			return generateUID();
 		else

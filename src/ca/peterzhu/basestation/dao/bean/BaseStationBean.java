@@ -227,8 +227,6 @@ public class BaseStationBean implements Serializable {
 	 *            the latitude to set
 	 */
 	public void setLatitude(double latitude) {
-		System.out.println("Set lat to: " + latitude);
-		System.out.println("Long is: " + longitude);
 		this.latitude = latitude;
 	}
 
@@ -349,7 +347,7 @@ public class BaseStationBean implements Serializable {
 
 	/**
 	 * Updates the list of AntennaBean. Replaces the CabinetBean at element
-	 * number (slotNumber - 1).
+	 * number slotNumber - 1.
 	 * 
 	 * @param a
 	 *            the AntennaBean to update

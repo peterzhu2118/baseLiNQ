@@ -122,8 +122,6 @@ public class TxBoardBean implements Serializable {
 	}
 
 	/**
-	 * This method is only used in HTML for temporary variable storage.
-	 * 
 	 * @param frequency
 	 *            the frequency to set
 	 */
@@ -132,7 +130,8 @@ public class TxBoardBean implements Serializable {
 	}
 
 	/**
-	 * This method is only used in HTML for temporary variable storage.
+	 * This method is only used in HTML for temporary variable storage. Gets
+	 * the Cabinet page it should be redirected to.
 	 * 
 	 * @return the cabinet page to set
 	 */
@@ -141,7 +140,8 @@ public class TxBoardBean implements Serializable {
 	}
 
 	/**
-	 * This method is only used in HTML for temporary variable storage.
+	 * This method is only used in HTML for temporary variable storage. Stores
+	 * the Cabinet page it should be redirected to.
 	 * 
 	 * @param cabinetPage
 	 *            the cabinetPage to set

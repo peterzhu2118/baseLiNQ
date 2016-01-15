@@ -78,7 +78,6 @@ public class CabinetBean implements Serializable {
 		if (o instanceof CabinetBean) {
 			CabinetBean c = (CabinetBean) o;
 
-			// THIS CODE NOT TESTED!!!!
 			if (c.getSlotNumber() != this.getSlotNumber())
 				return false;
 
@@ -128,8 +127,6 @@ public class CabinetBean implements Serializable {
 	 *            the slot number to set
 	 */
 	public void setSlotNumber(int slotNumber) {
-		// System.out.println("Set slot number from " + this.slotNumber + " to " + slotNumber);
-
 		this.slotNumber = slotNumber;
 	}
 
@@ -141,7 +138,8 @@ public class CabinetBean implements Serializable {
 	}
 
 	/**
-	 * This method is only used in HTML for temporary variable storage.
+	 * This method is only used in HTML for temporary variable storage. Gets
+	 * the Base Station page it should be redirected to.
 	 * 
 	 * @return the base station page
 	 */
@@ -150,7 +148,8 @@ public class CabinetBean implements Serializable {
 	}
 
 	/**
-	 * This method is only used in HTML for temporary variable storage.
+	 * This method is only used in HTML for temporary variable storage. Stores
+	 * the Base Station page it should be redirected to.
 	 * 
 	 * @param baseStationPage
 	 *            the base station page to set

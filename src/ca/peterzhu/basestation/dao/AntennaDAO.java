@@ -83,7 +83,6 @@ public class AntennaDAO {
 			prepStmt.setString(1, baseStationID);
 
 			prepStmt.execute();
-			// connection.commit();
 		} finally {
 			if (connection != null) {
 				connection.close();

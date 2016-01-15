@@ -58,7 +58,6 @@ public class TxBoardDAO {
 			prepStmt.setInt(5, t.getFrequency());
 
 			prepStmt.execute();
-			// connection.commit();
 		} finally {
 			if (connection != null) {
 				connection.close();
@@ -84,7 +83,6 @@ public class TxBoardDAO {
 			prepStmt.setString(1, baseStationID);
 
 			prepStmt.execute();
-			// connection.commit();
 		} finally {
 			if (connection != null) {
 				connection.close();
@@ -94,7 +92,7 @@ public class TxBoardDAO {
 	}
 
 	/**
-	 * Returns a list of TxBoardBean for the specified Base Station and Cabinet.
+	 * Returns a list of TxBoardBean for the specified Base Station ID and Cabinet ID.
 	 * 
 	 * @param baseStationID
 	 *            the Base Station ID of the TX Boards
