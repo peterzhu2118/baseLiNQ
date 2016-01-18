@@ -57,6 +57,7 @@ public class CabinetDAO {
 		String sqlStatement = "INSERT INTO " + TABLE_NAME + " VALUES(?, ?)";
 		Connection connection = null;
 		try {
+			// Adds a entry to the SQL server
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
 			prepStmt.setString(1, baseStationID);
@@ -87,6 +88,7 @@ public class CabinetDAO {
 		String sqlStatement = "DELETE FROM " + TABLE_NAME + " WHERE basestationid=?";
 		Connection connection = null;
 		try {
+			// Removes an entry from the SQL server
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
 			prepStmt.setString(1, baseStationID);
@@ -116,14 +118,15 @@ public class CabinetDAO {
 		String sqlStatement = "SELECT * FROM " + TABLE_NAME + " WHERE basestationid=?";
 		Connection connection = null;
 		try {
+			// Reads from the SQL server
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
 			prepStmt.setString(1, baseStationID);
 
 			ResultSet result = prepStmt.executeQuery();
 
+			// Takes the results and creates the TX Boards
 			List<CabinetBean> cabinets = new ArrayList<>();
-
 			while (result.next()) {
 				int slotNumber = result.getInt(2);
 

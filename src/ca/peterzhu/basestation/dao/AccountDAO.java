@@ -42,6 +42,7 @@ public class AccountDAO {
 		String sqlStatement = "SELECT * FROM " + TABLE_NAME + " WHERE BINARY username=? AND BINARY password=?;";
 		Connection connection = null;
 		try {
+			// Reads from the SQL server
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
 			prepStmt.setString(1, u);

@@ -210,8 +210,6 @@ public class BaseStationBean implements Serializable {
 	 *            the latitude to set
 	 */
 	public void setLongitude(double longitude) {
-		System.out.println("Set Long to: " + longitude);
-		System.out.println("Lat is: " + latitude);
 		this.longitude = longitude;
 	}
 

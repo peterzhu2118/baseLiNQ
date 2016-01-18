@@ -58,6 +58,7 @@ public class BaseStationDAO {
 		String sqlStatement = "INSERT INTO " + TABLE_NAME + " VALUES (?, ?, ?, ?, ?)";
 		Connection connection = null;
 		try {
+			// Adds an entry to the SQL server
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
 
@@ -75,10 +76,12 @@ public class BaseStationDAO {
 			}
 		}
 
+		// Adds the Cabinets in the Base Station
 		for (CabinetBean c : baseStation.getCabinets()) {
 			cabinetDAO.create(c, baseStation.getUniqueId());
 		}
 
+		// Adds the Antennas in the Base Station
 		for (AntennaBean a : baseStation.getAntennas()) {
 			antennaDAO.create(a, baseStation.getUniqueId());
 		}
@@ -100,6 +103,7 @@ public class BaseStationDAO {
 				+ " SET name=?, longitude=?, latitude=?, altitude=? WHERE uniqueid=?";
 		Connection connection = null;
 		try {
+			// Updates the entry in the SQL server
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
 
@@ -117,12 +121,13 @@ public class BaseStationDAO {
 			}
 		}
 
+		// Recreates all the Cabinets
 		cabinetDAO.deleteAll(baseStation.getUniqueId());
-		antennaDAO.deleteAll(baseStation.getUniqueId());
 		for (CabinetBean c : baseStation.getCabinets()) {
 			cabinetDAO.create(c, baseStation.getUniqueId());
 		}
 
+		// Recrceates all the Antennas
 		antennaDAO.deleteAll(baseStation.getUniqueId());
 		for (AntennaBean a : baseStation.getAntennas()) {
 			antennaDAO.create(a, baseStation.getUniqueId());
@@ -155,6 +160,7 @@ public class BaseStationDAO {
 		String sqlStatement = "DELETE FROM " + TABLE_NAME + " WHERE uniqueid=?";
 		Connection connection = null;
 		try {
+			// Removes a entry from the SQl server
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
 
@@ -184,12 +190,13 @@ public class BaseStationDAO {
 		String sqlStatement = "SELECT * FROM " + TABLE_NAME;
 		Connection connection = null;
 		try {
+			// Reads from the SQL server
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
 			ResultSet result = prepStmt.executeQuery();
 
+			// Takes the results and creates the list of Base Stations
 			List<BaseStationBean> baseStationList = new ArrayList<>();
-
 			while (result.next()) {
 				String name = result.getString(1);
 				String UID = result.getString(2);

@@ -47,6 +47,7 @@ public class AntennaDAO {
 		String sqlStatement = "INSERT INTO " + TABLE_NAME + " VALUES(?, ?, ?, ?, ?)";
 		Connection connection = null;
 		try {
+			// Adds a entry to the SQL server
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
 			prepStmt.setString(1, baseStationID);
@@ -56,7 +57,6 @@ public class AntennaDAO {
 			prepStmt.setInt(5, a.getDowntilt());
 
 			prepStmt.execute();
-			// connection.commit();
 		} finally {
 			if (connection != null) {
 				connection.close();
@@ -78,6 +78,7 @@ public class AntennaDAO {
 		String sqlStatement = "DELETE FROM " + TABLE_NAME + " WHERE basestationid=?";
 		Connection connection = null;
 		try {
+			// Removes a entry from the SQL server
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
 			prepStmt.setString(1, baseStationID);
@@ -104,12 +105,14 @@ public class AntennaDAO {
 		String sqlStatement = "SELECT * FROM " + TABLE_NAME + " WHERE basestationid=?";
 		Connection connection = null;
 		try {
+			// Reads from the SQL server
 			connection = SQLConnector.getConnection();
 			PreparedStatement prepStmt = connection.prepareStatement(sqlStatement);
 			prepStmt.setString(1, baseStationID);
 
 			ResultSet results = prepStmt.executeQuery();
 
+			// Takes the results and creates the list of Antennas
 			List<AntennaBean> antennas = new ArrayList<>();
 			while (results.next()) {
 				int slotNumber = results.getInt(2);
